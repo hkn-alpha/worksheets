@@ -81,7 +81,7 @@ Suppose we wanted to create a Moore FSM that has two outputs $Z$ and $O$. $Z$ is
 \begin{table}[!h]
 \begin{tabular}{|l|l|l|l|l|l|l|}
 \hline
-S_2 & S_1 & S_0 & A (input) & $S_2^+$ & $S_1^+$ & $S_0^+$ \\ \hline
+S\_2 & S\_1 & S\_0 & A (input) & $S\_2^+$ & $S\_1^+$ & $S\_0^+$ \\ \hline
 0    & 0    & 0    & 0         & 0                       & 0                       & 1                       \\ \hline
 0    & 0    & 0    & 1         & 1                       & 0                       & 0                       \\ \hline
 0    & 0    & 1    & 0         & 0                       & 1                       & 1                       \\ \hline
@@ -174,6 +174,11 @@ Taken from HDLBits "Design a Moore FSM"\\
     \centering
     \includegraphics[width=0.7\textwidth]{figures/fsm_q3.png}
 \end{figure}
+\begin{figure}[!h]
+    \centering
+    \includegraphics[width=1\textwidth]{figures/fsm_q3-solution.png}
+\end{figure}
+
 
 
 \newpage
@@ -217,7 +222,7 @@ Taken from HDLBits "Design a Moore FSM"\\
     \centering
     \includegraphics[width=0.3\textwidth]{figures/memory_q1.jpg}
 \end{figure}
-For each of the combinations below, select and draw those that can be used to build a 2048 x 12 RAM using only the parts given. Assume that logic 0 and 1 signals are available and that the chip select and write enable are active-high.
+For each of the combinations below, select and draw those that can be used to build a 2048 x 12 RAM using only the parts given. If not possible, explain why. Assume that logic 0 and 1 signals are available and that the chip select and write enable are active-high.
 
 \begin{enumerate}[label=\alph*.]
 \item Two 1024 x 6 RAMs and one 4:1 multiplexer \\
@@ -304,7 +309,7 @@ x3000             & NOT R2, R2        & Set R2 to -R2 (step one)                
 x3001             & ADD R2, R2, \#1   & Set R2 to -R2 (step two)                      \\ \hline
 x3002             & ADD R2, R3, R2    & Set R2 to R3 - R2                             \\ \hline
 x3003             & BRn \#3           & If the result is negative, R2 \textgreater R3 \\ \hline
-x3004             & BRp \#4           & If the result is positive, R3 \textless R2    \\ \hline
+x3004             & BRp \#4           & If the result is positive, R3 \textgreater R2    \\ \hline
 x3005             & AND R1, R1, \#0   & Else, set R1 to 0                             \\ \hline
 x3006             & HALT              &                                               \\ \hline
 x3007             & ADD R1, R2, \#0   & If R2 \textgreater R3, Set R1 to R2           \\ \hline
