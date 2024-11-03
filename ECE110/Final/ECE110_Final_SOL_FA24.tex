@@ -137,8 +137,29 @@ This worksheet does not cover content in lectures after November 25th and is not
 
 \begin{center}
 
-        \includegraphics[width=0.75\linewidth]{figures/45.png}
+        \includegraphics[width=0.75\linewidth]{figures/21_sol.png}
 \end{center}
+
+\textbf{Solution:} 
+Both branches of the diode cannot be ON at the same time, as if positive current flows through one, negative current would flow through the other (which is impossible). We start by solving for $V_{out}$ assuming one diode configuration is ON (below, we start with the left branch) while the other is OFF.
+
+KVL Loops are shown above with assumptions the Voltage source has extremes high or low enough that they will conduct current.
+\begin{align*}
+    V_{out} = 2V-1V = 1V.
+\end{align*}
+\indent For current to flow in the correct direction, the voltage on the right of the resistor must have a larger value than the voltage on the left. We have determined $V_{out} = 1V$, we now check whether $V_S$ can be smaller than that number.
+\begin{align*}
+    V_{S\min} = -5V < 1V \Rightarrow \boxed{V_{out\min} = 1V}
+\end{align*}
+\indent Restart this process with the KVL loop with the right branch of diodes. 
+\begin{align*}
+    V_{out} = 1V+1V = 2V
+\end{align*}
+\indent Current must flow in the resistor from left to right to satisfy the diode assumption. Find a value of $V_S$ that is greater than our calculated $V_{out}$
+\begin{align*}
+    V_{S\max} = 5 > 2V \Rightarrow \boxed{V_{out\max} = 2V}
+\end{align*}
+
 
 \textbf{Question 22:} In the circuit below, which diodes are on? Furthermore, if Vs = 10 V, all the diodes have Von = 2V under the offset ideal model, and the voltage drop over R1 is also 2V, what is the voltage drop across the other resistors, assuming they have an equal resistance?
 
