@@ -1,0 +1,641 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumitem}
+\usepackage{subfig}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    filecolor=magenta,      
+    urlcolor=cyan,
+    pdftitle={Overleaf Example},
+    pdfpagemode=FullScreen,
+    }
+
+\begin{document}
+\begin{center}
+\textbf{
+{\Large HKN ECE 120 Midterm 1 Worksheet Solutions}
+}
+\end{center} 
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.2pt}}
+
+
+\section*{Binary Representations}
+\subsection*{Problem 1}
+Write these conversions in decimal. Truncate if necessary.
+\begin{enumerate}[label=\alph*.]
+    \item Convert $100101_2$ to a 6-bit unsigned integer.\\
+    \textbf{1 + 4 + 32 = 37$_{10}$}
+    \item Convert $100101_2$ to a 6-bit signed magnitude integer.\\
+    \textbf{-(1 + 4) = -5$_{10}$}
+    \item Convert $100101_2$ to a 6-bit 2's complement integer.\\
+    \textbf{1 + 4 + (-32) = -27$_{10}$}
+    \item Convert $0 1110 1110_2$ to a 9-bit unsigned integer.\\
+    \textbf{2 + 4 + 8 + 32 + 64 + 128 = 238$_{10}$}
+    \item Convert $0 1110 1110_2$ to a 9-bit 2's complement integer.\\
+    \textbf{Same as above, 2 + 4 + 8 + 32 + 64 + 128 = 238$_{10}$}
+    \item Convert $1001 0010 1101_2$ to a 11-bit unsigned integer.\\
+    \textbf{Since it must be 11 bits, the top bit is disregarded to get $001 0010 1101_2$, which becomes 1 + 4 + 8 + 32 + 256 = 301$_{10}$}
+    \item Convert $1001 0010 1101_2$ to a 9-bit 2's complement integer.\\
+    \textbf{Since it must be 9 bits, the top 3 bits are disregarded to get $1 0010 1101_2$, which becomes 1 + 4 + 8 + 32 + (-256) = -211$_{10}$}
+    \item Convert $0010 1101_2$ to a 12-bit unsigned integer.\\
+    \textbf{Since it must be 12 bits unsigned, zero extend to the required length to get 000000101101$_2$, which becomes 1 + 4 + 8 + 32 = 45$_{10}$}
+    \item Convert $1 0111_2$ to a 16-bit signed integer.\\
+    \textbf{Since it must be 16 bits signed, sign extend to the required length to get 1111111111110111$_2$, which becomes 1 + 2 + 4 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + (-2048) = -9$_{10}$}
+\end{enumerate}
+
+\subsection*{Problem 2}
+Write these conversions in binary. Truncate if necessary.
+\begin{enumerate}[label=\alph*.]
+    \item Convert $51_{10}$ to a 8-bit unsigned integer.\\
+    \textbf{51$_{10}$ = 32 + 16 + 2 + 1 = 00110011$_2$}
+    \item Convert $51_{10}$ to a 8-bit signed magnitude integer.\\
+    \textbf{Same as above, 51$_{10}$ = 32 + 16 + 2 + 1 = 00110011$_2$}
+    \item Convert $51_{10}$ to a 8-bit 2's complement integer.\\
+    \textbf{Same as above, 51$_{10}$ = 32 + 16 + 2 + 1 = 00110011$_2$}
+    \item Convert $-240_{10}$ to a 9-bit signed magnitude integer.\\
+    \textbf{-240$_{10}$ = -1 * (128 + 64 + 32 + 16) = 111110000$_2$}
+    \item Convert $-240_{10}$ to a 9-bit 2's complement integer.\\
+    \textbf{-240$_{10}$ = (-256) + 16 = 100010000$_2$}
+    \item Convert $1171_{10}$ to a 11-bit unsigned integer.\\
+    \textbf{1171$_{10}$ = 1024 + 128 + 16 + 2 + 1 = 10010010011$_2$}
+    \item Convert $1171_{10}$ to a 11-bit 2's complement integer.\\
+    % How tf
+    \textbf{}
+    \item Convert $65_{10}$ to a 12-bit unsigned integer.\\
+    \textbf{65$_{10}$ = 64 + 1 = 000001000001$_2$}
+    \item Convert $-23309_{10}$ to a 16-bit 2's complement integer.\\
+    \textbf{-23309$_{10}$ = (-32768) + 8192 + 1024 + 128 + 64 + 32 + 16 + 2 + 1 = 1010010011110011$_2$}
+\end{enumerate}
+
+\section*{Other Representations}
+\subsection*{Problem 1}
+Convert these binary values to hexadecimal.
+\begin{enumerate}[label=\alph*.]
+    \item $0010 1011 0101 0110$\\
+    \textbf{0010 = x2, 1011 = xB, 0101 = x5, 0110 = x6\\
+            So 0010101101010110 = x2B56}
+    \item $1001 0100 1000 1111$\\
+    \textbf{1001 = x9, 0100 = x4, 1000 = x8, 1111 = xF\\
+            So 1011010010001111 = x948F}
+    \item $0011 1100 0001 0010$\\
+    \textbf{0011 = x3, 1100 = xC, 0001 = x1, 0010 = x2\\
+            So 0011110000010010 = x3C12}
+    \item $1011 1110 1110 1111$\\
+    \textbf{1011x = xB, 1110 = xE, 1110 = xE, 1111 = xF\\
+            So 1011111011101111 = xBEEF}
+    \item $1111 0000 0000 1101$\\
+    \textbf{1111 = xF, 0000 = x0, 0000 = x0, 1101 = xD\\
+            So 1111000000001101 = xF00D}
+\end{enumerate}
+
+\subsection*{Problem 2}
+Convert these hexadecimal values to binary.
+\begin{enumerate}[label=\alph*.]
+    \item x37A5\\
+    \textbf{x3 = 0011, x7 = 0111, xA = 1010, x5 = 0101\\
+            So x37A5 = 0011011110100101}
+    \item x2009\\
+    \textbf{x2 = 0010, x0 = 0000, x0 = 0000, x9 = 1001\\
+            So x2009 = 0010000000001001}
+    \item x1F06\\
+    \textbf{x1 = 0001, xF = 1111, x0 = 0000, x6 = 0110\\
+            So x1F06 = 0001111100000110}
+    \item x2FFE\\
+    \textbf{x2 = 0010, xF = 1111, xF = 1111, xE = 1110\\
+            So x2FFE = 0010111111111110}
+    \item xDEADBEEF\\
+    \textbf{xD = 1101, xE = 1110, xA = 1010, xD = 1101, xB = 1011, xE = 1110, xE = 1110, xF =   1111\\
+            So xDEADBEEF = 11011110101011011011111011101111}
+\end{enumerate}
+
+\subsection*{Problem 3}
+Convert these hexadecimal values to ASCII.
+\begin{enumerate}[label=\alph*.]
+    \item x4A\\
+    \textbf{x4A = 'J'}
+    \item x2F\\
+    \textbf{x2F = '/'}
+    \item x0D\\
+    \textbf{x0D = 'CR' (carriage return)}
+    \item x4045\\
+    \textbf{x40 = '@', x45 = 'E'\\
+            So x4045 = "@E"}
+    \item x6E6F\\
+    \textbf{x6E = 'n', x6F = 'o'\\
+            So x6E6F = "no"}
+\end{enumerate}
+
+\subsection*{Problem 4}
+Convert these ASCII characters to binary.
+\begin{enumerate}[label=\alph*.]
+    \item 'i'\\
+    \textbf{'i' = x69}
+    \item '\#'\\
+    \textbf{'\#' = x23}
+    \item 'M'\\
+    \textbf{'M' = x4D}
+    \item '!'\\
+    \textbf{'!' = x21}
+    \item "bob"\\
+    \textbf{'b' = x62, 'o' = x6F, 'b' = x62\\
+            So "bob" = x626F62}
+\end{enumerate}
+
+\subsection*{Problem 5}
+True or False?
+\begin{enumerate}[label=\alph*.]
+    \item An integer with 11 hexadecimal values is at most a 88-bit integer.\\
+    \textbf{False, 11*4 = 44 bits}
+    \item The shortest hexadecimal string that we can encode any 69-bit unsigned integer into is 18 characters long.\\
+    \textbf{True, 17 hex characters can only encode 17*4=68 bits, so 18 hex characters are needed.}
+    \item All uppercase letters in ASCII start with the binary string $0100$.\\
+    \textbf{False, uppercase letters start with $0100$ or $0101$}
+    \item All lowercase letters in ASCII start with the binary string $011$.\\
+    \textbf{True}
+    \item There is an ASCII character that directly corresponds to x8A.\\
+    \textbf{False, ASCII characters only go up till x7F so x8A would actually become x0A}
+    \item ASCII characters are usually stored as signed 8-bit integers.\\
+    % Technically this depends on compiler and system but eh
+    \textbf{True}
+    \item The control characters in ASCII were originally used as special codes for teletypes, keyboards, and electrical telegraphs.\\
+    \textbf{True}
+\end{enumerate}
+
+\newpage
+\section*{Binary Operations} % include bitmasks
+
+\subsection*{Problem 1}
+Perform the following operations. 
+\begin{enumerate}[label=\alph*.]
+    \item $1_2$ AND $0_2$\\
+    \textbf{1$_2$ AND 0$_2$ = 0$_2$}
+    \item $1_2$ OR $0_2$\\
+    \textbf{1$_2$ OR 0$_2$ = 1$_2$}
+    \item $10010010_2$ AND $01111011_2$\\
+    \textbf{10010010$_2$ AND 01111011$_2$ = 00010010$_2$}
+    \item $001010_2$ OR $111101_2$\\
+    \textbf{001010$_2$ OR 111101$_2$ = 111111$_2$}
+    \item x8618 AND x7507\\
+    \textbf{x8618 = 1000011000011000$_2$, x7507 = 0111010100000111$_2$\\
+            So x8618 AND x7507 = 0000010000010000$_2$ = x0410}
+    \item $1_2$ XOR $1_2$\\
+    \textbf{1$_2$ XOR 1$_2$ = 0$_2$}
+    \item xCA09 XOR x0990\\
+    \textbf{xCA09 = 1100101000001001, x0990 = 0000100110010000$_2$\\
+            So xCA09 XOR x0990 = 1100001110011001$_2$ = xC399}
+    \item NOT $1001110100110101_2$\\
+    \textbf{NOT 1001110100110101$_2$ = 0110001011001010$_2$}
+    \item $1001001101_2$ NAND $0110101110_2$\\
+    \textbf{1001001101$_2$ NAND 0110101110$_2$ = 1111110011$_2$}
+    \item $100011_2$ NOR $001000_2$\\
+    \textbf{100011$_2$ NOR 001000$_2$ = 010100$_2$}
+    \item x908 XNOR xA51\\
+    \textbf{x908 = 100100001000$_2$, xA51 = 101001010001$_2$\\
+            So x908 XNOR xA51 = 110010100110$_2$}
+\end{enumerate}
+
+\subsection*{Problem 2}
+Perform the following operations on unsigned integers. Assume the number of bits given. Indicate when there is an overflow for operations that have it.
+\begin{enumerate}[label=\alph*.]
+    \item $100100_2 + 010101_2$\\
+    \textbf{100100$_2$ + 010101$_2$ = 111001$_2$, no overflow}
+    % unsigned subtraction is an undefined concept
+    % \item $11011010_2 - 11010110_2$\\
+    % \textbf{11011010$_2$ - 11010110$_2$ = 11011010$_2$ + 00101010$_2$ = 1 00000110$_2$, overflow}
+    % \item $1001_2 - 1010_2$\\
+    % \textbf{1001$_2$ - 1010$_2$ = 1111$_2$, overflow}
+    \item $011101_2 + 111011_2$\\
+    \textbf{011101$_2$ + 111011$_2$ = 1 011000$_2$, overflow}
+    \item $1111000_2 \ll 2$\\
+    % does shifting have overflow actually? for now ig not
+    \textbf{1111000$_2$ $\ll$ 2 = 1100000$_2$}
+    \item $1111000_2 \gg 2$\\
+    \textbf{1111000$_2$ $\gg$ 2 = 0011110$_2$}
+    \item $000100_2 \gg 2$\\
+    \textbf{000100$_2$ $\gg$ 2 = 000001$_2$}
+\end{enumerate}
+
+\subsection*{Problem 3}
+Perform the following operations on signed integers. Assume the number of bits given. Indicate when there is an overflow for operations that have it.
+\begin{enumerate}[label=\alph*.]
+    \item $110010_2 + 110001_2$\\
+    \textbf{100100$_2$ + 010101$_2$ = 111001$_2$, no overflow}
+    \item $11011010_2 + 11010110_2$\\
+    \textbf{11011010$_2$ + 11010110$_2$ = 1 10110000$_2$, no overflow}
+    \item $1001_2 - 1010_2$\\
+    \textbf{1001$_2$ - 1010$_2$ = 1001$_2$ + 0110$_2$ = 1111$_2$, no overflow}
+    \item $011101_2 - 111011_2$\\
+    \textbf{011101$_2$ - 111011$_2$ = 011101$_2$ + 000101$_2$ = 100111$_2$, overflow}
+    \item $1111000_2 \ll 2$\\ 
+    \textbf{1111000$_2$ $\ll$ 2 = 1100000$_2$}
+    \item $1111000_2 \gg 2$\\
+    \textbf{1111000$_2$ $\gg$ 2 = 1111110$_2$}
+    \item $000100_2 \gg 2$\\
+    \textbf{000100$_2$ $\gg$ 2 = 000001$_2$}
+\end{enumerate}
+
+% \subsection*{Problem 4}
+% Answer the following questions about bitmasks.
+% \begin{enumerate}[label=\alph*.]
+%     \item Suppose you have a 6-bit unsigned integer. What does applying AND $110000_2$ return? What does it indicate? \\
+%     \textbf{Applying AND 110000$_2$ returns the most significant 2 bits of the integer while replacing the bottom 4 bits with 0s. This indicates whether the integer is greater than or equal to 16 (bit 5), 32 (bit 6), and 48 (bits 5 and 6).}
+%     \item Suppose you have a 8-bit signed integer. What does applying AND $10000000_2$ return? What does it indicate? \\ 
+%     \textbf{Applying AND 10000000$_2$ returns the most significant bit of the integer. This indicates whether the integer is positive or negative.}
+%     \\ \\
+%     Suppose you have a 6-bit unsigned integer that represents 6 lights (1 = on, 0 = off).
+%     \item What operation and what mask should we use to enable a single light? \\
+%     \textbf{To enable a single light, OR with a mask that has a 1 in the corresponding location.}
+%     \item What operation and what mask should we use to disable a single light? \\
+%     \textbf{To disable a single light, AND with a mask that has a 0 in the corresponding location}
+%     \item What operation and what mask should we use to toggle a single light? \\
+%     \textbf{To toggle a single light, XOR with a mask that has a 1 in the corresponding location.}
+%     \item What operation can we use on these masks to form a new mask if we wanted to toggle more than one light? \\
+%     \textbf{Combine the masks by ORing them together, then XOR with the 6-bit integer to toggle multiple lights.}
+% \end{enumerate}
+
+% Not on MT1 last time
+% \newpage
+% \section*{K-maps and Optimization} % include area, delay heuristic
+% \subsection*{Problem 1}
+% Find the minimal SOP and POS expressions for the following table.
+% \begin{table}[!h]
+% \begin{tabular}{|l|l|l|l|}
+% \hline
+% A & B & C & S \\ \hline
+% 0 & 0 & 0 & 1 \\ \hline
+% 0 & 0 & 1 & 1 \\ \hline
+% 0 & 1 & 0 & 0 \\ \hline
+% 0 & 1 & 1 & 0 \\ \hline
+% 1 & 0 & 0 & 0 \\ \hline
+% 1 & 0 & 1 & 1 \\ \hline
+% 1 & 1 & 0 & 1 \\ \hline
+% 1 & 1 & 1 & 1 \\ \hline
+% \end{tabular}
+% \end{table}
+
+% \noindent
+% \textbf{SOP: $AB + B'C + A'B'$ \\
+%         POS: $(A' + B + C)(A + B')$}
+
+% \subsection*{Problem 2}
+% Find the minimal SOP and POS expressions for the following table.
+% \begin{table}[!h]
+% \begin{tabular}{|l|l|l|l|}
+% \hline
+% A & B & C & S \\ \hline
+% 0 & 0 & 0 & 0 \\ \hline
+% 0 & 0 & 1 & 1 \\ \hline
+% 0 & 1 & 0 & X \\ \hline
+% 0 & 1 & 1 & X \\ \hline
+% 1 & 0 & 0 & 1 \\ \hline
+% 1 & 0 & 1 & 0 \\ \hline
+% 1 & 1 & 0 & X \\ \hline
+% 1 & 1 & 1 & X \\ \hline
+% \end{tabular}
+% \end{table}
+
+% \noindent
+% \textbf{SOP: $A'C + AC'$ \\
+%         POS: $(A + C)(A' + C')$}
+
+% \newpage
+% \subsection*{Problem 3}
+% Find the minimal SOP and POS expressions for the following table.
+% \begin{table}[!h]
+% \begin{tabular}{|l|l|l|l|l|}
+% \hline
+% A & B & C & D & S \\ \hline
+% 0 & 0 & 0 & 0 & 0 \\ \hline
+% 0 & 0 & 0 & 1 & 1 \\ \hline
+% 0 & 0 & 1 & 0 & 1 \\ \hline
+% 0 & 0 & 1 & 1 & 0 \\ \hline
+% 0 & 1 & 0 & 0 & 1 \\ \hline
+% 0 & 1 & 0 & 1 & 1 \\ \hline
+% 0 & 1 & 1 & 0 & 0 \\ \hline
+% 0 & 1 & 1 & 1 & 1 \\ \hline
+% 1 & 0 & 0 & 0 & 1 \\ \hline
+% 1 & 0 & 0 & 1 & 0 \\ \hline
+% 1 & 0 & 1 & 0 & 0 \\ \hline
+% 1 & 0 & 1 & 1 & 0 \\ \hline
+% 1 & 1 & 0 & 0 & 0 \\ \hline
+% 1 & 1 & 0 & 1 & 0 \\ \hline
+% 1 & 1 & 1 & 0 & 0 \\ \hline
+% 1 & 1 & 1 & 1 & 0 \\ \hline
+% \end{tabular}
+% \end{table}
+
+% \noindent
+% \textbf{SOP: $A'C'D + A'BC' + A'BD + A'B'CD' + AB'C'D'$ \\
+%         POS: $(A' + D')(A' + C')(A' + B')(B + C' + D')(B' + C' + D)(A + B + C + D)$}
+
+% \newpage
+% \subsection*{Problem 4}
+% Find the minimal SOP and POS expressions for the following table.
+% \begin{table}[!h]
+% \begin{tabular}{|l|l|l|l|l|}
+% \hline
+% A & B & C & D & S \\ \hline
+% 0 & 0 & 0 & 0 & X \\ \hline
+% 0 & 0 & 0 & 1 & 1 \\ \hline
+% 0 & 0 & 1 & 0 & 0 \\ \hline
+% 0 & 0 & 1 & 1 & 0 \\ \hline
+% 0 & 1 & 0 & 0 & X \\ \hline
+% 0 & 1 & 0 & 1 & X \\ \hline
+% 0 & 1 & 1 & 0 & 1 \\ \hline
+% 0 & 1 & 1 & 1 & 1 \\ \hline
+% 1 & 0 & 0 & 0 & 1 \\ \hline
+% 1 & 0 & 0 & 1 & 0 \\ \hline
+% 1 & 0 & 1 & 0 & 0 \\ \hline
+% 1 & 0 & 1 & 1 & 0 \\ \hline
+% 1 & 1 & 0 & 0 & X \\ \hline
+% 1 & 1 & 0 & 1 & X \\ \hline
+% 1 & 1 & 1 & 0 & X \\ \hline
+% 1 & 1 & 1 & 1 & X \\ \hline
+% \end{tabular}
+% \end{table}
+
+% \noindent
+% \textbf{SOP: $B + A'C' + C'D'$ \\
+%         POS: $(B + C')(A' + D')$}
+
+% \newpage 
+% \subsection*{Problem 5}
+% Find the area and delay heuristics for the following expressions. Do not include NOT gates.  
+% \begin{enumerate}[label=\alph*.]
+%     \item $ABC + A'B'C + C'$ \\
+%     \textbf{Delay = 2, Area = 6}
+%     \item $A + B + C + D(A + B)$ \\
+%     \textbf{Delay = 3, Area = 7}
+%     \item $ABCDEFGHIJKLMNOPQRSTUVWXY + Z$ \\
+%     \textbf{Delay = 2, Area = 28}
+%     \item $(AB)'(A+B)'(CD)$ \\
+%     \textbf{Delay = 2, Area = 8}
+% \end{enumerate}
+
+% \subsection*{Problem 6}
+% Implement the following expressions using AND and OR gates, then using NAND and NOR gates only. 
+% \begin{enumerate}[label=\alph*.]
+%     \item $AB + C$
+%     \item $A'B + AB' + ABC' + ABD'$
+%     \item $(A+B+C')(A'+B+C)(A+B'+C)$
+%     \item $(A+D)(B'+C'+A)$
+% \end{enumerate}
+
+
+\newpage
+\section*{IEEE-754 Floating Point}
+\subsection*{Problem 1}
+Convert the following decimal representations to IEEE-754 floating point.
+\begin{enumerate}[label=\alph*.]
+    \item 3.625 \\
+    \textbf{0 10000000 11010000000000000000000}
+    \item -18.5 \\
+    \textbf{1 10000011 00101000000000000000000}
+    \item 42.3125 \\
+    \textbf{0 10000100 01010010100000000000000}
+\end{enumerate}
+
+\subsection*{Problem 2}
+Convert the following IEEE-754 floating point representations to decimal.
+\begin{enumerate}[label=\alph*.]
+    \item 0 10000001 11100100000000000000000 \\
+    \textbf{7.5625}
+    \item 0 10000011 00001000000000000000000 \\
+    \textbf{16.5}
+    \item 1 10000011 10010100000000000000000 \\
+    \textbf{-25.25}
+\end{enumerate}
+
+\section*{C Basics} 
+\subsection*{Problem 1}
+    Declare the following variables:
+        \begin{enumerate}[label=\alph*.]
+            \item The signed integer -10 named $x$.
+
+            \textbf{int x = -10;}
+            \item The character `p' named $P$.
+
+            \textbf{char P = `p';}
+            \item The decimal 0.536 as a float named $y$.
+
+            \textbf{float y = 0.536;}
+            \item The unsigned integer 235 named $ux$.
+
+            \textbf{unsigned ux = 235;}
+            \item The decimal 0.46668 as a double named $dy$.
+
+            \textbf{double dy = 0.46668;}
+        \end{enumerate}
+\subsection*{Problem 2}
+    Evaluate the following expressions in C. Assume that the variable a has been declared as 0xECEB and b has been declared as 0x2345.
+        \begin{enumerate}[label=\alph*.]
+            \item a \& b
+
+            \textbf{0x2041}
+            \item a \^{} b
+
+            \textbf{0xCFAE}
+            \item $\sim$ a
+
+            \textbf{0x1314}
+            \item a $\mid$ b
+
+            \textbf{0xEFEF}
+        \end{enumerate}
+
+\section*{C Programming}
+\subsection*{Problem 1}
+    Write code in C for the following tasks. Assume that age is already initialized to 0 and is of type int.
+        \begin{enumerate}[label=\alph*.]
+            \item Print a prompt message asking the user to input their age.
+
+            \begin{verbatim}
+            printf("Input your age: ");
+            \end{verbatim}
+            \item Store the input in the variable age.
+
+            \begin{verbatim}
+            scanf("%d", &age);
+            \end{verbatim}
+            \item Print twice of the age you received as an input to the console.
+
+            \begin{verbatim}
+            printf("%d", 2 * age);
+            \end{verbatim}
+        \end{enumerate}
+        
+\subsection*{Problem 2}
+    Consider the following C code.
+    \begin{verbatim}
+        int main() {
+            for (int i = 0; i < 10; i ++) {
+                printf("%d\n", i);
+
+                if (i == 10) {
+                    printf("Now i is 10.");
+                }
+            }
+            return 0;
+        }
+    \end{verbatim}
+
+    \begin{enumerate}[label=\alph*.]
+        \item How many times does the program print to the console?
+
+        \textbf{10 times. The loop stops at i = 10, but does not execute.}
+        \item What is the output of this program?
+
+        
+        \textbf{0}
+        
+        \textbf{1}
+        
+        \textbf{2}
+        
+        \textbf{3}
+        
+        \textbf{4}
+        
+        \textbf{5}
+        
+        \textbf{6}
+        
+        \textbf{7}
+        
+        \textbf{8}
+        
+        \textbf{9}
+    \end{enumerate}
+
+\subsection*{Problem 3}
+    What does the following C code print?
+
+    \begin{verbatim}
+    int main() {
+        int x = 10;
+        if (x = 5) {
+            printf("x is 5.");
+        } else {
+            printf("x is not 5.");
+        }
+        return 0;
+    }
+    \end{verbatim}
+
+    \textbf{x is 5. If if statment uses the "=" assignment operator, not the "==" comparison operator.}
+
+\subsection*{Problem 4}
+    What does the following C code print?
+    
+    \begin{verbatim}
+        int main() {
+            int i = 90;
+            while (i >= 3) {
+                printf("%d ", i);
+                i = i/3;
+            }
+            return 0;
+        }
+    \end{verbatim}
+
+    \textbf{90 30 10 3}
+
+
+% \section*{C Programming}
+% \subsection*{Problem 1}
+% \begin{enumerate}[label=\alph*.]
+%     \item Write code in C for the following tasks. Assume that age is already initialized to 0 and is of type int.
+%         \begin{enumerate}
+%             \item Print a prompt message asking the user to input their age.
+
+%             \begin{verbatim}
+%             printf("Input your age: ");
+%             \end{verbatim}
+%             \item Store the input in the variable age. 
+
+%             \begin{verbatim}
+%             scanf("\%d", \&age);
+%             \end{verbatim}
+%             \item Print twice of the age you received as an input to the console.
+
+%             \begin{verbatim}
+%             printf("\%d", 2 * age);
+%             \end{verbatim}
+%         \end{enumerate}
+
+%     \item Consider the following code snippet.
+%     \begin{verbatim}
+%         int main() {
+%             for (int i = 0; i < 10; i ++) {
+%                 printf("%d\n", i);
+
+%                 if (i == 10) {
+%                     printf("Now i is 10.");
+%                 }
+%             }
+%             return 0;
+%         }
+%     \end{verbatim}
+
+%     \begin{enumerate}
+%         \item How many times does the program print to the console?
+
+%         \textbf{10 times.}
+%         \item What is the output of this program?
+
+%         \textbf{0}
+        
+%         \textbf{1}
+        
+%         \textbf{2}
+        
+%         \textbf{3}
+        
+%         \textbf{4}
+        
+%         \textbf{5}
+        
+%         \textbf{6}
+        
+%         \textbf{7}
+        
+%         \textbf{8}
+        
+%         \textbf{9}
+%     \end{enumerate}
+
+%     \item What does the following code print?
+
+%     \begin{verbatim}
+%         int x = 10;
+%         if (x = 5) {
+%             printf("x is 5.");
+%         } else {
+%             printf("x is not 5.");
+%         }
+%     \end{verbatim}
+
+%     \textbf{x is 5.}
+%     \item What does the following code print?
+    
+%     \begin{verbatim}
+%         int main() {
+%             int i = 90;
+%             while (i >= 3) {
+%                 printf("%d ", i);
+%                 i = i/3;
+%             }
+%             return 0;
+%         }
+%     \end{verbatim}
+
+%     \textbf{90 30 10 3}
+% \end{enumerate}
+
+
+\end{document}
+

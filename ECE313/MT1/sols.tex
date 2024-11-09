@@ -1,0 +1,446 @@
+\documentclass[12pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{color}
+\usepackage{xcolor}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{constants}
+
+%----Table of Contents-----
+
+%----Theorem Environments----
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{problem*}{Problem}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}
+
+\numberwithin{equation}{section}
+
+
+\crefname{figure}{Figure}{Figures}
+%MATH ENVIRONMENTS
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{exercise}{Exercise}{Exercises}
+\newtheorem*{cor*}{Corollary}
+\crefname{cor*}{Corollary}{Corollaries}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{conj}{Conjecture}{Conjectures}
+\newtheorem*{conj*}{Conjecture}
+\crefname{conj*}{Conjecture}{Conjectures}
+\crefname{defn}{Definition}{Definitions}
+\crefname{hyp}{Hypothesis}{Hypotheses}
+
+
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\renewcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\re}{\textup{Re}}
+\newcommand{\im}{\textup{Im}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\Li}{\mathrm{Li}}
+\newcommand{\E}{\mathbb{E}}
+\newcommand{\Var}{\text{Var}}
+\newcommand{\Cov}{\text{Cov}}
+\newcommand{\Bin}{\text{Bin}}
+\newcommand{\NegBin}{\text{Bin*}}
+\newcommand{\bin}{\text{b}}
+\newcommand{\Geo}{\text{Geometric}}
+\newcommand{\Poisson}{\text{Poisson}}
+\newcommand{\Multinomial}{\text{Multinomial}}
+\newcommand{\Hypergeometric}{\text{Hypergeometric}}
+\newcommand{\Exponential}{\text{Exponential}}
+\newcommand{\GammaDist}{\text{Gamma}}
+\newcommand{\BetaDist}{\text{Beta}}
+\newcommand{\BetaFunc}{\text{B}}
+\newcommand{\Normal}{\mathcal{N}}
+\newcommand{\Uniform}{\text{Uniform}}
+\newcommand{\Bernoulli}{\text{Bernoulli}}
+% \newcommand{\F}{\text{F}}
+\renewcommand{\P}{\mathbb{P}}
+
+\newif\ifanswerkey
+\answerkeytrue
+
+\NewDocumentEnvironment{answer}{ +b }{\ifanswerkey\newline \textbf{Solution:} #1\vspace{0.5cm}\else \newpage \fi}{}
+
+
+\title{HKN ECE 313 Midterm 1 Worksheet}
+\author{Pramod Prem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+\begin{exercise}
+Alex is organizing a focus group to figure out how best he can market his homemade rocket engine. He has a group of 6 women and 6 men. To ensure impartiality, he wants to seat them in such a way that the women and men alternate (the women are not sitting next to another woman and the men are not sitting next to another man). He has to seat them around a round table. How many ways can he seat these people
+\begin{answer}We can start off by seating the first woman. Since we are seating people around a round table, the seat where we place the first woman does not matter. We now have 5! ways of organizing the remaining 5 women. Now, we can seat the men. We have 6! ways of seating the 6 men, so we have 5!*6! ways of seating all 12 of these people.
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games and play the ones where he is most likely to win.
+\begin{enumerate}[label=\Alph*.)]
+\item Calculate the probability that the sum of the 4 dice is 6. 
+\begin{answer}There are only 2 combinations of 4 dices that give us a sum of 6: three 1's and one 3 or two 2's and two 1's. We have $\binom{4}{1}$ ways of getting three 1's and one 3, and we have $\binom{4}{2}$ ways of getting two 2's and two 1's, so that gives us $\binom{4}{1}+\binom{4}{2}$ acceptable rolls of the dice. We have $6^4$ possible rolls, so the probability that the sum of the dice is equal to 6 is $\frac{\binom{4}{1}+\binom{4}{2}}{6^4}$.
+\end{answer}
+\item Calculate the probability that no more than 2 of the dice show a 2. 
+\begin{answer}We can split this problem up into case work. We can have none of the dice showing a 2, one of the dice showing a 2, or two of the dice showing a 2. The number of rolls we can get where none of the dice show a 2 is $5^4$ as all 4 dice can show any of 5 faces. The number of rolls we can get where only one of the dice shows a 2 is $\binom{4}{1}*5^3$ (we choose one dice to have the 2 and the rest can have any of the remaining 5 faces). The number of rolls we can get where two of the dice show a 2 is $\binom{4}{2}*5^2$. Now, we can just sum these values up and divide by the total number of rolls, and we get $\frac{5^4 + \binom{4}{1}*5^3 + \binom{4}{2}*5^2}{6^4}$.
+\end{answer}
+\item Calculate the probability that none of the dice show a 6.
+\begin{answer}
+All 4 dice can show any of 5 faces that are not 6, so the answer is $\frac{5^4}{6^4}$.
+\end{answer}
+\item Calculate the probability that all of the dice show a different value.
+\begin{answer}
+We can choose 6 values for the first dice, 5 values for the next one, 4 values for the third one, and 3 values for the last one. We can now just multiply these together and divide by $6^4$. This simplifies to $\frac{5}{18}$.
+\end{answer}
+\item Calculate the probability that two of the dice show different values.
+\begin{answer}
+We first choose which two dice show different values, giving us $\binom{4}{2}$ ways of picking them, and then we have 6 choices for the first die and 5 for the second. Now, we multiply these together and divide by the total number of rolls, giving us $\frac{\binom{4}{2}*6*5}{6^4}$.
+\end{answer}
+\end{enumerate}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Pramod is trying the quantum immortality experiment. There is a random number generator that generates a 1 with probability $p$ or a 0 with probability $1-p$ every second. If it generates a 1, Pramod dies. Pramod dies after 59 seconds of this experiment. What is the maximum likelihood estimate $\hat{p}_{ML}$ of $p$. (Note: each trial is independent of each other)
+    \begin{answer}
+    This experiment models a geometric distribution, and in this case, we are trying to find the maximum likelihood estimator for P(X = 59). Since this is a geometric distribution, we know that P(X = 59) = $(1-\hat{p})^{58}\hat{p}$. Taking the derivative of this, we get $(1-\hat{p})^{58} - 58\hat{p}(1-\hat{p})^{57}$. Setting this equation equal to 0 and solving for $\hat{p}$, we get $\frac{1}{59}$. Therefore, $\hat{p}_{ML} = \frac{1}{59}$.
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+
+    Shomik has bet his house, his retirement fund, his cane, and his trenchcoats (in increasing order of importance) to Udit on a series of coin flips. Shomik is sneaky, so he can choose to use an unbiased coin or a weighted coin that lands on heads 60$\%$ of the time. Shomik flips his coin 10 times. For both the biased and fair coin, calculate the probability that it lands on Heads more than it lands on Tails, i.e the probability that Shomik does not lose. 
+    \begin{answer}
+    This experiment models a binomial distribution. Since we want to calculate the probability that Shomik does not lose, we will need to sum up all the probabilities where the coin lands on heads more than 5 times, so we will calculate p(6) + p(7) + p(8) + p(9) + p(10). We can just plug these values into the equation for the pmf of the binomial distribution for both coins. For the fair coin, we end up with $\binom{10}{6}(0.5)^6(0.5)^4 + \binom{10}{7}(0.5)^7(0.5)^3 + \binom{10}{8}(0.5)^8(0.5)^2 + \binom{10}{9}(0.5)^9(0.5)^1 + \binom{10}{10}(0.5)^10(0.5)^0$. 
+    \newline
+    For the biased coin, we end up with $\binom{10}{6}(0.6)^6(0.4)^4 + \binom{10}{7}(0.6)^7(0.4)^3 + \binom{10}{8}(0.6)^8(0.4)^2 + \binom{10}{9}(0.6)^9(0.4)^1 + \binom{10}{10}(0.6)^10(0.4)^0$.
+    \end{answer}
+    \newline
+    Shomik flipped his coin 10 times, and it showed heads only 4 times. He now has to give up his prized possessions to Udit. Now destitute and depressed, he decides that he wants to know which coin he chose. Calculate the probability that the fair coin was chosen and the probability that the biased coin was chosen.
+    \begin{answer}
+    This question deals with conditional probability. We are trying to find the probability that the fair coin was chosen given that tails only showed up 4 times and the probability that the biased coin was chosen given that tails only showed up 4 times. We can simply apply Bayes' Rule to solve this. Starting off with the fair coin, we want to calculate P($F\mid H_4$). This is equal to $\frac{P(H_4 \mid F)P(F)}{P(H_4)}$. The probability of him selecting either coin is $\frac{1}{2}$. We now need to calculate P($H_4$). P($H_4$) = P($H_4\mid F$)P(F) + P($H_4\mid B$)P(B) = $\binom{10}{4}* (\frac{1}{2})^4 *(\frac{1}{2})^6 * \frac{1}{2} + \binom{10}{4} * (\frac{3}{5})^4 * (\frac{2}{5})^6 * \frac{1}{2}$. We can now calculate P($F\mid H_4$). P($F\mid H_4$) = $\frac{P(H_4\mid F)P(F)}{P(H_4)}$ = $\frac{\binom{10}{4}* (\frac{1}{2})^4 *(\frac{1}{2})^6 * \frac{1}{2}}{\binom{10}{4}* (\frac{1}{2})^4 *(\frac{1}{2})^6 * \frac{1}{2} + \binom{10}{4} * (\frac{3}{5})^4 * (\frac{2}{5})^6 * \frac{1}{2}}$ (I am too lazy to simplify this but you probably should). We can also now calculate P($B\mid H_4$). P($B\mid H_4$) = $\frac{P(H_4 \mid B)P(B)}{P(H_4)}$ = $\frac{\binom{10}{4} * (\frac{3}{5})^4 * (\frac{2}{5})^6 * \frac{1}{2}}{\binom{10}{4}* (\frac{1}{2})^4 *(\frac{1}{2})^6 * \frac{1}{2} + \binom{10}{4} * (\frac{3}{5})^4 * (\frac{2}{5})^6 * \frac{1}{2}}$.
+    \end{answer}
+    
+\end{exercise}
+
+ 
+
+%\begin{exercise}
+  %  Let X be the number of times the coin lands on heads and $H_0$ the case where Shomik used a fair coin and $H_1$ is the case where Shomik uses an unfair coin. Calculate the p
+%\end{exercise}
+
+\begin{exercise}
+    Ethan wears a Mickey Mouse T shirt, and every day there is a 2\% probability that Disney's lawyers will cause grave consequences for him. What is the expected number of days that Ethan will not have his life upended by the mouse?
+    % Geometric distribution
+    \begin{answer}
+    % Why am I assuming the mouse will kill him?
+    This is a geometric distribution with $p = .02$. This models the days that Ethan will live before dying, and he will probably die on the 51st day.
+    $E[L] = \frac{1}{.02} = 50$
+    
+    \end{answer}
+\end{exercise}
+
+ 
+
+% added by Jitao Li on 2.16
+\begin{exercise}
+    A manufacturing company sources components from 3 suppliers: A, B and C. Among all the components, 50\% comes from A, 20\% comes from B, and 30\% comes from C. The defect rates of a component from suppliers A, B and C are 0.02, 0.1 and 0.05 respectively. If a component is randomly selected from the production line, what’s the probability that it’s defective? %(Law of total probability)
+    \begin{answer}
+        $
+            \P(\text{defective}) = \P(\text{defective}|A)\P(A) + \P(\text{defective}|B)\P(B) + \P(\text{defective}|C)\P(C) = 
+            \\
+            (0.02)(0.5) + (0.1)(0.2) + (0.05)(0.3) 
+        $
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Jitao loves to play basketball. Suppose the probability that he hits a shot is 25\%. How many shots does he need to take to make sure that there’s a 90\% chance he makes at least one? %(Tail probability of Geometric distribution.)
+    \begin{answer}
+        The probability of missing $i$ consecutive shots is $(.75)^i$. We want $(.75)^i = 0.1$, solving for $i$ yields $y = 8.003$, so he needs to take at least $9$ shots.
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Imagine you are playing a game where you need to flip an unfair coin until you get heads. The probability of getting heads on any flip is 0.6. You have already flipped the coin three times, and all flips have been tails. What is the probability that you will need to flip the coin at least two more times to get the first heads? %(Memoryless probability of geometric distribution)
+    \begin{answer}
+    Notice that this is can be described with a geometric distribution, and geometric distributions have the memoryless property. We take the tail probability with $k = 2$ and $p = .6$. $P\{L > 2\} = (1 - .6)^2 = .16$
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Suppose the watch time of a YouTube video, X, is a random variable. The average watch time is 10 minutes. Find an upper bound for the proportion of views that lasted more than 25 minutes. %(Markov Inequality)
+    \begin{answer}
+        We have $\E[X] 10$. By Markov,
+        \[
+            \P(X \geq 2.5\E[X]) \leq \frac{1}{2.5} = 0.4
+        \]
+        At most $40\%$ of views lasted 25 more more minutes.
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Suppose we would like to estimate the fraction $p$ of ECE students taking ECE 313 this semester. $p$ is estimated by $\widehat{p}=\frac{X}{n}$, where $n$ is the sample size and $X$ is number of students taking the class in the sample. If $p$ is to be estimated to within 0.1 with 75\% confidence, what’s the minimum size of the sample? %(Confidence interval)
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    $A$, $B$, $C$ are events in the probability space. True or False:
+    \begin{enumerate}[]
+        \item If $P(A)=0$, then $A$ and $B$ are independent.
+        \item if $P(AB) = P(A)P(B)$, $P(AC) = P(A)P(C)$ and $P(BC) = P(B)P(C)$, $A$, $B$ and $C$ are independent. 
+    \end{enumerate}
+    \begin{answer}
+        \begin{enumerate}
+            \item True. If $A$ can never happen, we learn nothing about $B$.
+            \item False. This requires $P(ABC) = P(A) P(B) P(C)$
+        \end{enumerate}
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Grant and Anantajit's company (A\&G Electric) assesses candidates for a position through a series of questions and tests during their interview process. Historical data indicates that the probability of any given candidate being offered the job after this process is 0.3. If the company interviews 10 candidates in a month, What is the probability that exactly 3 candidates are offered the job?%(Binomial distribution)
+    \begin{answer}
+    This is a binomial distribution with $n = 10$, $p = 0.3$, and $k = 3$.
+    $$ p_X(k) = {n\choose k}p^k(1-p)^{n-k} = {10\choose 3}0.3^3(.7)^7 \approx 0.266$$
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    Aditya's hardware verification team is responsible for verifying a new mind control brain implant chip. Historical data shows that the probability of any given test resulting in a bug discovery is 0.2. The team decides to continue testing until they discover 5 bugs. What is the probability that they will discover the 5th bug on the 10th test?%(Negative Binomial distribution)
+    \begin{answer}
+    This is a negative binomial distribution with $r = 5$, $p = .2$, $n=10$
+    $$ p_S(n) = {n - 1\choose r - 1}p^r(1-p)^{n-r} = p_S(n) = {9\choose 4}.2^5(.8)^{5}\approx 0.0132$$
+    
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+    After receiving his PhD in Computer Engineering, Pradyun starts working at Intel as a call center manager. Pradyun's department receives 600 calls per hour. Historical data since Pradyun's hiring suggests the chance of each call receiving a complaint has increased to 5\%. 
+    \begin{enumerate}
+    \item Calculate the probability of exactly 2 complaints tickets being generated in one hour. 
+    \item Calculate the expected number of hours until Pradyun receives 2 complaints.
+    \item Calculate the expected number of hours it will take to get 2 complaints in an hour.
+    \end{enumerate}
+    \begin{answer}
+        At exactly $600$ calls per hour, the complaint rate is $.2\cdot 600 = 120$ complaints per hour. Let $\lambda = 120$. Now, $C$ is number of complaints and $C \sim \Poisson(\lambda)$.
+        \begin{enumerate}
+            \item $\frac{\lambda^2 e^{\lambda}}{2!} = 7200e^{-120}$
+            \item We expect $\frac{1}{\lambda}$ hours between complaints. Doubling, we expect $\frac{1}{60}$ hours until we receive two complaints (or, 1 minute until 2 complaints. uh oh!).
+            \item Treating each hour independently, we can let the number of hours $H$ be geometric with $p = 7200e^{-120}$. The expected number of hours until he receives exactly two complaints is thus $1/p = \frac{e^{120}}{7200}$
+        \end{enumerate}
+    \end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Name all of the axioms of probability.
+\begin{answer}
+    \begin{enumerate}
+        \item For any event $A$, $P(A) \geq 0$.
+        \item If $A, B \in \mathcal{F}$ and if $A$ and $B$ are mutually exclusive, then $P(A \cup B) = P(A) + P(B)$.
+        \item $P(\Omega) = 1$.
+    \end{enumerate}
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Say that two players take turns flipping a coin. The first person to get heads wins. Calculate the probability that the first player wins.
+\begin{answer}
+    We can solve this problem by calculating the summation of the probabilities of multiple events. The first player could win by landing on heads the first flip, or landing on heads the third flip with the previous two being tails, or landing on heads the fifth flip with the previous four being tails, and so on. These probabilities can be expressed by the following summation: $\frac{1}{2}*(1+\frac{1}{4}+(\frac{1}{4})^2+...)$. This is the sum of an infinite geometric series, so we use the formula to calculate the sum of such a series and end up with $\frac{\frac{1}{2}}{1-\frac{1}{4}}$, or $\frac{2}{3}$. The first player wins with a probability of $\frac{2}{3}$, or twice as much as the second player.
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Express the summation $\sum_{k=0}^{n}\binom{n}{k}a^kb^{n-k}$ in closed form.
+\begin{answer}
+\[
+(a + b)^n
+\]
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Pramod has a crippling addiction to caffeine, so he decides to buy a mystery box of Red Bulls from County Market since it was on sale. The box contains 4 orange cans, 3 green cans, 6 red cans, and 5 blue cans. Red Bull is his favorite drink in the whole wide world, so he decides to number each can, making them distinct. 
+\begin{enumerate}
+\item How many ways can he pick 2 red cans?
+\item How many ways can he pick out 2 orange cans and 3 blue cans?
+\item Say S is the set of all subsets of size 2 of the set consisting of all of the cans of Red Bull. What is the magnitude of S?
+\end{enumerate}
+\begin{answer}
+    \begin{enumerate}
+        \item $\binom{6}{2}$
+        \item $\binom{4}{2}\binom{5}{3}$
+        \item $|S| = \binom{4 + 3 + 6 + 5}{2}$
+    \end{enumerate}
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Steve the ECE major has procrastinated on his assignment and the code he wrote is not compiling. If he goes to sleep right now the number of bugs in his code, X, can be modeled by a Poisson distribution with a mean $\lambda_1$ = 2. If he pulls an all nighter, X has the Poisson distribution with a parameter of $\lambda_0$ = 6. 
+\begin{enumerate}
+    \item Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
+    \item Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep ($\pi_1$ / $\pi_0$ = 2). Express the MAP decision rule, based on the observation of X, under this new assumption. 
+\end{enumerate}
+
+\end{exercise}
+
+ 
+
+\begin{exercise}
+A level 99 archer tower is shooting arrows at an invading army. Each arrow always hits its target and the probability of hitting a barbarian or a goblin is 50/50. How many arrows does the tower need to shoot such that the probability will be at least 0.8 that the ratio of the barbarians to goblins will be between 0.3 and 0.7.
+\begin{answer}
+Let X/n represent the proportion of barbarians killed in battle. Thus E[x] = n*p = $\frac{n}{2}$, Var(X) = n*p*q = $\frac{n}{4}$
+\newline
+P(0.3 $\leq \frac{X}{n} \leq$ 0.7) $\geq$ 0.8
+\newline
+P(0.3-0.5 $\leq \frac{X}{n}-0.5 \leq$ 0.7-0.5) $\geq$ 0.8
+\newline
+P(-0.2 $\leq \frac{X}{n}-0.5 \geq$ 0.2) $\leq$ 0.8
+\newline
+P($\mid \frac{X}{n}-0.5\mid \leq$ 0.2) $\geq$ 0.8
+\newline
+Given that Var($\frac{X}{n}$) = $\frac{1}{n^2}$ Var(X) = $\frac{1}{4n}$
+\newline
+0.8 = $1-\frac{1}{k^2}$, where k*omega = 0.2
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+The probability of surviving a night at Circle-K is 20\%. Suppose you spend 5 nights at Circle-K. Find a bound for the probability that you survive at least 3 nights.
+\begin{answer}
+    This is the same as asking for the probability that we survive the first three nights|we don't care what happens after. Nights are independent, so this is $0.2^3$.
+\end{answer}
+\end{exercise}
+
+ 
+
+\begin{exercise}
+Ian ends up playing an old Soviet era board game with some friends. This board game involves rolling a 5 sided die and a 7 sided die to determine how far he moves his babushka across the board. Say the number of spaces he can move is a variable called X. Determine the sample space of X, the magnitude of the sample space, the pmf of X, the support of the pmf of X, the mean of X, and the variance of X.
+\newline
+Now, let's say we multiply the value of each role of the dice by 3 and add 4. Calculate the new mean and variance of X.
+\begin{answer}
+    The sample space is $\{2,\cdots, 12\}$ because the minimum move from each die is $1$. This has magnitude (size) $11$. The possibilities of getting each number can be seen below: \\
+    \begin{tabular}{|c|c|c|c|c|}
+        \hline 2 & 3 & 4 & 5 & 6  \\ \hline
+        (1, 1)  & (1, 2) (2, 1)  & (1, 3) (2, 2) (3, 1)  & (1, 4) (2, 3) (3, 2) (4, 1)  & (1, 5) (2, 4) (3, 3) (4, 2) (5, 1) \\ \hline
+    \end{tabular} \\ \\
+    \begin{tabular}{|c|c|c|c|c|c|}
+        \hline 7 & 8 & 9 \\ \hline
+         (1, 6) (2, 5) (3, 4) (4, 3) (5, 2)  & (1, 7) (2, 6) (3, 5) (4, 4) (5, 3)  & (2, 7) (3, 6) (4, 5) (5, 4) \\ \hline
+    \end{tabular} \\ \\
+    \begin{tabular}{|c|c|c|}
+        \hline 10 & 11 & 12 \\ \hline
+         (3, 7) (4, 6) (5, 5)  & (4, 7) (5, 6)  & (5, 7)  \\ \hline
+    \end{tabular} \\
+    In total, there are $5 \cdot 7 = 35$ possible options, so $\P\{X = i\}$ is given by how many entries are in cell $i$, divided by $35$. Now,
+    \[
+        \E[X] = \sum_{i=2}^{12} \P(X = i) i = 7
+    \]
+    and
+    \[
+        \E[X^2] = \sum_{i=2}^{12} \P(X = i) i^2 = 55
+    \]
+    So,
+    \[
+        \Var (X) = \E[X^2] - \E[X]^2 = 55 - 49 = 6
+    \]
+    If we multiply each of the rolls by $3$, by linearity, that's the same as mulitplying our final result by $3$. Likewise, adding $4$ to each roll adds $8$ to the overall result. We can write $X' = 3X + 8$, and by linearity,
+    \[
+        \E[X'] = 3\E [X] + 8 = 29
+    \]
+    and
+    \[
+        \Var(X') = 3^2 \Var (X) = 9\cdot 6 = 54
+    \]
+\end{answer}
+\end{exercise}
+
+ 
+
+\end{document}
+
+Steve the ECE major has procrastinated on his assignment and the code he wrote is not compiling. If he goes to sleep right now the number of bugs in his code, X, can be modeled by a poisson distribution with a mean lambda1 = 2. If he pulls an all nighter, X, has the Poisson distribution with a parameter of lambda0 = 6. 
+
+Part A:
+Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
+
+solution: likelihood ratio function (all nighter) : poisson(k, 6) / poisson(k,2) = some function
+determine value of k 
+
+Part B: 
+Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep. (pi1 / pi0 = 2) Express the MAP decision rule, based on the observation of X, under this new assumption. 
+
+solution: same thing but you take the frequency into account when finding the likelihood ratio function
+
+
+
+
+A level 99 archer tower is shooting arrows at an invading army. Each arrow always hits its target and the probability of hitting a barbarian or a goblin is 50/50. How many arrows does the tower need to shoot such that the probability will be at least 0.8 that the ratio of the barbarians to goblins will be between 0.3 and 0.7. (Hint: Use Chebychev's inequality.)
+
+Solultion: Let X/n represent the proportion of barbarians killed in battle. Thus E[x] = n*p = n/2, Var(X) = n*p*q = n/4
+P(0.3 <= X/n <= 0.7) >= 0.8
+P(0.3-0.5 <= X/n-0.5 <= 0.7-0.5) >= 0.8
+P(-0.2 <= X/n-0.5 <= 0.2) >= 0.8
+P(|X/n-0.5| <= 0.2) >= 0.8
+Given that Var(X/n) = 1/n^2 Var(X) = 1/4n
+0.8 = 1-1/k^2, where k*oemga = 0.2
+
+
+The probability of surviving a night at Circle-K is 20%. Suppose you spend 5 nights at Circle-K. Find a bound for the probability that you survive at least 3 nights. (Hint: Use Markov's Inequality)
+
+Solution: Let X be the number of nights you survive. Given that n = 5, p = 0.2, E[x] = 1. Required Probability : P(X >= 3) <= E[X]/3 = 1/3 

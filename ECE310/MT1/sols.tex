@@ -1,0 +1,418 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{mathtools}
+\usepackage{xcolor}
+\usepackage{nicematrix}
+
+\title{ECE 310 Review Session 1 Worksheet Solutions}
+\author{By HKN Members}
+\date{Fall 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Ethan's Remix}
+Pramod has written a song and wants Ethan to make a remix. Ethan creates the following system:
+
+$$\frac{1}{4} y[n-2] - \frac{4}{9} y[n] = \frac{4}{3} x[n-1] + \frac{8}{9} x[n]$$
+
+\noindent Ethan didn't listen to the song before running his remixing filter. Is he at risk of blowing up his speakers with a large output?
+
+\
+
+\noindent \textbf{Solution}: We want to find the z-transform of this filter and determine whether it's BIBO stable or not. Taking the z-transform, we get the following:
+
+$$\frac{1}{4}z^{-2}Y(z) - \frac{4}{9}Y(z) = \frac{4}{3}z^{-1}X(z) + \frac{8}{9}X(z)$$
+
+\noindent Solving for $H(z) = \frac{Y(z)}{X(z)}$ we get:
+
+$$H(z) = \frac{Y(z)}{X(z)} = \frac{\frac{8}{9} + \frac{4}{3}z^{-1}}{\frac{1}{4}z^{-2} - \frac{4}{9}}$$
+
+\noindent From here, we have to look at the roots of the top and bottom equations:
+
+$$\frac{8}{9} + \frac{4}{3}z^{-1} = 0 \implies z = -\frac{3}{2}$$
+
+$$\frac{1}{4}z^{-2} - \frac{4}{9} = 0 \implies z = \pm \frac{3}{4}$$
+
+\noindent Notice that the roots of the bottom polynomial have magnitude $|z| < 1$. Under our (implicit) assumption that this LCCDE is causal, we can conclude that the transfer function is BIBO stable.
+
+\newpage
+
+\section{V's MP}
+V has measured that his productivity on his ECE 411 MP is described by the system $\frac{1}{n} x[n]$, where $n$ is the number of days until the MP is due, and $x[n]$ is how much work he accomplishes as a function of the number of days since the MP was assigned. Would delaying V's starting day have an effect on how much work he will accomplish in $k$ days?
+\newline
+\newline
+\noindent \textbf{Solution}: We could try finding the work done over $k$ days, but we don't have to determine the exact effect of a delay. Notice that we can define a function $y[n] = \frac{1}{n} x[n]$. We must determine if this system is time invariant or not in order to decide if delaying V's starting day will have an effect on how much work he will accomplish in $k$ days. 
+\newline
+\newline
+So, let's say we have a signal $x_1[n]\implies y_1[n]$. If we delay that signal by $k$ and then feed it through the system, the resulting output will be $x_1[n-k]\implies \frac{1}{n}x_1[n-k]$. However, $y_1[n-k]=\frac{1}{n-k}x_1[n-k]$ which does not equal $\frac{1}{n}x_1[n-k]$. Therefore, we can say the system is time varying and thus delaying V's starting day will have an effect on how much work he will accomplish in $k$ days.
+
+
+\
+
+\newpage
+
+\section{Proving LTIC (is fake)}
+Given the $5$ systems below, prove or disprove that each one is LTIC.
+\newline
+\newline
+\indent
+$1. \ y[n]=\sin(2024n)$
+\newline
+\newline
+\indent
+$2. \ y[n]-y[n-2]=x[n-1]+x[n+2]$
+\newline
+\newline
+\indent
+$3. \ y[n]=\cos(x[n])$
+\newline
+\newline
+\indent
+$4. \ y[n]= n^2x[n] + x[n-2]$
+\newline
+\newline
+\indent
+$5. \ y[n]=\frac{1}{5}x[|n|]$
+
+\
+
+\noindent \textbf{Solution}: 
+
+\
+
+\noindent (1a) Since there is no input $x[n]$, if we have two inputs and their corresponding outputs, $x_1[n]\implies y_1[n]$ , and $x_2[n] \implies y_2[n]$, we know that the outputs are $y_1[n]=y_2[n]=\sin(2024n)$. Thus, if we have a new signal described as $x_3[n]=ax_1[n]+bx_2[n]$, $y_3[n]=y_2[n]=y_1[n]=\sin(2024n)$. Since $y_3[n] \neq ay_1[n]+by_2[n]$, the system is \textbf{not linear}.
+
+\
+
+\noindent (1b) Similarly, since there is no input $x[n]$, if we have an input and its corresponding output, $x_1[n] \implies y_1[n]$, we know that $y_1[n]=\sin(2024n)$. Thus, if we delay $x_1[n]$ by $k$ and feed it into the system we will also yield $\sin(2024n)$ as our output. However $y_1[n-k]=\sin(2024(n-k))$, and therefore since $y_1[n-k] \neq \sin(2024n)$, the system is \textbf{time varying}.
+
+\
+
+\noindent (1c) Once again, since there is no input $x[n]$, $y[n]$ will never depend on future inputs and thus this system is \textbf{causal}.
+\newline
+\newline
+\newline
+\newline
+\noindent (2) Since we have a difference equation, we have to assume it's either causal or non-causal (i.e. specify the ROC of the transfer function $H(z)$). We assume that it's causal. The requirements for being linear and time-invariant are trivially satisfied (check!). Therefore, this system is \textbf{LTIC}.
+
+\newpage
+
+\noindent (3a) We first check linearity:
+
+$$T(ax[n]) = \cos(ax[n])$$
+$$aT(x[n]) = a \cos(x[n])$$
+
+\noindent These two relationships are not equal in general, therefore this system is \textbf{not linear}! 
+
+\
+
+\noindent (3b) Now we check time-invariance:
+
+$$y[n-n_0] = \cos(x[n-n_0])$$
+$$T(x[n-n_0])=\cos(x[n-n_0])$$
+\noindent These are equal and therefore the system is \textbf{time-invariant}.
+
+\
+
+\noindent (3c) Lastly, the system only modifies the magnitude of $x[n]$ and therefore must be \textbf{causal} as $y[n]$ only depends on current input.
+\newline
+\newline
+\newline
+\newline
+\noindent (4a) We can first check linearity by assuming:
+$$y_1[n]=n^2x_1[n]+x_1[n-2], y_2[n]=n^2x_2[n]+x_2[n-2]$$
+\noindent Now, we can assume $x_3[n]=ax_1[n]+bx_2[n]$. $y_3[n]$ would then be defined as $n^2(ax_1[n]+bx_2[n])+(ax_1[n-2]+bx_2[n-2])$. Ultimately, $y_3[n]$ can be rearranged to look like $ay_1[n]+by_2[n]$, thus proving the system is \textbf{linear}.
+
+\
+
+\noindent (4b) Now, we need to check time-invariance:
+
+$$y[n-n_0] = (n-n_0)^2x[n-n_0] + x[n-n_0-2]$$
+$$T(x[n-n_0]) = n^2x[n-n_0] + x[n-2-n_0]$$
+
+\noindent These are not equal in general (unless $n_0$ = 0), therefore the system is \textbf{not time-invariant}!
+
+\
+
+\noindent (4c) Finally, we check causality in which we notice that $y[n]$ will only ever depend on past and future inputs and thus the system can be determined to be \textbf{causal}.
+\newpage
+\noindent (5a) Let's start again with checking linearity:
+$$y_1[n]=\frac{1}{5}x_1[|n|], y_2[n]=\frac{1}{5}x_2[|n|]$$
+\noindent Now, we can assume $x_3[n]=ax_1[n]+bx_2[n]$. $y_3[n]$ would then be defined as $\frac{1}{5}(ax_1[|n|]+bx_2[|n|])$. Ultimately, $y_3[n]$ can be rearranged to look like $ay_1[n]+by_2[n]$, thus proving the system is \textbf{linear}.
+
+\
+
+\noindent (5b) Again, it's probably a smart idea to check time-invariance:
+
+$$y[n-n_0] = \frac{1}{5}x[|n-n_0|]$$
+$$T(x[n-n_0]) = \frac{1}{5}x[|n| - n_0]$$
+
+\noindent This is again not true for a general $n_0$, so the system is \textbf{not time-invariant}. 
+
+\
+
+\noindent (5c) Last but certainly not least, we'll look at causality. Since there are absolute value bars inside the brackets of the index to $x[n]$, we know that for any $n<0$, $y[n]$ must depend on future inputs (because absolute value of a negative integer yields a positive integer) and thus the system is \textbf{noncausal}.
+
+\newpage
+
+\section{Insider Trading?}
+
+Shomik plays golf with Ethan after Ethan worked at a trading company. Ethan tells Shomik to construct a system over Ethan's company stock average every day as a way of calculating how much to buy of it. This system is described by the impulse response:
+
+$$h[n] = \{9,4,\underset{\uparrow}{2},0,2,4,6\}$$
+
+\noindent It is illegal to make trades based in not publicly known (future) information. After implementing this system successfully with Ethan's help, will the SEC arrest them?
+
+\
+
+\noindent \textbf{Solution}: Recall that for an LTI system to be causal, the impulse response $h[n]$ must satisfy the following condition:
+
+$$h[n] = 0, \ \ \ \forall n < 0$$
+
+\noindent This condition is violated for $h[n]$ above, which means the LTI system is not causal (and thus means Shomik will be arrested).
+
+\newpage
+
+\section{Convoluted Convolving}
+Use your favorite method of convolution to convolve these two signals:
+\newline
+\begin{center}
+$x[n]=\{\underset{\uparrow}{2},0,2,4\}$ \ \ \ $h[n]=\{-1,\underset{\uparrow}{3},2,0\}$
+\end{center}
+
+\noindent \textbf{Solution}: The brute force solution is to perform the flip-n-shift method:
+
+\[
+\begin{split}
+     - & \ 1\{2, 0, 2, 4 \} \\
+     + & \ 3\{0, 2, 0, 2, 4\} \\
+     + & \ 2\{0, 0, 2, 0, 2, 4\} \\
+     + & \ 0\{0, 0, 0, 2, 0, 2, 4\}
+\end{split}
+\]
+\begin{center}
+\par\noindent\rule{100pt}{0.4pt}
+\end{center}
+
+$$\{ -2, 6, 2, 2, 16, 8, 0\}$$
+
+\noindent Recall that if $N_0$ and $M_0$ are the starting indices in a linear convolution, the starting index of their convolution is at $N_0 + M_0$. Therefore, the convolution should start at $n=-1$. Our final result is thus:
+
+$$y[n] = \{ -2, \underset{\uparrow}{6}, 2, 2, 16, 8, 0\}$$
+
+\newpage
+
+\noindent \textbf{Alternate Solution (Linear Algebra)}: If you know basic linear algebra, it's possible to rewrite the problem into a simple matrix-vector multiplication. We write the convolution matrix for $h[n]$ as:
+
+$$\mathbf{C_h} = 
+  \begin{bmatrix} 
+  -1 & 0 & 0 & 0 \\
+  3 & -1 & 0 & 0 \\
+  2 & 3 & -1 & 0 \\
+  0 & 2 & 3 & -1 \\
+  0 & 0 & 2 & 3 \\
+  0 & 0 & 0 & 2 \\
+  0 & 0 & 0 & 0 
+  \end{bmatrix}
+$$
+
+\noindent We can now take the matrix-vector multiplication:
+
+$$\mathbf{y} = \mathbf{C_hx}$$
+
+$$\mathbf{y} = 
+  \begin{bmatrix} 
+  -1 & 0 & 0 & 0 \\
+  3 & -1 & 0 & 0 \\
+  2 & 3 & -1 & 0 \\
+  0 & 2 & 3 & -1 \\
+  0 & 0 & 2 & 3 \\
+  0 & 0 & 0 & 2 \\
+  0 & 0 & 0 & 0 
+  \end{bmatrix}
+  \begin{bmatrix}
+  2 \\
+  0 \\
+  2 \\
+  4
+  \end{bmatrix}
+  =
+  \begin{bmatrix}
+  -2 \\
+  6 \\
+  2 \\
+  2 \\ 
+  16 \\
+  8 \\
+  0
+  \end{bmatrix}
+$$
+
+\noindent We have the correct values, we just need to find the correct index for $n=0$. We can use the same reasoning as the original solution to get:
+
+$$y[n] = \{ -2, \underset{\uparrow}{6}, 2, 2, 16, 8, 0\}$$
+
+\newpage
+
+\section{Catching These Z-transforms}
+
+\subsection{Inverse Z-Transforms}
+Take the Inverse Z-transform of these signals and state the ROC. Determine whether each system is BIBO stable or not as well.
+\newline\newline
+(i) $\frac{1}{1-z^{-1}}$, right-sided
+\newline\newline
+(ii) $\frac{1}{1-z^{-1}}$, left-sided
+\newline\newline
+(iii) $\frac{1 + z^{-1}}{z^{-2} + z^{-1} + \frac{1}{4}}$, right-sided \newline
+
+\noindent $\textbf{Solution}$:
+
+\noindent (i) We can use the following z-transform table entry:
+
+$$u[n] \xleftrightarrow{\text{Z}} \frac{1}{1-z^{-1}},  \ \ \ |z| > 1$$
+
+\noindent Notice that the ROC does \textbf{not} include $|z| = 1$, though it might be close, therefore this transfer function is not BIBO stable.
+
+\
+
+\noindent (ii) By multiplying the corresponding z-transform table entry by negative one, we get:
+
+$$-u[-n-1] \xleftrightarrow{\text{Z}} \frac{1}{1-z^{-1}},  \ \ \ |z| < 1$$
+
+\noindent Again, this ROC does \textbf{not} include $|z| = 1$, therefore this transfer function is not BIBO stable.
+
+\
+
+\noindent (iii) Notice that we can factor the bottom \textbf{and} the top as:
+
+$$\frac{1+z^{-1}}{\frac{1}{4} + z^{-1} + z^{-2}} = \frac{(1+\frac{1}{2}z^{-1}) + \frac{1}{2}z^{-1}}{(1+\frac{1}{2}z^{-1})^2} = \frac{1}{1+\frac{1}{2}z^{-1}} + \frac{\frac{1}{2}z^{-1}}{(1+\frac{1}{2}z^{-1})^2}$$
+
+\noindent From here, we can pretty much directly use the following two properties of our z-transform table:
+
+$$\alpha^n u[n] \xleftrightarrow{\text{Z}} \frac{1}{1-\alpha z^{-1}}, \ \ \ |z| > |\alpha|$$
+
+$$n \alpha^n u[n] \xleftrightarrow{\text{Z}} \frac{\alpha z^{-1}}{(1-\alpha z^{-1})^2}, \ \ \ |z| > |\alpha|$$
+
+\noindent Plugging in $\alpha = -\frac{1}{2}$ and multiplying the bottom identity by $-1$ we get:
+
+$$\frac{1+z^{-1}}{\frac{1}{4} + z^{-1} + z^{-2}} \xleftrightarrow{\text{Z}} (-\frac{1}{2})^nu[n] - n(-\frac{1}{2})^nu[n], \ \ \ |z| > \frac{1}{2}$$
+
+\noindent We see that $|z| = 1$ is included in our ROC, therefore this transfer function is BIBO stable! 
+
+\
+
+\noindent \textbf{Note}: If your solution \textit{looks} different from the above, it doesn't mean it's wrong. Try plotting the first couple of values using $n=0,1,2,...$ and see if they match.
+
+\newpage
+
+\subsection{Z-Transform}
+
+Find the Z-Transform of the following systems in terms of $X(z)$:
+\newline\newline
+(i) $\frac{n}{4} x[n-4] $
+\newline\newline
+(ii) $\frac{3}{4} x[n+5] + x[n]$
+
+\
+
+\noindent \textbf{Solution}: The strategy here is to use the properties of the z-transform.
+
+\
+
+\noindent (i) The applicable properties are: time shifting, linearity, and differentiation in the z-domain. We can apply them in steps to get the following:
+
+$$\frac{1}{4}x[n-4] \xleftrightarrow{\text{Z}} \frac{1}{4}z^{-4}X(z)$$
+
+$$\frac{n}{4}x[n-4] \xleftrightarrow{\text{Z}} -z \frac{d}{dz} (\frac{1}{4}z^{-4}X(z)) = -z(\frac{1}{4}z^{-4}\frac{d X(z)}{dz} - z^{-3}X(z))$$
+
+\noindent Simplifying, we get the following:
+
+$$\frac{n}{4}x[n-4] = z^{-2}(X(z) - \frac{1}{4}z^{-1}\frac{d X(z)}{dz})$$
+
+\noindent (ii) For this one, we don't have to use the use the differentiation property but we still need to apply the linearity and time shift properties. We can do this pretty much directly to get:
+
+$$\frac{3}{4}x[n+5] + x[n] \xleftrightarrow{\text{Z}} \frac{3}{4}z^{5}X(z) + X(z)$$
+
+\newpage
+
+\noindent Find the Z-Transform of the following equations:
+
+\
+
+\noindent (i) $n^2 u[n-1] + (\frac{1}{2})^n u[n+1]$
+\newline\newline
+(ii) $u[n+1] * u[n-1]$
+
+\
+
+\noindent \textbf{Solution}:
+
+\
+
+\noindent (i) We are going to have to apply the differentiation property to $u[n-1]$ twice:
+
+$$u[n-1] = \frac{z^{-1}}{1-z^{-1}}$$
+
+$$nu[n-1] = -z \frac{d}{dz}(\frac{z^{-1}}{1-z^{-1}}) = \frac{z^{-1}}{(1-z^{-1})^2}$$
+
+$$n^2u[n-1] = -z \frac{d}{dz}(\frac{z^{-1}}{(1-z^{-1})^2}) = \frac{z^{-1} + z^{-2}}{(1-z^{-1})^3}$$
+
+\noindent Next, we need to find the z-transform of the second term. However, this is fairly simple to re-write:
+
+$$(\frac{1}{2})^nu[n+1] = 2 (\frac{1}{2})^{n+1}u[n+1]$$
+
+\noindent Using the table, we can arrive at the final solution:
+
+$$n^2 u[n-1] + (\frac{1}{2})^n u[n+1] \xleftrightarrow{\text{Z}} \frac{z^{-1} + z^{-2}}{(1-z^{-1})^3} + \frac{2z}{1-\frac{1}{2}z^{-1}}$$
+
+\noindent (ii) Recall that convolution in the time domain is equivalent to multiplication in the z-domain. Therefore:
+
+$$u[n+1] * u[n-1] = \frac{z}{1-z^{-1}} \frac{z^{-1}}{1-z^{-1}} = \frac{1}{(1-z^{-1})^2}$$
+
+\newpage
+
+\section{Devious DTFTs}
+Use your unbounded knowledge of the DTFT properties and pairs to take the DTFT of these signals.
+\newline\newline
+(i) $\delta[n-1] + (\frac{2}{3})u[n+4]$
+\newline\newline
+(ii) $\cos(n)\sin(n)$
+\newline\newline
+(iii) $n\delta[n-1]*e^{jn}$
+
+\
+
+\noindent \textbf{Solution}: 
+
+\
+
+\noindent (i) We can apply the table and DTFT properties to get:
+
+$$\delta[n-1] + \frac{2}{3}u[n+4] \xleftrightarrow{\mathcal{F}} e^{-jw} + \frac{2}{3}e^{j4w}(\frac{1}{1-e^{-jw}} + \pi \delta(w))$$
+
+\noindent (ii) We could take the DTFT of both $\cos(n)$ and $\sin(n)$ and then convolve them in the frequency domain, but we opt to choose a simpler solution. Recall the folloing trig identity:
+
+$$\sin(\alpha)\cos(\beta) = \frac{1}{2}(\sin(\alpha + \beta) + \sin(\alpha-\beta))$$
+
+\noindent Applying it to our problem, we see that:
+
+$$\sin(n)\cos(n) = \frac{1}{2}(\sin(n + n) + \sin(n-n)) = \frac{1}{2}\sin(2n)$$
+
+\noindent The problem is now quite straightforward and we can just apply the table:
+
+$$\sin(n)\cos(n) \xleftrightarrow{\mathcal{F}} \frac{\pi}{2j} (\delta(w-2) - \delta(w+2))$$
+
+\noindent (iii) Recall that convolution in the time domain is multiplication in the frequency domain. We first find the DTFT of both input functions:
+
+$$n\delta[n-1] \xleftrightarrow{\mathcal{F}} j \frac{d}{dw}(e^{-jw}) = j(-je^{-jw}) = e^{-jw}$$
+$$e^{jn} \xleftrightarrow{\mathcal{F}} 2\pi \delta(w-1)$$
+
+\noindent Now it's a straightforward frequency domain multiplication:
+
+$$n\delta[n-1]*e^{jn} \xleftrightarrow{\mathcal{F}} 2\pi e^{-jw} \delta(w-1)$$
+
+\noindent (iii) \textbf{Alternate Solution} A slightly quicker way to arrive at the same result is to notice that $n\delta[n-1] = \delta[n]$. It's easy to take the convolution of a function with a delta function, so $n\delta[n-1]*e^{jn} = e^{j(n-1)}$. It's straightforward to apply DTFT properties from here to get the same answer as above.
+
+\end{document}
