@@ -1,0 +1,44 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{array} % Import array package
+
+\title{ECE120 Final Review - Cramming Carnival}
+\author{Author: Members of HKN}
+\date{Spring 2024}
+
+\newcommand{\dd}[1]{\mathrm{d}#1}
+
+\usepackage[makeroom]{cancel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+
+\pagenumbering{arabic}
+
+\begin{document}
+    \newpage \section{Incredible ISA Design (very hard)}
+    We want to design a datapath and control FSM for a 4-bit processor with 10-bit instructions that can perform the below operations.
+    \begin{table}[!h]
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Opcode} & \textbf{Operands}    & \textbf{Operation}                                                                                                                                                                                            \\ \hline
+00              & DR, SR1, SR2, imm2   & DR \textless{}= (SR1 NAND SR2) + imm2                                                                                                                                                                      \\ \hline
+01              & DR, SR, addr4,       & DR \textless{}= M{[}SR + addr4{]}{[}3:0{]}                                                                                                                                                                             \\ \hline
+10              & SR, DR, addr4        & M{[}DR + addr4{]} \textless{}= SR                                                                                                                                                                             \\ \hline
+11              & DR, trap, sign, jmp4 & \begin{tabular}[c]{@{}l@{}}If trap == 1, halt.\\ If trap == 0, sign == 0, DR \textgreater{}= 0, PC \textless{}= PC + jmp4.\\ If trap == 0, sign == 1, DR \textless{} 0, PC \textless{}= PC + jmp4.\end{tabular} \\ \hline
+\end{tabular}
+\end{table}
+    \\ Assume the processor has 4-bit registers R0 through R3 and PC, 10-bit register IR, $2^4$ memory locations, and 10-bit memory addressability. Assume all values that can be stored in registers are signed 4-bit integers. 
+
+    \begin{enumerate}[label=(\alph*), itemsep = 120pt]
+    \item Create a FSM diagram for this ISA's control FSM. You do not have to write out control signals or next-state expressions. The fetch and decode stage should be very similar to the LC-3.
+    \item Create a diagram representing the datapath for this ISA. Again, this should be structured similarly to the LC-3. 
+    \item In this new ISA, write a program that takes a 4-bit signed integer at M[xF][3:0] and make it positive if it is negative. Assume PC = x0 and all registers are initialized to x0. 
+    \end{enumerate}
+\end{document}

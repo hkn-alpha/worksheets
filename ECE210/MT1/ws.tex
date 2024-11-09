@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{indentfirst}
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in} 
+\title{HWtemplate}
+\author{shomikchatterjee }
+\date{April 2021}
+
+\begin{document}
+\begin{center}
+\textbf{
+{\Large ECE 210 Midterm 1 Worksheet}
+}
+\end{center} 
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\paragraph{Note:} This worksheet is not guaranteed to be entirely representative of the midterm's contents. Material may appear on this worksheet which will not appear on the midterm, and vice versa.
+
+\subsection*{Complex Number Review}
+
+\paragraph{1)} Find the roots of the following polynomials:
+
+\subparagraph{a)} $x^2 + x + 1$
+
+\subparagraph{b)} $x^3 + 1$
+
+\subparagraph{c)} $x^2 + 4x + 2$
+ 
+\subparagraph{d)} $x^2 + 2jx + 1$
+
+\vfill
+
+\paragraph{2)} Evalute the following expressions:
+
+\subparagraph{a)} $(1 + 3j)(4  - j)$
+
+\subparagraph{b)} $(1 - j)(2 + j)$
+
+\subparagraph{c)} $(1 + 3j)(4-j)^{-1}$
+
+\subparagraph{d)} $(1 - j)(2 + j)^{-1}$ 
+
+\vfill
+
+\paragraph{3)} Prove the following:
+\subparagraph{Triangle Inequality:} Show that $|z_1| + |z_2| \geq |z_1 + z_2|$.
+
+\subparagraph{Hyperbolic Functions:} Show that $\sin(jx) = j\sinh(x)$.
+
+\subparagraph{Hyperbolic Functions II:} Show that $\sinh(x) = \tan(y) \implies \sin(y) = \pm\tanh(x)$.
+
+\subparagraph{Note:} $\sinh(x) = \big[ \exp(x) - \exp(-x)\big]/2$ \quad $\tanh(x) = \big[\exp(x)-\exp(-x)\big]/\big[\exp(x) + \exp(-x)\big]$.
+
+\vfill
+
+\newpage
+\subsection*{Resistive Circuit Analysis}
+
+\paragraph{4)} Consider the circuit below.
+
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, transform shape, voltage dir = old]
+\draw (-3,0) to [R=$3\Omega$] (-3,3) to[short] (0,3) to[short] (3,3);
+\draw (3,0) to [cI,l=$\alpha v_x$] (3,3);
+\draw (0,3) to[R=4$\Omega$, v_=$v_x$] (0,0);
+\draw (-3,0) to[short] (3,0);
+\draw (-3,-3) to[V,l=$2\text{V}$] (-3,0) to[short] (3,0);
+\draw (0,-3) to [R = 3$\Omega$] (0,0);
+\draw (-3,-3) to[R=1$\Omega$] (-1.5,-3) to[V,l=1V] (0,-3);
+\draw (0,-3) to[R=2$\Omega$] (3,-3) to[short](3,0);
+\draw[-latex] (-3,-3.5) -- (-1.5,-3.5);
+\node at (-2.25, -3.5) [anchor=north] {$i_t$};
+\end{circuitikz}
+\end{figure}
+
+\subparagraph{a)} There is only one value of $\alpha$ that makes this circuit a valid circuit. Find it.
+
+\subparagraph{b)} Find $i_t$, the current across the 1 $\Omega$ resistor, as indicated.
+
+\vfill
+
+\paragraph{5)} Given the circuit below;
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, transform shape, voltage dir = old]
+\draw (-3,0) to[short] (0,0) to [cI,l=$2v_x$] (3,0) to[open,o-o, v = $v_{T}$](3,-3);
+\draw (-3,-3) to[I,l=$1\text{A}$] (-3,0);
+\draw (0,-3) to [R = 3$\Omega$,  v_=$v_x$] (0,0);
+\draw (-3,-3) to[R=1$\Omega$]  (0,-3);
+\draw (0,-3) to[R=2$\Omega$] (3,-3) ;
+\end{circuitikz}
+\end{figure}
+\subparagraph{a)} Find the Thevenin equivalent voltage.
+\subparagraph{b)} Find the Norton equivalent current.
+\subparagraph{c)} If a $5\;\Omega$ load is connected across the terminals of this circuit, how much power is dissipated across the load?
+
+\vfill
+
+\newpage
+
+\subsection*{N-Order Circuits}
+
+\paragraph{6)} Initially, the capacitor holds some charge $Q_0$, and both sources are off, with a value of 0 volts and amps respectively. At time $t = 0$, both the voltage and current source are turned on.
+
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, voltage dir = old, transform shape]
+\draw (0,0) coordinate (ll) to[R,l=$R_1$] ++ (3,0) to [R,l=$R_2$] ++(3,0) 
+				  to [I,l=$I_1$] ++ (0,3) to[short] ++ (-3,0) coordinate (bruh) 
+				  to[C,l=$C_2$,v=$v_C$] ++ (0,-3);
+\draw (ll) to[V=$V_1$] ++ (0,3) to[short] (bruh);
+\end{circuitikz}
+\end{figure}
+
+\paragraph{a)} Find the zero-input solution for $v_C(t)$, the voltage across the capacitor.
+
+\paragraph{b)} Find the zero-state solution for $v_C(t)$, the voltage across the capacitor.
+
+\paragraph{c)} Find $v_C(t)$.
+
+\vfill
+
+\paragraph{7)} Initially, both capacitors $C_1$ and $C_2$ are entirely discharged.
+
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, voltage dir = old, transform shape]
+\node[cute spdt mid arrow]	(sw) {};
+\draw (sw.out 1)  to[R, l=$R_2$] ++ (3,0) coordinate (rbranch)
+			to[C, l=$C_2$, v=$v_{C2}$] ++ (0,-3);
+\draw (rbranch) to[short] ++ (2,0) to[R, l=$R_3$] ++(0,-3) to[short] ++ (-5,0) coordinate (base) to[V=5V]  (sw.out 2);
+\draw (sw.in) to [R, l_=$R_1$] (-3,0) to[C,l=$C_1$,v=$v_{C1}$] (-3,-2.5) |- (base);
+\node at (sw.out 1) [anchor=south] {B};
+\node at (sw.out 2) [anchor=west] {A};
+\end{circuitikz}
+\end{figure}
+
+\paragraph{a)} At time $t = t_1$, the switch is thrown to position A, connecting the left half to the voltage source. Find a symbolic expression for $v_{C1}(t)$, the voltage across the capacitor $C_1$.
+
+\paragraph{b)} Enough time passes such that $C_1$ is entirely charged. The switch is then thrown at time $t = t_2$ from position A to position B, disconnecting the left half from the voltage source and connecting it instead to the right half of the circuit, with the voltage source left entirely disconnected. Find the new expression for $v_{C1}(t)$, the voltage across the capacitor $C_1$.
+
+\paragraph{Note:} The solution of a second order differential equation $a\ddot{x} + b\dot{x} + c = 0$ with initial conditions $x(t_0) = m$, $\dot{x}(t_0) = n$, is given as:
+
+\[
+x = C_1\exp(r_1x) + C_2\exp(r_2x)
+\]
+
+where $r_1, r_2$ are the roots of $ax^2 + bx + c$, and $C_1, C_2$ are found from initial conditions.
+
+\vfill
+\newpage
+
+\subsection*{Operational Amplifiers}
+
+\paragraph{8)} In ECE 210, operational amplifiers are treated as magic triangles with specific input output relations. A more realistic op-amp model would look something like this;
+
+\[
+i_+ = i_- = 0
+\]
+\[
+v_{out} = 10^6\times(v_+ - v_-)
+\]
+
+\subparagraph{a)} Using the above equations, show that the ideal op-amp rule $v_+ = v_-$ is approximately true when the output of the chip is connected to the inverting input ($v_-$) of the chip, as shown in the figure below. 
+
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, voltage dir = old, transform shape]
+\node[op amp, noinv input up, anchor=+] (amp) {};
+\draw (amp.-) to[short] (0,-2) to[short] (1,-2) -| (amp.out) to[short, -o] ++ (0.5,0) coordinate (out);
+\draw (amp.+) to[short, -o] ++ (-0.5,0) coordinate (in);
+\node at (in) [anchor=east] {$v_{in}$};
+\node at (out) [anchor=west] {$v_{out}$};
+\end{circuitikz}
+\end{figure}
+
+\subparagraph{b)} What happens when the output of the chip is instead connected back to the non-inverting terminal ($v_+$)?
+
+\subparagraph{c)} Find $v_{out}(t)$ in terms of $v_{in}(t)$, assuming both voltages are in reference to a common ground, using:
+\newline
+
+\quad$\textbf{i) }$ideal op-amp approximations.\newline
+
+\quad$\textbf{ii) }$ the given op-amp model. \newline
+
+Assume the capacitor has some non-zero initial charge $q_0$.
+
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, voltage dir = old, transform shape]
+\node[op amp, anchor=+] (amp) {};
+\draw (amp.+) to[short] (0,-0.5) node[ground]{};
+\draw (amp.-) to[short] (0, 2) to[R,l=$R_1$] (2.2,2) -| (amp.out) to[short, -o] ++ (0.5,0) node [anchor=west] {$v_{out}$};
+\draw (amp.-) to[C,l_=$C_1$,-o] ++ (-2,0) node [anchor=east] {$v_{in}$};
+\end{circuitikz}
+\end{figure}
+
+\quad$\textbf{iii) }$ Do your results from c.i) and c.ii) match?
+
+
+
+\end{document}

@@ -1,0 +1,516 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\title{ECE220 Midterm 1 Review}
+\author{Author: Members of HKN}
+\date{Fall 2024}
+
+\newcommand{\dd}[1]{\mathrm{d}#1}
+
+\usepackage[makeroom]{cancel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{multirow}
+
+
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{1,1,1}
+\newcommand{\wideunderscore}{\underline{\hphantom{n}}}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C,
+    escapechar=\@
+}
+
+\pagenumbering{arabic}
+
+\begin{document}
+
+\maketitle
+
+\section {
+Memory-Mapped I/O
+}
+
+
+\begin{enumerate}[label=(\alph*)]
+    \item What is the difference between a callee-saved and a caller-saved register?
+    \newline
+    \textcolor{blue}{\textbf{Answer:} A callee-saved register is saved inside the subroutine (hence callee, as the subroutine is what is BEING called), then restored JUST before the subroutine finishes. A caller-saved register is saved JUST before the JSR call to the subroutine (hence caller, as the routine DOING the call to the subroutine saves the registers), then restored AFTER the call. }
+   
+
+    \item What is the difference between polling I/O vs. Interrupt-Driven I/O?
+    \newline
+    \textcolor{blue}{\textbf{Answer:} Polling is when the routine constantly checks the status of the device and “spins” until it reads a ready status from the device. Interrupt-driven I/O is when the routine executes its intended functionality until a device with higher priority “interrupts” the routine. Control is handed over to the processor to allow an interrupt handler to execute.}
+
+    \item Fill in the blanks of the following statements relating to Memory-Mapped I/O.
+
+    Certain device registers are \textcolor{blue}{mapped} to certain \textcolor{blue}{memory} locations. However, the registers physically are \textcolor{blue}{separate} from the memory. Memory-mapped device registers are a common way to \textcolor{blue}{interface} computer systems with devices.
+
+    
+
+    
+\end{enumerate}
+
+
+\section{
+    Traps and Subroutines
+}
+
+\begin{enumerate}[label=(\alph*)]
+
+\item Why would we need to have service routines (known as TRAPs)? Name three reasons.
+\newline
+\textcolor{blue}{
+\textbf{Some sufficient answers:}
+}
+\textcolor{blue}{
+    \begin{enumerate}[label=\color{blue}\roman*.]
+        \item Implementation for a service routine can be implemented once and called multiple times if needed.
+        \item Hide system-specific implementation from programmers.
+        \item Protect system resources from reckless/careless programming practices.
+        \item Provide a wrapper to interface with devices I/O when reading/writing to devices is difficult.
+    \end{enumerate}
+}
+
+    \item \textbf{Shifting :(}
+
+    Write a subroutine that performs a logical left shift of R1 by the value stored in R2, and reports the result in R1. You may assume that R2 contains a positive number. Only R6 and R1 can be modified/read from, and only R2 can be read from.
+    \newpage
+    \textcolor{purple}{.ORIG x3100}
+    \newline
+    \textcolor{purple}{SHIFTL}
+    \newline
+    \textcolor{blue}{AND R6, R6, \#0  ; zero out R6 to be used as decreasing loop counter
+}
+    \newline
+    \textcolor{blue}{ADD R6, R6, R2 ; store R2 at R6}
+    \newline
+    \textcolor{blue}{LOOP BRz DONE}
+    \newline
+    \textcolor{blue}{ADD R1, R1, R1 ; Left-shift by 1}
+    \newline
+    \textcolor{blue}{ADD R6, R6, \#-1}
+    \newline
+    \textcolor{blue}{BRnzp LOOP}
+    \newline
+    \textcolor{blue}{DONE}
+    \newline
+    \textcolor{purple}{RET}
+    \newline
+    \textcolor{purple}{.END}
+
+
+
+    \item  \textbf{Permute Quarters}:
+
+   A value stored in a 16-bit LC3 register can be divided into four equal parts of four bits each:
+    \begin{center}
+        $X = $ $X_1$ $X_2$ $X_3$ $X_4$ \\
+    \end{center}
+Write a subroutine, PERMUTE, that reorders R5 as follows:
+\begin{center}
+R5 = $X_1$ $X_3$ $X_2$ $X_4$    
+\end{center}
+
+Assume all registers are caller-saved. You should not use loops. You may assume the existence of a SHIFTR subroutine, which right-shifts R1 the number of times given by R2 as expected, no other register is required. [Hint: the previous subroutine might be useful]
+
+;assume the previous subroutine has been implemented correctly at other locations \newline
+;all registers values are caller-saved, so we are free to use any register except R5, but remember that those values will be overwritten in later operations 
+
+
+\textcolor{purple}{.ORIG x3100}
+
+    \textcolor{gray}{; assume code for entry point is omitted}\\
+ 
+
+    \textcolor{purple}{PERMUTE} \newline
+    \textcolor{gray}{; write the code here} \newline
+    \textcolor{blue}{ST R7, SAVER7 ; save R7}
+    \newline
+    \textcolor{blue}{LD R1, X3}
+    \newline
+    \textcolor{blue}{LD R2, FOUR}
+    \newline
+    \textcolor{blue}{LD R3, X2}
+    \newline
+    \textcolor{blue}{LD R4, CLEARX2X3}
+    \newline
+    \textcolor{blue}{AND R1, R5, R1 ; store X3 of R5 at R1}
+    \newline
+    \textcolor{blue}{AND R3, R5, R3 ; store X2 of R5 at R3}
+    \newline
+    \textcolor{blue}{AND R5, R5, R4 ; zero out middle  of R5}
+    \newline
+    \textcolor{blue}{JSR SHIFTL ; left shift R1(X3) by 4}
+    \newline
+    \textcolor{blue}{ADD R5, R5, R1 ; add left shifted X3 to R5}
+    \newline
+    \textcolor{blue}{ADD R1, R3, \#0 ; load R3(X2)  to R1}
+    \newline
+    \textcolor{blue}{JSR SHIFTR ; right shift R1(X2) by 4}
+    \newline
+    \textcolor{blue}{ADD R5, R5, R1 ; add right shifted X2 to R5}
+    \newline
+    \textcolor{blue}{LD R7, SAVER7 ; load previous R7 value}
+    \newline
+    \textcolor{gray}{; code ends here}
+    
+    \textcolor{purple}{RET}
+    \newline \textcolor{gray}{; code omitted}
+    \newline    \textcolor{gray}{;}
+    \newline \textcolor{purple}{HALT}
+    \textcolor{gray}{; labels below}
+    \newline
+    \textcolor{purple}{CLEARX2X3 .FILL 0xF00F}
+    \newline
+    \textcolor{purple}{FOUR .FILL \#4}
+    \newline
+    \textcolor{purple}{X2 .FILL 0x0F00}
+    \newline
+    \textcolor{purple}{X3 .FILL 0x00F0}
+    \newline
+    \textcolor{purple}{SAVER7 .FILL \#0}
+    \newline
+    \textcolor{purple}{.END}
+    
+\item \textbf{Trap Concepts}
+
+Given the figures below, determine the memory address of the TRAP vector table that will be accessed and which TRAP service routine will be executed.
+\newline
+
+\begin{center}
+
+\begin{tabular}{||c  ||} 
+\hline
+\multicolumn{1}{|c|}{User Program ASM Code} \\
+ \hline
+ ;   \\ 
+ \hline
+;  \\ 
+ \hline
+ TRAP 0xAA \\
+ \hline
+ ;\\
+ \hline
+ ;  \\
+ \hline
+ 
+\end{tabular}
+
+\begin{tabular}{|p{3cm} p{3cm} |} 
+\hline
+ Address & Value  \\ [0.5ex] 
+ \hline\hline
+ 0xAA & 0x05C0 \\ 
+ \hline
+ 0x1AA & 0x05D0 \\
+ \hline
+ 0x2AA & 0x05E0 \\
+ \hline
+ 0x3AA & 0x05F0 \\
+ \hline
+ ... &  \\ [1ex]
+ \hline
+  & \\ [1ex]
+  \hline
+  0x05C0 & Routine $\alpha$ \\
+  \hline
+  0x05D0 & Routine $\omega$\\
+  \hline
+  0x35C0 & Routine $\kappa$ \\
+  \hline
+  0x35D0 & Routine $\pi$ \\
+ \hline
+ 
+\end{tabular}
+
+
+
+\end{center}
+
+Trap Vector Table Entry:
+
+\begin{enumerate}[label={}]
+    \item a. 0xAA
+    \item b. 0x1AA
+    \item c. 0x2AA
+    \item d. 0x3AA
+
+    \end{enumerate}
+
+\textcolor{blue}{\textbf{Answer: } 0xAA}
+
+Trap Routine Executed:
+
+\begin{enumerate}[label={}]
+    \item a. $\alpha$ 
+    \item b. $\omega$
+    \item c. $\kappa$
+    \item d. $\pi$
+\end{enumerate}
+
+\textcolor{blue}{\textbf{Answer: } $\alpha$}
+
+Of the following steps executed during a TRAP, in what order are they executed?
+\begin{enumerate}[label={}]
+    
+\item a. Return to User Program
+\item b. Execute Trap Routine
+\item c. Access Trap Vector Table
+\newline
+\item 1) \textcolor{blue}{Access Trap Vector Table}
+\item 2) \textcolor{blue}{Execute Trap Routine}
+\item 3) \textcolor{blue}{Return to User Program}
+
+\end{enumerate}
+\end{enumerate}
+\section{Stack Operations}
+\begin{enumerate}[label=(\alph*)]
+    \item Given the following input sequence of numbers: “24609846117”, write a sequence of pushes and pops that produces this output: “64098116472”.
+
+    \textcolor{blue}{\textbf{Answer: } PUSH PUSH PUSH POP POP PUSH POP PUSH POP PUSH POP PUSH PUSH PUSH PUSH POP POP POP POP PUSH POP POP}
+
+
+    \item Two Parts:
+    \begin{enumerate}[label=()]
+        \item[i.] Write the expression    $(  ( (4 * 2) + 1 ) / 3) + 5$ in postfix notation. \newline
+        \textcolor{blue}{\textbf{Answer: } 142*+3/5+}
+        \item[ii.] Write the following postfix expressions in mathematical notation and indicate what they evaluate to (if they are not valid, write “not valid”)
+        \begin{enumerate}
+            \item[*] 6721*-5/* \newline
+            \textcolor{blue}{\textbf{Answer:}  6 *  ( (7 - (2 * 1) ) / 5 ), evaluates to 6
+ }
+            \item[*] 83+632-+1*+- \newline
+            \textcolor{blue}{\textbf{Answer:} not valid }
+            \item[*] 2233*2+5-+8/- \newline
+            \textcolor{blue}{\textbf{Answer:} 2 -  ( ( (   2 + (3 * 3)) - 5 ) + 2)/ 8, evaluates to 1 }
+            \item[*] 89+6-44 \newline
+            \textcolor{blue}{\textbf{Answer:}  not valid}
+        \end{enumerate}
+    \end{enumerate}
+
+
+    \item \textbf{MP2 Postfix Calculator:} This sequence is input to the console: 445+3/8*-= Draw the stack (and where the stack pointer points to) after:
+
+    \begin{enumerate}
+        \item[i.] 5 has been input
+        \item[ii.] + has been input
+        \item[iii.] * has been input
+        \item[iv.] = has been input
+    \end{enumerate}
+    Assume that the stack pointer points to the address \textbf{one above the most recent-pushed entry.} Remember that a POP does NOT remove an item from memory but simply changes the stack pointer!
+    \newpage
+
+    \textcolor{blue}{\textbf{Answers: }}
+    \newline
+    \begin{center}
+    {\color{blue}
+\begin{tabular}{|p{3cm} p{3cm} |} 
+\hline
+ & $\longleftarrow$ \\
+ \hline
+ 5 & \\
+ \hline
+ 4 & \\
+ \hline
+ 4 & \\
+ \hline
+\end{tabular} }
+
+{\color{blue}
+\begin{tabular}{|p{3cm} p{3cm} |} 
+\hline
+ 5 & $\longleftarrow$ \\
+ \hline
+ 9 & \\
+ \hline
+ 4 & \\
+ \hline
+\end{tabular} }
+
+{\color{blue}
+\begin{tabular}{|p{3cm} p{3cm} |} 
+\hline
+
+ 8 & $\longleftarrow$\\
+ \hline
+ 24 & \\
+ \hline
+ 4 & \\
+ \hline
+\end{tabular} }
+
+{\color{blue}
+\begin{tabular}{|p{3cm} p{3cm} |} 
+\hline
+
+ 8 & \\
+ \hline
+ 24 & $\longleftarrow$ \\
+ \hline
+ -20 & \\
+ \hline
+\end{tabular} }
+
+\end{center}
+
+
+\end{enumerate}
+\section{C Programming}
+\begin{enumerate}
+    \item[(a)] What will be the output of the following C Program?
+    \begin{lstlisting}[style=CStyle]
+int main() {
+	int i;
+	for (i = 3; i < 13; i ++ )
+	{
+		if (i % 3 == 1)
+		{
+			printf("Bong\n");	  		
+            }
+		if (i % 2 == 0)
+		{
+			printf("Ding\n");
+			continue;
+		}
+		printf("Odd\n");
+		
+	}
+	return 0;
+}
+    \end{lstlisting}
+
+    \textcolor{blue}{\textbf{Answer: }\\ Odd… \\
+		Bong\\
+		Ding\\
+		Odd…\\
+		Ding\\
+		Bong\\
+		Odd…\\
+		Ding\\
+		Odd…\\
+		Bong\\
+		Ding\\
+		Odd…\\
+		Ding\\
+}
+    \item[(b)] What is the return value of this program?
+    \begin{lstlisting}[style=CStyle]
+int foo(int x, int y);
+
+int main()
+{
+	int x = 3;
+	int y = 4;
+
+	x = y + foo(x,y); 
+	y = x - foo(x,y); 
+			
+	return x + y;
+
+
+
+}
+
+int foo(int x, int y)
+{
+	int a = x + y;
+	int b= x - y;
+	a += x--;
+	y ++;
+	a += (y + 1);
+	return b + a + --x;
+
+
+}
+
+    \end{lstlisting}
+
+    \textcolor{blue}{\textbf{Answer: } -44}
+
+\end{enumerate}
+\section{Conceptual Questions}
+
+\begin{enumerate}[label=(\alph*)]
+    \item What is the order of access for a stack abstract data type?
+    \newline
+\newline
+        \textcolor{blue}{\textbf{Answer: } LIFO (Last-In-First-Out) or FILO (First-In-Last-Out)}
+        \newline
+    \item Define overflow and underflow.
+\newline
+\newline
+\textcolor{blue}{\textbf{Answer: }Overflow: Attempting to push when stack is full.
+Underflow: Attempting to pop when stack is empty
+}
+        \newline
+    \item True or False. Please explain your answer.
+    \begin{enumerate}[label=\roman*.]
+        \item Interrupts are more efficient than polling.
+        \newline
+        \newline
+        \textcolor{blue}{\textbf{Answer:  } True. We dont need to waste resources constantly checking a bit, we can just have a signal that tells us when to interrupt. }
+        \newline
+        \newline
+        \item There are up to 8 possible TRAP service routines.
+        \newline
+        \newline
+        \textcolor{blue}{\textbf{Answer: } False. There are many more.}
+        \newline
+        \newline
+        \item TRAPs shield programmers from system specific details.
+        \newline \newline
+        \textcolor{blue}{\textbf{Answer: }True. We dont need to know how traps stop the system, just that they do. }
+        \newline
+        \newline
+        \item PSR and PC are pushed to the User stack before executing an interrupt service routine.
+        \newline \newline
+        \textcolor{blue}{\textbf{Answer: }False. PSR (Program Status Register) and PC are pushed to the supervisor stack, and are something the system does, and we are not allowed to interfere with. }
+        \newline
+        \newline
+        \item An item is deleted after being pushed off the stack.
+        \newline
+        \newline
+        \textcolor{blue}{\textbf{Answer: } False. After being popped off the stack, the item is still in memory, the computer will simply overwrite it if something else is pushed on. }
+        \newline
+        \newline
+        \item TRAP service routines are provided as part of the system code.
+        \newline \newline
+        \textcolor{blue}{\textbf{Answer: }True. Traps are implemented by the system, and are part of system code. }
+        \newline
+        \newline
+    \end{enumerate}
+\end{enumerate}
+
+
+
+\end{document}

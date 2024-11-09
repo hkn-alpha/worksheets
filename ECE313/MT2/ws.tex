@@ -1,0 +1,220 @@
+\documentclass{exam}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+
+\title{ECE 313 Midterm 2 Worksheet}
+\author{HKN Members}
+\date{Fall 2024}
+\renewcommand\thesection{Q\arabic{section}:}
+\renewcommand\thesubsection{Part \Alph{subsection}:}
+\begin{document}
+
+\maketitle
+% per courses.engr.illinois.edu/ece313/fa2024
+% assumed fair game: up to but not including joint CDFs
+% assumed focus area start: Union Bound
+% topics: unionbound, estimation, poisson-process, erlang-distribution, clt
+\part*{Questions}
+\section{Pramod's Great Escape}
+\subsection{The Rocket}
+For unknown reasons, Pramod needs to escape the planet ASAP. He decides to build a rocket out of 500 rocket engines of dubious quality that he found at the scrapyard so that he may get to the Moon. Unfortunately, the rocket engines are barely powerful enough to get him and his base to the Moon, and a single failure would cause him to fall back to Earth. According to amateur rocketry forums, these engines have a $\frac{1}{10^3}$ chance of failing since they have been rusting at the scrapyard for so long. However, since Pramod is innovative and learns new techniques, as he installs each engine the probability of failure is scaled down by $\frac{9}{10}$, i.e $p_{\text{engine-fail}}(m) = (\frac{1}{10^3})(\frac{9}{10})^m$ where $m$ is the number of the engine. Estimate the likelihood that Pramod will not successfully escape, and estimate the order of magnitude of this estimate's error from the actual likelihood to the nearest $10^{-18}$. 
+\newline
+\newline
+Hint: $(\frac{9}{10})^{500} \approx 10^{-23}$ and $\sum_{k=0}^{\infty} ar^k = \frac{a}{1-r}$. Remember that we never asked for a precision of more than $10^{-18}$ on any calculation. 
+\vspace{5cm}
+
+\subsection{The Asteroids}
+To take revenge on his opps, Pramod builds a machine that flings asteroids at Earth, at a constant rate of 10 per hour, but at random times. However, the terrestrial asteroid defense system can intercept, on average, 90\% of the asteroids. This continues for 1000 hours until he is stopped and apprehended. Calculate the likelihood that the 500th asteroid hits earth earlier than 500 hours in. Precision past the nearest percent is unnecessary. 
+\vspace{5cm}
+
+% topics: uniform-distribution, exponential-distribution
+\section{Captain's Treasure}
+\subsection{The Shipwreck}
+Captain Chatterjee's pirate ship with lots of treasure is sailing along a river. Tragically, due to violating maximum ship load regulations with the treasure, Captain Chatterjee's ship sinks some time after departing from their port of origin. Captain Chatterjee manages to escape the ship and takes a lifeboat to the next port, which is 30km from the port of origin. Unfortunately, Captain Chatterjee has no clue where the ship sank. He only has enough money to pay an underwater surveyor for 10km of distance. Where should he have the surveyor work, and what is the likelihood that they will find his treasure?
+\vspace{7cm}
+
+\subsection{The Mines}
+Captain Chatterjee has recovered his treasure, and starts sailing from the new port of origin. Unfortunately, he knows that there are sea mines where he will be sailing, so he had a shipyard build his boat to withstand 10 blasts. A previous boat reported that the mines appear randomly, but on average there are 3 mines per km. After Captain Chatterjee hit a mine, what is the likelihood the next mine is between 100m and 200m away?
+\vspace{7cm}
+
+% \subsection{The Cleanup}
+% Captain Chatterjee ends up hitting 10 mines before passing the mined zone, and gives up on piracy to pursue international diplomacy instead. After successfully getting all countries to ban sea mines, he turns his efforts to de-mining the river where he was sunken before. He finds that his de-mining crews  
+
+% topics: poisson-process,  
+% \section{}
+
+% topics: gaussian-estimation, clt, erlang-distribution
+\section{Not Fine Fines}
+\subsection{The Payment}
+Despite having paid for a parking permit and following the instructions, the town of Roselle, IL issued Alex \$200 worth of parking fines. To punish them for their injustice, he becomes the Chair of the Federal Reserve, issues a \$0.0001 coin, and pays his fines in this new denomination. When he drops off the trailer of coins at the Roselle town hall, estimate the likelihood that less than 500000 of the 2000000 coins land heads-up, assuming fair coins. 
+\vspace{4cm}
+
+\subsection{The Casino}
+To make up for their losses from having to count, transport and redeem the coins, Roselle starts an unlicensed gambling operation. The slot machines are of a special variety, where instead of paying for a game, the player pays for a timeframe in which they can play, and there is a fixed success rate of $\frac{1}{1000}$ per hour, and the player needs to succeed 3 times in order to win a gazillion dollars. Udit is a professional gambler and wants to try this new game. What is the likelihood that he will win a gazillion dollars during his daily 12 hour gambling shift?
+\vspace{4cm}
+
+\subsection{The Last Stand}
+After finding out about this, Alex reports the town to the Illinois Gaming Board, which suspends them, takes their earnings, and fines them \$2000000. The town's demise now becomes inevitable. With each day, there is a constant rate $\lambda$ of likelihood of municipal bankruptcy. The town goes bankrupt in 10.0 days. Find the most likely value of $\lambda$. 
+% of municipal bankruptcy of 0.05
+\vspace{4cm}
+
+% \section{Conjurers of Distributions}
+% Gandalf has hired Ethan for a co-op in magic. Gandalf has given Ethan a magic box that generates an output sampled from the standard normal distribution where $\mu=0$ and $\sigma=1$. For Ethan's intern project, Gandalf tasks Ethan to transform this output into a uniform distribution from $0$ to $1$, since a customer has asked for this different distribution. How can Ethan accomplish this? Feel free to use $\Phi$, $\Phi^{-1}$, $Q$ and $Q^{-1}$ in your answer.  
+% \vspace{4cm}
+
+\section{ ML Estimators }
+\subsection{}
+Let $X = 3Y - 2$, where Y is geometrically distributed with parameter $p$. It was observed that $X = 7$. Find $\widehat{p}_{ML}$, the maximum likelihood estimate of p.
+\vspace{4cm}
+
+\subsection{}
+A random variable X takes values in the set $S = \{1,3,5, ... 
+ , 2n + 1\}$ with equal probability. If $X = 13$ is observed, find $\widehat{n}_{ML}$, the maximum likelihood estimate of n.
+ \vspace{4cm}
+
+\section{ Hypothesis Testing }
+\subsection{}
+Suppose you have a coin and you know that either $H_1$ the coin is biased with probability $\frac{1}{4}$ of getting heads or $H_0$ the coin is fair with probability $\frac{1}{2}$ of getting heads. Let X represent the number of times the coin lands on heads. Assume you flip this coin 4 times. Draw a ML matrix below, and find the ML rule.
+\vspace{6cm}
+
+\subsection{}
+Assume that the coin has a $\frac{1}{3}$ chance of being fair. Find $P_{false\ alarm}$, $P_{miss}$, and $P_e$ for the ML rule above.
+ 
+
+
+\newpage
+\renewcommand\thesection{Answer to Q\arabic{section}:}
+\renewcommand\thesubsection{Part \Alph{subsection}:}
+\setcounter{section}{0}
+\part*{Answers}
+\section{Pramod's Great Escape}
+\subsection{The Rocket}
+Since the union bound states that the sum of all event probabilities is higher than the probability of the event union. In terms of this problem, this means that the probability of Pramod's rocket failing is less than the sum of the probabilities that each engine fails. We can estimate this as a geometric series as the tail terms will be negligible, and so $P_{\text{mission-fail}} \approx \frac{1}{10^3 \times (1-0.9)} = 10^{-4}$
+
+The premise of the union bound is that it is reasonably accurate if there are a set of events with a very low likelihood, and the outcome of one failure is the same as the outcome of more than one(i.e we care only about the \textit{union} of events). %finish this answer key entry
+
+\subsection{The Asteroids}
+The question has a fixed-rate continous time event, i.e a Poisson process. The question being asked involves the $k$th instance of this event, which can be modelled by an Erlang distribution, so using its CDF:
+
+$P = 1 - \sum_{n=0}^{k-1} \frac{e^{-\lambda t}(\lambda t)^n}{n!}$
+
+Inserting $\lambda = 1$, $k=500$, and $t=500$
+
+$P = 1 - \sum_{n=0}^{499} \frac{e^{-500}(500)^n}{n!}$
+
+This is a rather unfortunate sum that we would rather not solve. However, recall that the question does not ask for precision past 1\%. We can therefore re-frame the question like this:
+\newline
+\newline
+Given a random variable $X$, which is defined as the sum of $500$ exponential distributions with rate $\lambda=1$, what is the likelihood that $X>500$?
+\newline
+\newline
+Which is a trivial CLT problem because in this case $E[X] = 500$, meaning that $P \approx 0.5$. Note that this only holds because the mean and median are equal in Gaussian distributions, which is not the case in the original Erlang distribution. 
+
+\section{Captain's Treasure}
+\subsection{The Shipwreck}
+Notice how since Captain Chatterjee has no idea where the treasure is, it could be anywhere in that 30km zone, making this a uniform distribution. Which means it does not matter where he pays the surveyor to work, and the probability of success will always be $p=\frac{1}{3}$
+
+\subsection{The Mines}
+Since the mines appear at a fixed rate in distance, we can model this situation as an exponential distribution over distance. As such, the rate $\lambda = 3$ mines per km. Using $P(X \leq x) = 1 - e^{-\lambda x}$, the probibility that the next mine is between 100m and 200m is the following: $P (0.1 \leq X \leq 0.2) = P(X \leq 0.2) - P(X \leq 0.1) = (1-e^{-0.6}) - (1-e^{-0.3}) = 0.192$.
+
+\newpage
+\section{Not Fine Fines}
+\subsection{The Payment}
+This can be modeled using a binomial distribution,  with n = 2000000 and p = 0.5. For large n, we can approximate it by a normal distribution due to the Central Limit Theorem. Its mean would be $np = 0.5*2000000 = 1000000$ and its standard deviation would be $\sigma = \sqrt{n*p*(1-p)}$ = $\sqrt{2000000*0.5*0.5}$ = $\sqrt{500000} = 707.1$
+For calculating the probability of less than 500000 lands heads-up, we do the following: $P \left\{ \frac{X - 1000000}{707.1} \leq \frac{500000 - 1000000}{707.1} \right\} = \Phi(\frac{500000 - 1000000}{707.1}) = \Phi(-707.1) = Q(707.1) = 0$. Q(707.1) is so small that the probability of less than 500000 heads-up would be very small, essentially 0.  
+
+
+\subsection{The Casino}
+This question can be modeled as a Poisson distribution of $\lambda = 0.012$ because it has a low p of 0.001 and n = 12. To win a gazillion dollars in 12 hours, he needs to succeed 3 times. First, we can calculate the probability of winning less than three times, $P(X<3)$, by calculating the sum of the likelihood of winning 0, 1, 2 times: \newline \newline
+$P(X=0) = \lambda^0*\frac{e^{-\lambda}}{0!}=e^{-\lambda}=e^{-0.012}\approx0.988$ \newline
+$P(X=1) = \lambda^1*\frac{e^{-\lambda}}{1!}=\lambda*e^{-\lambda}=0.012*e^{-0.012}\approx0.0119$ \newline
+$P(X=2) = \lambda^2*e^\frac{{-\lambda}}{2!}=\lambda^2*\frac{e^\lambda}{2}=0.012^2*\frac{e^{-0.012}}{2}\approx0.000071$ \newline
+$P(X<3) = 0.988+0.0119+0.000071 = 0.999971$ \newline \newline
+Therefore, we can get the possibility of succeeding more than or equal to 3 times:
+\newline
+$P(X \ge 3) = 1 - P(X<3) = 0.000029$
+
+\subsection{The Last Stand}
+We model it as an exponential distribution with parameter \(\lambda\). To get the maximum likelihood (ML) estimate of \(\lambda\), we want to maximize the likelihood function \(\lambda e^{-\lambda t}\) for \(t = 10\), since the town goes bankrupt in 10 days. 
+
+By taking the derivative to find the maximum, we have:
+\[
+\frac{d}{d\lambda} \left( \lambda e^{-\lambda t} \right) = (1 - \lambda t) e^{-\lambda t} = 0,
+\]
+which gives us 
+\[
+\lambda_{\text{ML}} = \frac{1}{t} = 0.1.
+\]
+
+
+
+
+% \section{Conjurers of Distributions}
+
+\section{ML Estimators}
+\subsection{}
+Most of the work of this problem is knowing how to deal with functions of random variables. Start by setting up the relation:
+ \begin{center}
+$P\{X = 7\} = P\{3Y - 2 = 7\} = P\{Y = 3\}$. 
+\newline
+\end{center}
+ Now you just need to use the $\widehat{p}_{ML}$ equation for geometric distributions, $\widehat{p}_{ML} = \frac{1}{k}$. This equation is derived in the textbook by taking the derivative of the geometric distribution with respect to p. This gives you a final answer of  $\widehat{p}_{ML} = \frac{1}{3}$.
+\subsection{}
+Since all values in the set have an equal probability, the pmf of x is 
+\begin{equation}
+    P_x(n) = \begin{cases}
+    \frac{1}{n}, &\text{ $1,3,5,...,2n+1$} \\
+    0, &\text{otherwise}
+    \end{cases}
+\end{equation}
+The probability is minimized when n is as small as possible. This means n should be the smallest value for which the set is still valid. Since 13 is observed, it must be in the set, so the smallest possible value of n is 6.
+
+\section{Hypothesis Testing}
+\subsection{}
+Both hypotheses can be modeled using the binomial distribution. Using the binomial distribution formula: 
+\begin {equation}
+P(x) = \binom{n}{x} \cdot (p)^x \cdot (1-p)^{(n-x)}
+\end{equation}
+
+The ML decision table is shown below.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{llllll}
+\hline
+\multicolumn{1}{|l|}{Hypothesis} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} \\ \hline
+\multicolumn{1}{|l|}{$H_{1}$}         & \multicolumn{1}{l|}{\underline{0.3164}}  & \multicolumn{1}{l|}{\underline{0.421875}}  & \multicolumn{1}{l|}{0.2109375}  & \multicolumn{1}{l|}{0.046875}  & \multicolumn{1}{l|}{0.00390625}  \\ \hline
+\multicolumn{1}{|l|}{$H_{0}$}         & \multicolumn{1}{l|}{0.0625}  & \multicolumn{1}{l|}{0.25}  & \multicolumn{1}{l|}{\underline{0.375}}  & \multicolumn{1}{l|}{\underline{0.25}}  & \multicolumn{1}{l|}{\underline{0.0625}}  \\ \hline
+                                 &                        &                        &                        &                        &                       
+\end{tabular}
+\end{table}
+
+The ML decision rule is underlined in the table. 
+
+\subsection{}
+
+By convention, $P_{false alarm}$ is defined by the conditional probability 
+\begin{equation}
+    P_{false alarm} = P(declare\, H_{1}\, true\, |\, H_{0} )
+\end{equation}
+and $P_{miss}$ is defined by the conditional probability 
+\begin{equation}
+    P_{miss} = P(declare\, H_{0}\, true\, |\, H_{1} )
+\end{equation}
+$P_{false alarm}$ can be found by taking the sum of the non underlined elements in the $H_0$ row.
+\begin{center}
+$P_{false alarm}$ = 0.0625 + 0.25 = 0.3125.
+\end{center}
+Similarly, $P_{miss}$ is the sum of the non underlined elements in the $H_1$ row.
+\begin{center}
+$P_{miss}$ = 0.2109 + 0.0469 + 0.0039 = 0.2617
+\end{center}
+Finally, \( p_e \) is found through
+\[
+p_e = \pi_{0} p_{\text{false alarm}} + \pi_{1} p_{\text{miss}}
+\]
+\begin{center}
+$p_e = \frac{1}{3}*0.3125 + \frac{2}{3}*0.2617 = 0.2786$
+\end{center}
+
+\end{document}

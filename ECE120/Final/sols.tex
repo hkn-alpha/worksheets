@@ -1,0 +1,944 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{array} % Import array package
+
+\title{ECE120 Final Review - Cramming Carnival Solutions}
+\author{Author: Members of HKN}
+\date{Spring 2024}
+\newcommand{\dd}[1]{\mathrm{d}#1}
+
+\usepackage[makeroom]{cancel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{xcolor}
+
+\pagenumbering{arabic}
+
+\begin{document}
+
+\maketitle
+
+\textcolor{blue}{Answers are in blue}
+\section{Bitwise Bonanza}
+\begin{enumerate}[label=(\alph*)]
+    \item \textbf{Twos Complement Sign Extension}: Given the binary numbers in two’s complement give the respective value as a 8-bit two’s complement representation (If given a 5-bit number, write the same value with 8-bits)
+    \begin{enumerate}[label=(\roman*)]
+        \item 010100 \textcolor{blue}{00010100}
+        \item 1010100 \textcolor{blue}{11010100}
+        \item 0001010 \textcolor{blue}{00001010}
+        \item 0100011 \textcolor{blue}{00100011}
+        \item 111000 \textcolor{blue}{11111000}
+        \item 10 \textcolor{blue}{11111110}
+        \item 00 \textcolor{blue}{00000000}
+        \item 01 \textcolor{blue}{00000001}
+        \item 1 \textcolor{blue}{11111111}
+    \end{enumerate}
+    \item \textbf{Converting to Hexadecimal Notation}: Given the binary number below convert to hexadecimal (Sign extend if necessary)
+    \begin{enumerate}[label=(\roman*)]
+        \item 1010100111010000 \textcolor{blue}{A9D0}
+        \item 0101001111000001 \textcolor{blue}{53C1}
+        \item 1111011110001010 \textcolor{blue}{F78A}
+        \item 0100001110100101 \textcolor{blue}{23A5}
+    \end{enumerate}
+    \item \textbf{Converting From Unsigned Representation}: Given the 5-bit \underline{unsigned} binary string, what is its decimal equivalent?
+    \begin{enumerate}[label=(\roman*)]
+        \item 10101 \textcolor{blue}{21}
+        \item 01010 \textcolor{blue}{10}
+        \item 11110 \textcolor{blue}{30}
+        \item 01000 \textcolor{blue}{8}
+        \item 11011 \textcolor{blue}{27}
+    \end{enumerate}
+    \item \textbf{Converting from IEEE 754 32-bit Floating Point}: Given the IEEE 754 32-bit Floating Point, what is its decimal equivalent?
+    \begin{enumerate}[label=(\roman*)]
+        \item 1 10000000 00010000000000000000000 \textcolor{blue}{-2.125}
+        \item 0 01111111 10010000000000000000000 \textcolor{blue}{1.5625}
+        \item 1 10000011 11000100000000000000000 \textcolor{blue}{-28.25}
+    \end{enumerate}
+    \newpage
+    \item \textbf{Converting from Hexadecimal Notation}: Given the hexadecimal notation below, what is the binary representation?
+    \begin{enumerate}[label=(\roman*)]
+        \item 109F \textcolor{blue}{0001000010011111}
+        \item 74BC \textcolor{blue}{0111010010111100}
+        \item E235 \textcolor{blue}{1110001000110101}
+        \item 86AD \textcolor{blue}{1000011010101101}
+    \end{enumerate}
+    \item \textbf{Representation Integer Range}: What is the minimum number of bits needed to represent the values (which are in decimal) below?
+    \begin{enumerate}[label=(\roman*)]
+        \item 343 \textcolor{blue}{9 [10 if 2’s complement]}
+        \item 1709 \textcolor{blue}{11 [12 if 2’s complement]}
+        \item -123 \textcolor{blue}{8}
+        \item -1 \textcolor{blue}{2}
+        \item 0 \textcolor{blue}{1}
+    \end{enumerate}
+    \item \textbf{Representing a Number Using Two's Complement Representation}: Give the 6-bit two's complement representation of the value of the following decimal values
+    \begin{enumerate}[label=(\roman*)]
+        \item -9 \textcolor{blue}{110111}
+        \item -4 \textcolor{blue}{111100}
+        \item 5 \textcolor{blue}{000101}
+        \item 7 \textcolor{blue}{000111}
+        \item -16 \textcolor{blue}{110000}
+    \end{enumerate}
+    \item \textbf{Converting to IEEE 754 32-bit Floating Point}: Enter the IEEE 754 32-bit floating point representation of each of the following decimal fractions.
+    \begin{enumerate}[label=(\roman*)]
+        \item $6 \frac{15}{16}$ \textcolor{blue}{0 10000001 10111100000000000000000}
+        \item $4 \frac{1}{8}$ \textcolor{blue}{0 10000001 00001000000000000000000}
+        \item $7 \frac{3}{4}$ \textcolor{blue}{0 10000001 11110000000000000000000}
+    \end{enumerate}
+    \item \textbf{Two's Complement Subtraction}: If these numbers are in two’s complement representation subtract the numbers.
+    \begin{enumerate}[label=(\roman*)]
+        \item 101001 - 111111 \textcolor{blue}{1101010}
+        \item 001101 - 001010 \textcolor{blue}{0000011}
+        \item 110010 - 110110 \textcolor{blue}{100}
+        \item 111100 - 000110 \textcolor{blue}{110110}
+    \end{enumerate}
+    \item \textbf{Two's Complement Addition Overflow}: For the following binary values, which of them have an overflow in 2’s complement.
+    \begin{enumerate}[label=(\roman*)]
+        \item 110001 + 100011 \textcolor{blue}{Yes}
+        \item 100100 + 001010 \textcolor{blue}{No}
+        \item 110010 + 111111 \textcolor{blue}{No}
+    \end{enumerate}
+\end{enumerate}
+\newpage
+\section{Thrilling Toggles and Terrific Truth Tables}
+\begin{enumerate}[label=(\alph*)]
+    \item
+        \textbf{D Flip-Flop Timing Diagram}: Given this image below of a timing diagram for a positive edge-triggered D flip-flop sketch the values for Q at each time. \textcolor{blue}{Solution Below:}
+        \newline
+        \includegraphics[width=15cm,height=6cm]{figures/DFlipFlopSolutions.png}
+    \item 
+        \textbf{CMOS Gate Truth Table (3 Variables)}: For the CMOS gate shown below, enter in the truth table output.
+        \begin{multicols}{2}
+        \includegraphics[width=7cm]{figures/CMOS.png}
+        \columnbreak
+        \begin{center}
+        \scalebox{1.8} {
+        \begin{tabular}{||c c c c||}
+         \hline
+         A & B & C & Out \\ [0.5ex] 
+         \hline\hline
+         0 & 0 & 0 & \textcolor{blue}{1}  \\
+         \hline
+         0 & 0 & 1 & \textcolor{blue}{1}  \\
+         \hline
+         0 & 1 & 0 & \textcolor{blue}{0}  \\
+         \hline
+         0 & 1 & 1 & \textcolor{blue}{0}  \\
+         \hline
+         1 & 0 & 0 & \textcolor{blue}{1}  \\ [1ex] 
+         \hline
+         1 & 0 & 1 & \textcolor{blue}{0}  \\ [1ex] 
+         \hline
+         1 & 1 & 0 & \textcolor{blue}{0}  \\ [1ex] 
+         \hline
+         1 & 1 & 1 & \textcolor{blue}{0}  \\ [1ex] 
+         \hline
+        \end{tabular}
+        }
+        \end{center}
+        \end{multicols}
+    \newpage
+    \item
+        \textbf{Boolean Expression to Truth Table}: Fill in the truth table given by the functions below.
+        \begin{multicols}{2}
+        \begin{enumerate}[label=(\roman*),nolistsep]
+          \item F(A,B,C,D) = (A+B'+C)’D’
+          \item G(A,B,C,D) = (A+B’)(CD+A)’ 
+          \item H(A,B,C,D) = (CB)+A’D’B+B’CD
+          \item I(A,B,C,D) = ACD+AB+(BC)’
+        \end{enumerate}
+        \columnbreak
+        \begin{center}
+        \scalebox{1.2} {
+            \begin{tabular}{|c|c|c|c||c|c|c|c|}
+            \hline
+            \multicolumn{4}{|c||}{Inputs} & \multicolumn{4}{|c|}{Outputs} \\
+            \hline
+            A & B & C & D & F & G & H & I \\
+            \hline
+            0 & 0 & 0 & 0 & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            0 & 0 & 0 & 1 & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            0 & 0 & 1 & 0 & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            0 & 0 & 1 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{1} \\
+            0 & 1 & 0 & 0 & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{1} \\
+            0 & 1 & 0 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            0 & 1 & 1 & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0} \\
+            0 & 1 & 1 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0} \\
+            1 & 0 & 0 & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            1 & 0 & 0 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            1 & 0 & 1 & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            1 & 0 & 1 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{1} \\
+            1 & 1 & 0 & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            1 & 1 & 0 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} \\
+            1 & 1 & 1 & 0 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{1} \\
+            1 & 1 & 1 & 1 & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{1} \\
+            \hline
+            \end{tabular}
+        }
+        \end{center}
+        \end{multicols}
+    \item
+        \textbf{Truth Table to SOP and POS}: Using the truth table below, express outputs F1 and F2 as a minimal sum of products (SOP) and a minimal product of sums (POS)
+        \begin{multicols}{2}
+        \begin{center}
+        \scalebox{1.2} {
+            \begin{tabular}{|c|c|c|c||c|c|}
+            \hline
+            A & B & C & D & F1 & F2 \\
+            \hline
+            0 & 0 & 0 & 0 & 1 & 1 \\
+            0 & 0 & 0 & 1 & 1 & 0 \\
+            0 & 0 & 1 & 0 & 0 & 0 \\
+            0 & 0 & 1 & 1 & x & 1 \\
+            0 & 1 & 0 & 0 & 0 & 1 \\
+            0 & 1 & 0 & 1 & 0 & 0 \\
+            0 & 1 & 1 & 0 & 1 & 1 \\
+            0 & 1 & 1 & 1 & x & x \\
+            1 & 0 & 0 & 0 & 1 & 0 \\
+            1 & 0 & 0 & 1 & 0 & 0 \\
+            1 & 0 & 1 & 0 & 0 & 1 \\
+            1 & 0 & 1 & 1 & 1 & 1 \\
+            1 & 1 & 0 & 0 & 0 & x \\
+            1 & 1 & 0 & 1 & 1 & 1 \\
+            1 & 1 & 1 & 0 & 0 & 1 \\
+            1 & 1 & 1 & 1 & x & 0 \\
+            \hline
+            \end{tabular}
+        }
+        \end{center}
+        \columnbreak
+        F1 (SOP) = \textcolor{blue}{A'B'C'+CD+A'BC+AC'D'}
+        \newline
+        \newline
+        F1 (POS) = \textcolor{blue}{(A’+C+D’)(A+B’+C)}
+        \newline
+        \newline
+        F2 (SOP) = \textcolor{blue}{A’B’+A’C}
+        \newline
+        \newline
+        F2 (POS) = \textcolor{blue}{A’(B’+C)}
+        \newline
+        \newline
+        \end{multicols}
+    \newpage
+\end{enumerate}
+\section{Multiplexer Mania}
+    \textbf{Multiplexer to Boolean Formula}: Give the minimal SOP for F for the multiplexer below (express F in terms of the inputs)
+    \newline
+    \begin{multicols}{2}
+    \begin{center}
+    \includegraphics[width=3cm]{figures/Multiplexer.png}
+    \end{center}
+    \columnbreak
+    \text{F(A,B,C) =}\textcolor{blue}{A’BC’+AC+AB’}
+    \end{multicols}
+\section{Funky FSMs}
+    \begin{enumerate}[label=(\alph*)]
+        \item \textbf{FSM Design Application}: Given the FSM below, find:
+        \begin{enumerate}[label=(\roman*),nolistsep]
+            \item The K-Maps for S1+,S0+, and F
+            \begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+S1S0 & I=0 & I=1 \\
+\hline
+00 & 0 & 0 \\
+01 & 1 & 1 \\
+11 & 1 & 1 \\
+10 & 1 & 1 \\
+\hline
+\end{tabular}
+\caption{S1+ Solutions}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+S1S0 & I=0 & I=1 \\
+\hline
+00 & 0 & 1 \\
+01 & 0 & 1 \\
+11 & 1 & 0 \\
+10 & 1 & 1 \\
+\hline
+\end{tabular}
+\caption{S2+ Solutions}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+S1 / S0- & F \\
+\hline
+00 & 0 \\
+01 & 1 \\
+11 & 0 \\
+10 & 0 \\
+01 & 1 \\
+11 & 1 \\
+10 & 0 \\
+01 & 1 \\
+\hline
+\end{tabular}
+\caption{F Solutions }
+\end{table}
+            \item Give their minimal SOP Boolean logic expressions \newline\textcolor{blue}{S1+ = S0+S1\newline S0+ = S1’I+S1I’+S1S0’\newline F = S0}
+            \item Implement the FSM as D flip-flops and gates
+            \newline 
+            \includegraphics{figures/ScuffedDiagram.PNG}
+        \end{enumerate}
+        \begin{multicols}{2}
+        \begin{center}
+        \includegraphics[width=6cm]{figures/FSMDesign.png}
+        \end{center}
+        \columnbreak
+        \end{multicols}
+        \newpage
+        \item \textbf{FSM Counter}: Given the FSM below, find:
+        \begin{enumerate}[label=(\roman*),nolistsep]
+            \item The K-Maps for S2+,S1+, and S0+:
+            \newline
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|}
+\hline
+S2 & I \\
+\hline
+00 & 0 \\
+01 & 1 \\
+11 & 0 \\
+10 & 1 \\
+\hline
+\end{tabular}
+\caption{S2+ Solutions}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+S1S0 & I=0 & I=1 \\
+\hline
+00 & 0 & 0 \\
+01 & 1 & 1 \\
+11 & 0 & 1 \\
+10 & 1 & 0 \\
+\hline
+\end{tabular}
+\caption{S1+ Solutions}
+\end{table}
+
+\begin{table}[h]
+\centering
+\begin{tabular}{|c|c|c|}
+\hline
+S1S0 & I=0 & I=1 \\
+\hline
+00 & 0 & 0 \\
+01 & 0 & 1 \\
+11 & 1 & 1 \\
+10 & 1 & 1 \\
+\hline
+\end{tabular}
+\caption{S0+ Solutions}
+\end{table}
+            \item Give their minimal SOP Boolean logic expressions \newline\textcolor{blue}{S2+ = S1’S0’+S2’S1S0+S2S0’\newline
+S1+ = S1’S0+S2’So+S2S1S0’\newline
+S0+ = S2}
+        \end{enumerate}
+        \begin{multicols}{2}
+        \begin{center}
+        \includegraphics[width=6cm]{figures/FSMClock.png}
+        \end{center}
+        \columnbreak
+        \end{multicols}
+
+    \newpage
+    \item \textbf{FSM Sequence Detector}: Generate an FSM that detects the sequence 001: 
+    
+    Input sequence M (starting from left to right):  
+    100110100101  
+    
+    Output sequence R (Starting from left to right):  00010000010
+\begin{enumerate}[label=(\roman*),nolistsep]
+        \item State declaration table
+        \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{State Names} & \textbf{States (S1S0)} & \textbf{State Meanings} \\\hline
+        Start & 00 & None of pattern elements have been found yet \\\hline
+        A & 01 & First '0' in the pattern '001' has been found \\\hline
+        B & 10 & Second '0' in the pattern '001' has been found \\\hline
+        C & 11 & Pattern '001' identified  \\
+        \hline
+        \end{tabular}
+        \caption{State declaration table}
+        \end{table}
+        \item The K-Maps for S1+,S0+, and F
+        \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        S1S0 & M=0 & M=1 \\
+        \hline
+        00 & 0 & 0 \\
+        01 & 1 & 0 \\
+        11 & 0 & 0 \\
+        10 & 1 & 1 \\
+        \hline
+        \end{tabular}
+        \caption{S1+ Solutions}
+        \end {table}
+        
+        \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        S1S0 & M=0 & M=1 \\
+        \hline
+        00 & 1 & 0 \\
+        01 & 0 & 0 \\
+        11 & 1 & 0 \\
+        10 & 0 & 1 \\
+        \hline
+        \end{tabular}
+        \caption{S0+ Solutions}
+        \end {table}
+        
+        \begin{table}[!h]
+        \centering
+        \begin{tabular}{|c|c|}
+        \hline
+        S1S0 & R\\
+        \hline
+        00 & 0 \\
+        01 & 0 \\
+        11 & 1 \\
+        10 & 0 \\
+        \hline
+        \end{tabular}
+        \caption{F Solution}
+        \end {table}
+            \item Give their minimal SOP Boolean logic expressions \newline\textcolor{blue}{S1+ = S1S0’+M’S1'S0\newline
+S0+ = M’S1'S0'+M’S1S0+MS1S0’\newline
+R = S1S0}
+    
+    \end{enumerate}
+
+
+\newpage
+    
+\section{Rambunctious RAM}
+    \textbf{RAM Concepts}: Use the RAM Module Below to answer the questions:
+    \newline
+    \includegraphics{figures/RAM.png}
+    \begin{enumerate}[label=(\alph*),itemsep = 10pt]
+        \item If there are k ADDR wires and N DATA-IN wires, what size memory does this chip store? (Hint: AxB)
+        \newline \textcolor{blue}{$2^k \times N$}
+        \item After entering the chip and before being input to a cell, what do the k wires enter?
+        \newline \textcolor{blue}{A decoder so it can access specific cells}
+        \item If given four 4x4 RAM blocks and any decoder possible, what sizes of RAM could be made?
+        \newline \textcolor{blue}{4x4, 4x8, 4x16, 16x4, 8x4, 8x8}
+        \item In a 16x8 RAM do the following tasks
+        \begin{enumerate}[label=(\roman*),itemsep = 10pt]
+            \item Write 0x12 into address 0x578A
+            \newline \textcolor{blue}{Into WE and CS 1 \newline Into ADDR 0101 0111 1000 1010 \newline Into DATA-IN 0001 0010}
+            \item Write 0x72 into address 0xECEB
+            \newline \textcolor{blue}{Into WE and CS 1 \newline Into ADDR 1110 1100 1110 1011 \newline Into DATA-IN 0111 0010}
+            \item Read from address 0x893F
+            \newline \textcolor{blue}{Into WE 0 and CS 1 \newline Into ADDR 1000 1001 0011 1111 \newline DATA-OUT reads the data from that cell}
+        \end{enumerate}
+    \end{enumerate}
+
+\newpage
+\section{Legendary LC3}
+    \begin{enumerate}[label=(\alph*)]
+        \item \textbf{LC-3 bits to RTL}: For each of the following 16-bit sequences, give the RTL equivalent:
+        \begin{enumerate}[label=(\roman*),itemsep = 10pt]
+            \item 0001 1000 0100 0100 \textcolor{blue}{ADD R4, R1, R4}
+            \item 0101 0000 0011 1111 \textcolor{blue}{AND R0, R0, -1}
+            \item 0000 1101 1111 1100 \textcolor{blue}{BR{110} \#-4}
+            \item 0010 1000 0000 0111 \textcolor{blue}{LD R4, \#7}
+            \item 1001 1010 0011 1111 \textcolor{blue}{NOT R5, R0}
+        \end{enumerate}
+        \item \textbf{LC-3 FSM Concepts (Von Neumann model)}: Answer the conceptual questions below:
+        \begin{enumerate}[label=(\roman*),itemsep = 10pt]
+            \item What are the first 3 FSM instructions the LC-3 executes with each line of code in memory?
+            \newline \textcolor{blue}{$MAR<-PC, PC<-PC+1$ \newline $MDR <-M$ \newline $IR<-MDR$}
+            \item If the ALUK value is 00, what is the opcode of the line currently being performed?
+            \newline \textcolor{blue}{ADD}
+            \item How many gates (that go to BUS) can be active at a time?
+            \newline \textcolor{blue}{1}
+            \item Which opcodes set CC?
+            \newline \textcolor{blue}{ADD, AND, NOT, LD, LDI, LDR, LEA}
+            \item In the von Neumann model, where is the program stored?
+            \newline \textcolor{blue}{Memory}
+            
+        \end{enumerate}
+        \item \textbf{LC-3 Programming}: Write the following functions in RTL (For each part, assume your first line starts at x3000 and all registers are x3000. Each part is independent of the others.)
+        \begin{enumerate}[label=(\roman*),itemsep = 10pt]
+            \item Given a value in x3005, set its 2’s complement in x3006
+            \newline \textcolor{blue}{LD R0, \#4}
+            \newline \textcolor{blue}{NOT R0, R0}
+            \newline \textcolor{blue}{ADD R0, R0, \#1}
+            \newline \textcolor{blue}{ST R0, \#2}
+            \item Get an input from the keyboard and store it at x3030 (GETC = x20)
+            \newline \textcolor{blue}{GETC}
+            \newline \textcolor{blue}{ST R0, x0028}
+            \item Given two values in x3004 and x3005 store their sum in x3006
+            \newline \textcolor{blue}{LD R0, \#3}
+            \newline \textcolor{blue}{LD R1, \#3}
+            \newline \textcolor{blue}{ADD R0, R0, R1}
+            \newline \textcolor{blue}{ST R0, \#2}
+            \item Given two values in x3004 and x3005 store their product in x3006
+        \end{enumerate}
+        \item \textbf{String Programming}: After the following code executes, what will be printed to the console? Assume that the data in the table has already been loaded into memory when the code is run.
+        \newline
+        \newline
+        .ORIG x3000
+        \newline
+        LD R0, STRING
+        \newline
+        PUTS
+        \newline
+        STRING
+        \newline
+        	.FILL 0x3047
+        \newline
+        .END
+        \newline
+        \textcolor{blue}{Hi (Null Terminated)}
+        \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Address} & \textbf{Data} & \textbf{ASCII Representation} \\\hline
+        x3046 & x0021 & ‘!’ \\\hline
+        x3047 & x0048 & ‘H’ \\\hline
+        x3048 & x0069 & ‘i’ \\\hline
+        x3049 & x0000 &     \\\hline
+        x304A & x0074 & ‘t’ \\\hline
+        x304B & x0068 & ‘h’ \\\hline
+        x304C & x0065 & ‘e’ \\\hline
+        x304D & x0072 & ‘r’ \\\hline
+        x304E & x0065 & ‘e’ \\\hline
+        x304F & x0021 & ‘!’ \\\hline
+        x3050 & x0000 &     \\
+        \hline
+        \end{tabular}
+        \end{table}
+        \newline
+        (i) How many memory locations will the following string use?
+        \newline
+        .STRINGZ “AMONG US”
+        \newline
+        \textcolor{blue}{9 (1 Extra for null termination)}
+        \newpage
+        \item \textbf{Executing ALU Instructions}: The following sequence of instructions is executed with the initial register values shown below.
+        \newline
+        \newline
+        x3000: 0001000001000011
+        \newline
+        x3001: 0101011011000001
+        \newline
+        x3002: 0101001000100000
+        \newline
+        R0: xA25B
+        R1: x1B2A
+        R2: x4875
+        R3: x6227
+        \newline
+        \newline
+        (i) Give the contents of the following registers after the instruction sequence above finishes executing. Convert your answers to hexadecimal.
+        \textcolor{blue}{
+        R0: x7D51
+        R1: x0000
+        R2: x4875
+        R3: x0222}
+
+
+        \item \textbf{LC3 Missing Instruction}
+        \begin{enumerate}[label=(\roman*)]
+            \item An LC-3 computer starts with the following register and memory contents. In addition, the word at address x3000, which is not shown, contains an instruction, one of ADD, AND, BR, LD, LDI, LDR, LEA, NOT, ST, STI, or STR. Note: The LEA instruction does not change the CC register (3rd edition behavior).
+            \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{Registers} & \textbf{Memory} & \\
+            \hline
+            R0: x619F & & \\
+            \hline
+            R4: x48AA & & \\
+            \hline
+            R1: x4295 & x3001: x4333 & \\
+            \hline
+            R5: x49FC & x3002: x1BDC & \\
+            \hline
+            R2: x259D & & \\
+            \hline
+            R6: x54C2 & & \\
+            \hline
+            R3: x4000 & x4000: x2911 & \\
+            \hline
+            R7: xF914 & x4001: x68A8 & \\
+            \hline
+            PC: x3000 & & \\
+            \hline
+            CC: b001 & & \\
+            \hline
+            \end{tabular}
+            \caption{Before: Registers and Memory}
+            \label{tab:before}
+            \end{table}
+            \newline
+            All other memory locations start with x0000. After the instruction at address x3000 is executed, the contents of registers and memory are:
+            \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{Registers} & \textbf{Memory} & \\
+            \hline
+            R0: x619F & & \\
+            \hline
+            R4: x48AA & & \\
+            \hline
+            R1: x4295 & x3001: x4333 & \\
+            \hline
+            R5: x49FC & x3002: x1BDC & \\
+            \hline
+            R2: x259D & & \\
+            \hline
+            R6: x48B8 & & \\
+            \hline
+            R3: x4000 & x4000: x2911 & \\
+            \hline
+            R7: xF914 & x4001: x68A8 & \\
+            \hline
+            PC: x3001 & & \\
+            \hline
+            CC: b001 & & \\
+            \hline
+            \end{tabular}
+            \caption{After: Registers and Memory}
+            \label{tab:after}
+            \end{table}
+            \newline
+            What value could be stored at address x3000? Give your answer in hexadecimal.
+            \newline
+            \newline
+            x3000 = \textcolor{blue}{x1D2E; ADD R6, R4, \#14}
+        \newpage
+        \item An LC-3 computer starts with the following register and memory contents. In addition, the word at address x3000, which is not shown, contains an instruction, one of ADD, AND, BR, LD, LDI, LDR, LEA, NOT, ST, STI, or STR. Note: The LEA instruction does not change the CC register (3rd edition behavior).
+            \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{Registers} & \textbf{Memory} & \\
+            \hline
+            R0: x619F & & \\
+            \hline
+            R4: x48AA & & \\
+            \hline
+            R1: x4295 & x3001: x4333 & \\
+            \hline
+            R5: x49FC & x3002: x1BDC & \\
+            \hline
+            R2: x259D & & \\
+            \hline
+            R6: x54C2 & & \\
+            \hline
+            R3: x4000 & x4000: x2911 & \\
+            \hline
+            R7: xF914 & x4001: x619F & \\
+            \hline
+            PC: x3000 & & \\
+            \hline
+            CC: b001 & & \\
+            \hline
+            \end{tabular}
+            \caption{Before: Registers and Memory}
+            \label{tab:before}
+            \end{table}
+            \newline
+            All other memory locations start with x0000. After the instruction at address x3000 is executed, the contents of registers and memory are:
+            \begin{table}[h]
+            \centering
+            \begin{tabular}{|c|c|c|}
+            \hline
+            \textbf{Registers} & \textbf{Memory} & \\
+            \hline
+            R0: x619F & & \\
+            \hline
+            R4: x48AA & & \\
+            \hline
+            R1: x4295 & x3001: x4333 & \\
+            \hline
+            R5: x49FC & x3002: x1BDC & \\
+            \hline
+            R2: x259D & & \\
+            \hline
+            R6: x48B8 & & \\
+            \hline
+            R3: x4000 & x4000: x2911 & \\
+            \hline
+            R7: xF914 & x4001: x619F & \\
+            \hline
+            PC: x3001 & & \\
+            \hline
+            CC: b001 & & \\
+            \hline
+            \end{tabular}
+            \caption{After: Registers and Memory}
+            \label{tab:after}
+            \end{table}
+            \newline
+            What value could be stored at address x3000? Give your answer in hexadecimal.
+            \newline
+            \newline
+            x3000 = \textcolor{blue}{x70C1; STR R0, R3, \#1}
+        \end{enumerate}
+        \newpage
+    \end{enumerate}
+    \section{Fortuitous FSMs}
+    \includegraphics[scale=0.75]{figures/7a sol.pdf}
+
+        \section{Liberating Loading}
+    \begin{enumerate}[label=(\alph*), itemsep = 30pt]
+        \item A memory address, pointing to the start of an array is stored at x30AD. Which load instruction type would you use to access the first array value? Write the single LC-3 assembly instruction to accomplish this when the PC is at x3090.
+        \newline \newline \textcolor{blue} {Instruction: Load Indirect (LDI)}
+        \newline \newline \textcolor{blue} {LDI R1, #28; R1 = M[M[PC + 0x1C]]}
+        \item What state numbers of the LC-3 FSM are used for a LDR instruction? Which of these states are unique only to LDR?
+        \newline \newline \textcolor{blue} {LDR States: 18, 33, 35, 32, 6, 25, 27}
+        \newline \newline \textcolor{blue} {Only State 6 is unique to the LDR instruction.}
+        \item Fill in the following table with the correct control signals on the LC-3 data path for the LDR Instruction. Note: This table doesn't have all the states for LDR.
+        \vspace{0cm}
+        \begin{table}[h]
+            \centering
+            \begin{tabular}{|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{2.5cm}|>{\centering\arraybackslash}p{2.5cm}|}
+            \hline
+            \textbf{States} & \textbf{18} & \textbf{25} & \textbf{27} \\
+            \hline
+            LD.BEN & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            LD.MAR & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            LD.MDR & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0}\\
+            \hline
+            LD.IR & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            LD.PC & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            LD.REG & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1}\\
+            \hline
+            LD.CC & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1}\\
+            \hline
+            GateMARMux & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            GateMDR & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{1}\\
+            \hline
+            GateALU & \textcolor{blue}{0} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            GatePC & \textcolor{blue}{1} & \textcolor{blue}{0} & \textcolor{blue}{0}\\
+            \hline
+            MARMUX & \textcolor{blue}{X} & \textcolor{blue}{X} & \textcolor{blue}{X}\\
+            \hline
+            PCMUX & \textcolor{blue}{00} & \textcolor{blue}{XX} & \textcolor{blue}{XX}\\
+            \hline
+            ADDR1MUX & \textcolor{blue}{X} & \textcolor{blue}{X} & \textcolor{blue}{X}\\
+            \hline
+            ADDR2MUX & \textcolor{blue}{XX} & \textcolor{blue}{XX} & \textcolor{blue}{XX}\\
+            \hline
+            DRMUX & \textcolor{blue}{XX} & \textcolor{blue}{XX} & \textcolor{blue}{00}\\
+            \hline
+            SR1MUX & \textcolor{blue}{XX} & \textcolor{blue}{XX} & \textcolor{blue}{XX}\\
+            \hline
+            ALUK & \textcolor{blue}{XX} & \textcolor{blue}{XX} & \textcolor{blue}{XX}\\
+            \hline
+            MIO.EN & \textcolor{blue}{0} & \textcolor{blue}{1} & \textcolor{blue}{0}\\
+            \hline
+            R.W & \textcolor{blue}{X} & \textcolor{blue}{0} & \textcolor{blue}{X}\\
+            \hline
+            \end{tabular}
+            \label{tab:modified}
+            \newpage
+        \end{table}
+        \newpage
+    \end{enumerate}
+
+    \section{Manic Multiplying}
+    You are going to complete a program that multiplies two numbers from memory together and saves the result back into memory. Below are the memory locations for the inputs and output. While you don't have to specify a .ORIG instruction for this problem, it is relevant that the program begins at x3000.
+    \begin{table}[h]
+        \centering
+        \begin{tabular}{|c|c|c|}
+        \hline
+        \textbf{Meaning} & \textbf{Address} \\\hline
+        Multiplicand 1 & x3FFE \\\hline
+        Multiplicand 2 & x3FFF \\\hline
+        Product & x4000 \\
+        \hline
+        \end{tabular}
+        \end{table}
+    \begin{enumerate}[label=(\alph*), itemsep = 50pt]
+        \item Load Multiplicand 1 and Multiplicand 2 into R1 and R2, respectively. This will require 2 LC-3 instruction lines and 2 pre-processor instruction lines (ie .STRINGZ, .FILL, etc).
+        \newline \newline \textcolor{blue} {LDI R1, MULTI1 ; R1 = M[M[MULTI1]] \newline
+        LDI R2, MULTI2 ; R2 = M[M[MULTI2]] \newline
+        MULTI1 .FILL x3FFE ; \newline
+        MULTI2 .FILL x3FFF ; Load pointers to the multiplicands \newline \newline
+        You cannot use the LD instruction here since x3FFE and x3FFF are beyond the 9 bit offset (+/- 255) from the PC. As a reminder, the PC is located around x3000.}
+        \item Create a loop to multiply the multiplicands together and place the result in R3.  You are allowed to modify R1 and R2 as needed.
+        \newline \newline \textcolor{blue} {
+        AND R3, R3, #0 ; R3 = R3 AND 0 | Zero out R3 \newline
+        LOOP ADD R3, R3, R1 ; R3 = R3 + R1 \newline
+        ADD R2, R2, #-1 ; R2 = R2 - 1 \newline
+        BRp LOOP ; PC = LOOP | Loops to make next interactive add
+        }
+        \item Store R3 into the product memory location. this will require 1 LC-3 instruction line and 1 pre-processor instruction line.
+        \newline \newline \textcolor{blue} {
+        STI R3, PRODUCT ; M[M[PRODUCT]] = R3 \newline
+        PRODUCT .FILL x4000 ; Load pointer to the product location
+        }
+    \end{enumerate}
+    \newpage
+    
+    \section{Disorienting Decoding}
+    \begin{enumerate}[label=(\alph*), itemsep = 50pt]
+        \item In the LC-3, if the IRD control signal is set to 1, what happens to the contents of the instruction register (IR) during the decoding process? Specifically, how are the bits IR[15:12] utilized?
+        \newline \newline \textcolor{blue} {When IRD is set to 1, it indicates that the microsequencer is in the decode stage of the instruction cycle. The bits IR[15:12], which represent the opcode of the instruction, are directly used to determine the next state in the microsequencer. This state will be one where the specific type of instruction (determined by the opcode) starts its execution.}
+        \item Given a situation where COND is set to 001, which represents checking for a positive condition code (P), and the instruction’s execution previously set the P flag to 1, what would be the value of BEN (branch enable)?
+        \newline \newline \textcolor{blue} {If COND is 001, it checks for the positive (P) condition code. If the P flag is set to 1 (true), BEN would also be set to 1. This means the branch condition is satisfied, and if the instruction is a branch instruction, the branch will take place.}
+        \item Suppose the current instruction has an opcode of 1101 in IR[15:12], corresponding to a LEA instruction. If the J bits in the microinstruction are set to 011111, explain how the next state of the microsequencer is determined.
+        \newline \newline \textcolor{blue} {In the case of an opcode 1101 for a LEA instruction, the J bits being 011111 indicates complex conditions for state transition. The LEA instruction typically does not depend on condition flags; instead, the instruction’s behavior is largely straightforward. The J bits set to 011111 essentially direct the microsequencer to jump to the next sequential state unconditionally, ignoring any condition codes.}
+        \vspace{2cm}
+        \begin{figure}[ht]
+            \centering
+            \includegraphics[width=10cm,height=4cm]{figures/microsequencer.png}
+            \caption{LC-3 Microsequencer}
+            \label{fig:optionalLabel}
+            \end{figure}
+        \newpage
+    \end{enumerate}
+
+    
+    \section{Conspicuous Control Signals}
+    \begin{enumerate}[label=(\alph*),itemsep = 10pt]
+        \item Complete the following table by entering values (0, 1, or X) for the LC-3 microinstructions at ROM addresses 4 and 7
+        \newline 
+            \includegraphics[width=1\linewidth]{figures/8a sol.png}
+        \item  If GateALU=1, what should the other Gate signals be
+        \newline \textcolor{blue}{All other Gate signals should be 0}
+    \end{enumerate}
+
+    \newpage
+   \section{Novel New Instructions}
+    We want to implement the following instruction: \\
+    PC $\longleftarrow$ PC + M[BaseR + PCOffset6] + 1 \\\\
+    Note: the +1 is to accommodate state 18. \\
+    Note 2: In the very rare case that you actually read the textbook, pretend Appendix C.6.3 did not exist.\\
+    \begin{enumerate}[label=(\alph*),itemsep = 20pt]
+        \item We know that LC-3 has one unused opcode, the opcode 1101. When this opcode is decoded, suppose that the LC-3 FSM enters state 48 (110000). How many FSM states will this instruction need? What will each state do? Assign them in the 48-55 range.\\
+        \textcolor{blue}{
+        We assign the states as follows: \\
+        48 (0x30): $MAR \longleftarrow B + off6$\\
+        49 (0x31): $MDR \longleftarrow M[MAR]$ \\
+        51 (0x33): $PC \longleftarrow MDR$ \\
+        }
+        
+        \item How will each instruction transition to each other state? Draw a state diagram.
+        \\
+        \includegraphics[width=0.4\linewidth]{figures/newinstr-sol-b.png}
+
+        \newpage
+        \item Using K-maps or another method, write an expression for the next state transition that can be used after entering your first state and before entering state 18. (Hint: $S_5S_4S_3 = 110$, and memory ready is the signal $R$. you can work with the 4 bits $RS_2S_1S_0$) \\
+        \textcolor{blue}{
+        We can first write out our desired transitions: \\
+        $110000 \longrightarrow 110001$ \\
+        $110001 \longrightarrow 110011$ if $R$ \\
+        $110001 \longrightarrow 110001$ if $R'$ \\
+        $110011 \longrightarrow 010010$ \\
+        Then, one possible solution is: \\
+        $S'_5 = (S_5S_4S_3'S_2'S_1S_0)'$ \\
+        $S'_4 = 1$ \\
+        $S'_3 = 0$ \\
+        $S'_2 = 0$ \\
+        $S'_1 = S_1 + RS_0$ \\
+        $S'_0 = S_1'$ \\ 
+        }
+        \item Using a similar table as in Problem 8, write down the control signals for each state. \\
+        \textcolor{blue}{Only relevant signals are shown. Assume other signals are 0 or X.}
+\begin{table}[!h]
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\textbf{State} & \textbf{GateMARMUX} & \textbf{GateMDR} & \textbf{LD.MAR} & \textbf{LD.MDR} & \textbf{LD.PC} & \textbf{MARMUX} \\ \hline
+48             & 1                   & 0                & 1               & 0               & 0              & 1               \\ \hline
+49             & 0                   & 0                & 0               & 1               & 0              & 0               \\ \hline
+51             & 0                   & 1                & 0               & 0               & 1              & 0               \\ \hline
+\end{tabular}
+\end{table}
+\begin{table}[!h]
+\begin{tabular}{|l|l|l|l|l|l|l|}
+\hline
+\textbf{State} & \textbf{ADDR1MUX} & \textbf{ADDR2MUX} & \textbf{SR1MUX} & \textbf{PCMUX} & \textbf{MIO.EN} & \textbf{R.W} \\ \hline
+48             & 1                 & 01                & 01              & XX             & 0               & X            \\ \hline
+49             & X                 & XX                & XX              & XX             & 1               & 0            \\ \hline
+51             & X                 & XX                & XX              & 01             & 0               & X            \\ \hline
+\end{tabular}
+\end{table}
+        
+        \item Trace through your instruction with the following instruction: \\
+        1101 000 101 000111 \\
+        Assume PC = x3001, R5 = x2000, and M[x2007] = x8EED. \\
+        What is PC after the instruction completes and before the next execution of state 18?\\
+        \textcolor{blue}{
+        We want to perform the operation PC $\longleftarrow$ PC + M[BaseR + PCOffset6] + 1. \\ We recognize that BaseR = R5, PCOffset6 = 000111 = x07. Then, \\
+        PC $\longleftarrow$ x3001 + M[x2000 + x07] + 1 \\
+        PC $\longleftarrow$ x3001 + x8EED + 1 \\
+        PC $\longleftarrow$ xBEEF \\
+        }
+        
+    \end{enumerate}
+
+    \newpage
+    \section{Challenging Conundrums (Just For Fun)}
+    Unless otherwise specified, you may use any registers you would like and store results in any register
+    \begin{enumerate}[label=(\alph*), itemsep = 10pt]
+        \item Using only three lines of code, set R0 = 0, R1 = 4, and R2 = -3
+        \newline \textcolor{blue}{AND R0, R0, \#0 \newline ADD R1, R0, \#4 \newline ADD R2, R0, \#-3}
+        \item Implement R1 NOR R2 in only 3 lines of code
+        \newline \textcolor{blue}{NOT R1, R1 \newline
+NOT R2, R2               ; By DeMorgan’s Law, \newline
+AND R3, R2, R1           ; (R1 + R2)' = R1’$\cdot$R2’ \newline 
+\newline 
+Result is stored in R3.
+}
+        \item Implement R3 XOR R4 in only 5 lines of code
+        \newline \textcolor{blue}{NOT R5, R3               ; R5 ← R3’
+\newline AND R5, R4, R5			; R5 ← R3’$\cdot$R4
+\newline NOT R6, R4               ; R6 ← R4’
+\newline AND R6, R3, R6			; R6 ← R3$\cdot$R4’
+\newline ADD R6, R5, R6			; R6 ← R3’$\cdot$R4 + R3$\cdot$R4’ = R3 XOR R4
+\newline 
+\newline We are guaranteed not to encounter overflow (a 1 + 1 addition) in the final step (prove this to yourself!)
+\newline Result is stored in R6}
+
+        \item Implement R5 OR R6 in only 4 lines of code
+        \newline \textcolor{blue}{NOT R5, R5		        ; R5 ← R5’
+\newline NOT R6, R6             ; R6 ← R6’
+\newline AND R4, R5, R6			; R4 ← R5'$\cdot$R6’ = R5 NOR R6
+\newline NOT R4, R4     		; R4 ← (R5'$\cdot$R6’)' = R5 OR R6
+\newline 
+\newline Result is stored in R4}
+    \end{enumerate}
+
+ 
+    
+\end{document}

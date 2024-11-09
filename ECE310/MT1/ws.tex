@@ -1,0 +1,76 @@
+\documentclass{article}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{mathtools}
+
+\title{ECE 310 Review Session 2 Worksheet}
+\author{By HKN Members}
+\date{Fall 2024}
+
+\begin{document}
+
+\maketitle
+
+\section{Ethan's Remix}
+Pramod has written a song, and wants Ethan to make a remix of it. To do this, Ethan creates a system described by the following LCCDE:
+
+$ \frac{1}{4} y[n-2] - \frac{4}{9} y[n] = \frac{4}{3} x[n-1] + \frac{8}{9} x[n]$
+
+After running it on the song, is this system guaranteed to not cause Pramod's song to become unbounded?
+
+\section{V's MP}
+V has measured that his productivity on his ECE 411 MP is described by the system $\frac{1}{n} x[n]$, where $n$ is the number of days until the MP is due, and $x[n]$ is how much work he accomplishes as a function of the number of days since the MP was assigned. Would delaying V's starting day have an effect on how much work he will accomplish in $k$ days?
+
+\section{Insider Trading?}
+
+Shomik plays golf with Ethan after Ethan worked at a trading company. Ethan tells Shomik to construct a system over Ethan's company stock average every day as a way of calculating how much to buy of it. This system is described by the impulse response:
+
+\newline
+
+$\{9,4,\underset{\uparrow}{2},0,2,4,6\}$
+
+\newline
+
+It is illegal to make trades based in not publicly known (future) information. After implementing this system successfully with Ethan's help, will the SEC arrest them?
+
+\section{Convoluted Convolving}
+Use your favorite method of convolution to convolve these two signals:
+\newline
+\indent \indent \indent \indent 
+$x[n]=\{\underset{\uparrow}{2},0,2,4\}$ \indent \indent $h[n]=\{-1,\underset{\uparrow}{3},2,0\}$
+
+\section{Catching These Z-transforms}
+
+\subsection{Inverse Z-Transforms}
+Take the Inverse Z-transform of these signals and state the ROC. Determine whether each system is BIBO stable or not as well.
+\newline\newline
+$\frac{1}{1-z^{-1}}$, Right Sided
+\newline\newline
+$\frac{1}{1-z^{-1}}$, Left Sided
+\newline\newline
+$\frac{1 + z^{-1}}{z^{-2} + z^{-1} + \frac{1}{4}}$, Right Sided
+
+\subsection{Z-Transform}
+
+Find the Z-Transform of the following systems in terms of $X(z)$:
+\newline\newline
+$\frac{n}{4} x[n-4] $
+\newline\newline
+$\frac{3}{4} x[n+5] + x[n]$
+\newline\newline
+Find the Z-Transform of the following equations:
+\newline\newline
+$n^2 u[n-1] + (\frac{1}{2})^n u[n+1]$
+\newline\newline
+$u[n+1] * u[n-1]$
+
+\section{Devious DTFTs}
+Use your unbounded knowledge of the DTFT properties and pairs to take the DTFT of these signals.
+\newline\newline
+$\delta[n-1] + (\frac{2}{3})u[n+4]$
+\newline\newline
+$\cos(n)\sin(n)$
+\newline\newline
+$n\delta[n-1]*e^{jn}$
+
+
+\end{document}

@@ -1,0 +1,259 @@
+\documentclass[12pt]{amsart}
+\usepackage[margin=1in]{geometry}
+\usepackage{amssymb,amsfonts,amsmath}
+\usepackage{color}
+\usepackage{enumerate}
+\usepackage{enumitem}
+\usepackage{mathrsfs}
+\usepackage{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{constants}
+
+%----Table of Contents-----
+
+%----Theorem Environments----
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{hypothesis}[theorem]{Hypothesis}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{lemma}[theorem]{Lemma}
+
+\newtheorem{problem*}{Problem}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{exercise}{Exercise}
+
+\numberwithin{equation}{section}
+
+
+\crefname{figure}{Figure}{Figures}
+%MATH ENVIRONMENTS
+\theoremstyle{plain}
+\newtheorem*{theorem*}{Theorem}
+\crefname{theorem}{Theorem}{Theorems}
+\crefname{cor}{Corollary}{Corollaries}
+\crefname{exercise}{Exercise}{Exercises}
+\newtheorem*{cor*}{Corollary}
+\crefname{cor*}{Corollary}{Corollaries}
+\crefname{lem}{Lemma}{Lemmas}
+\crefname{prop}{Proposition}{Propositions}
+\crefname{conj}{Conjecture}{Conjectures}
+\newtheorem*{conj*}{Conjecture}
+\crefname{conj*}{Conjecture}{Conjectures}
+\crefname{defn}{Definition}{Definitions}
+\crefname{hyp}{Hypothesis}{Hypotheses}
+
+
+\newcommand{\Z}{\mathbb{Z}}
+\renewcommand{\C}{\mathbb{C}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\F}{\mathbb{F}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\re}{\textup{Re}}
+\newcommand{\im}{\textup{Im}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\Li}{\mathrm{Li}}
+
+
+\title{HKN ECE 313 Midterm 1 Worksheet}
+\author{Pramod Prem}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\maketitle
+
+\begin{exercise}
+\newline
+Alex is organizing a focus group to figure out how best he can market his homemade rocket engine. He has a group of 6 women and 6 men. To ensure impartiality, he wants to seat them in such a way that the women and men alternate (the women are not sitting next to another woman and the men are not sitting next to another man). He has to seat them around a round table. How many ways can he seat these people?
+\end{exercise}
+
+\begin{exercise}
+\newline
+Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games and play the ones where he is most likely to win.
+\begin{enumerate}[label=\Alph*.]
+    \item Calculate the probability that the sum of the 4 dice is 6.
+    \item Calculate the probability that no more than 2 of the dice show a 2.
+    \item Calculate the probability that none of the dice show a 6.
+    \item Calculate the probability that all of the dice show a different value.
+    \item Calculate the probability that two of the dice show different values.
+\end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Pramod is trying the quantum immortality experiment. There is a random number generator that generates a 1 with probability $p$ or a 0 with probability $1-p$ every second. If it generates a 1, Pramod dies. Pramod dies after 59 seconds of this experiment. What is the maximum likelihood estimate $\hat{p}_{ML}$ of $p$. (Note: each trial is independent of each other)
+\end{exercise}
+
+\begin{exercise}
+
+    Shomik has bet his house, his retirement fund, his cane, and his trenchcoats (in increasing order of importance) to Udit on a series of coin flips. Shomik is sneaky, so he can choose to use an unbiased coin or a weighted coin that lands on heads 60$\%$ of the time. Shomik flips his coin 10 times. For both the biased and fair coin, calculate the probability that it lands on Heads more than it lands on Tails, i.e the probability that Shomik does not lose. 
+    \newline
+    Shomik flipped his coin 10 times, and it showed heads only 4 times. He now has to give up his prized possessions to Udit. Now destitute and depressed, he decides that he wants to know which coin he chose. Calculate the probability that the fair coin was chosen and the probability that the biased coin was chosen.
+    
+\end{exercise}
+
+%\begin{exercise}
+  %  Let X be the number of times the coin lands on heads and $H_0$ the case where Shomik used a fair coin and $H_1$ is the case where Shomik uses an unfair coin. Calculate the p
+%\end{exercise}
+
+\begin{exercise}
+    Ethan wears a Mickey Mouse T shirt, and every day there is a 2\% probability that Disney's lawyers will cause grave consequences for him. What is the expected number of days that Ethan will not have his life upended by the mouse?
+\end{exercise}
+
+
+
+% added by Jitao Li on 2.16
+\begin{exercise}
+    A manufacturing company sources components from 3 suppliers: A, B and C. Among all the components, 50\% comes from A, 20\% comes from B, and 30\% comes from C. The defect rates of a component from suppliers A, B and C are 0.02, 0.1 and 0.05 respectively. If a component is randomly selected from the production line, what’s the probability that it’s defective? %(Law of total probability)
+\end{exercise}
+    
+\begin{exercise}
+    Jitao loves to play basketball. Suppose the probability that he hits a shot is 25\%. How many shots does he need to take to make sure that there’s a 90\% chance he makes at least one? %(Tail probability of Geometric distribution.)
+\end{exercise}
+
+\begin{exercise}
+    Imagine you are playing a game where you need to flip an unfair coin until you get heads. The probability of getting heads on any flip is 0.6. You have already flipped the coin three times, and all flips have been tails. What is the probability that you will need to flip the coin at least two more times to get the first heads? %(Memoryless probability of geometric distribution)
+\end{exercise}
+
+\begin{exercise}
+    Suppose the watch time of a YouTube video, X, is a random variable. The average watch time is 10 minutes. Find an upper bound for the proportion of views that lasted more than 25 minutes. %(Markov Inequality)
+\end{exercise}
+
+\begin{exercise}
+    Suppose we would like to estimate the fraction $p$ of ECE students taking ECE 313 this semester. $p$ is estimated by $\widehat{p}=\frac{X}{n}$, where $n$ is the sample size and $X$ is number of students taking the class in the sample. If $p$ is to be estimated to within 0.1 with 75\% confidence, what’s the minimum size of the sample? %(Confidence interval)
+\end{exercise}
+
+\begin{exercise}
+    $A$, $B$, $C$ are events in the probability space. True or False:
+    \begin{enumerate}[label=(\Alph*)]
+        \item If $P(A)=0$, then $A$ and $B$ are independent.
+        \item if $P(AB) = P(A)P(B)$, $P(AC) = P(A)P(C)$ and $P(BC) = P(B)P(C)$, $A$, $B$ and $C$ are independent. 
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+    Grant and Anantajit's company (A\&G Electric) assesses candidates for a position through a series of questions and tests during their interview process. Historical data indicates that the probability of any given candidate being offered the job after this process is 0.3. If the company interviews 10 candidates in a month, What is the probability that exactly 3 candidates are offered the job?%(Binomial distribution)
+\end{exercise}
+
+\begin{exercise}
+    Aditya's hardware verification team is responsible for verifying a new mind control brain implant chip. Historical data shows that the probability of any given test resulting in a bug discovery is 0.2. The team decides to continue testing until they discover 5 bugs. What is the probability that they will discover the 5th bug on the 10th test?%(Negative Binomial distribution)
+\end{exercise}
+
+\begin{exercise}
+    After receiving his PhD in Computer Engineering, Pradyun starts working at Intel as a call center manager. Pradyun's department receives 600 calls per hour. Historical data since Pradyun's hiring suggests the chance of each call receiving a complaint has increased to 5\%. 
+    \begin{enumerate}
+    \newline
+    Calculate the probability of exactly 2 complaints tickets being generated in one hour. 
+    \newline
+    Calculate the number of hours until Pradyun receives 2 complaints.
+    \newline
+    Calculate the expected number of hours it will take to get 2 complaints in an hour.
+    \end{enumerate}
+\end{exercise}
+
+\begin{exercise}
+Name all of the axioms of probability.
+\end{exercise}
+
+\begin{exercise}
+Say that two players take turns flipping a coin. The first person to get heads wins. Calculate the probability that the first player wins.
+\end{exercise}
+
+\begin{exercise}
+Express the summation $\sum_{k=0}^{n}\binom{n}{k}a^kb^{n-k}$ in closed form.
+\end{exercise}
+
+\begin{exercise}
+Pramod has a crippling addiction to caffeine, so he decides to buy a mystery box of Red Bulls from County Market since it was on sale. The box contains 4 orange cans, 3 green cans, 6 red cans, and 5 blue cans. Red Bull is his favorite drink in the whole wide world, so he decides to number each can, making them distinct. 
+\newline
+How many ways can he pick 2 red cans?
+\newline
+How many ways can he pick out 2 orange cans and 3 blue cans?
+\newline
+Say S is the set of all subsets of size 2 of the set consisting of all of the cans of Red Bull. What is the magnitude of S?
+\end{exercise}
+
+\begin{exercise}
+Steve the ECE major has procrastinated on his assignment and the code he wrote is not compiling. If he goes to sleep right now the number of bugs in his code, X, can be modeled by a Poisson distribution with a mean $\lambda_1$ = 2. If he pulls an all nighter, X has the Poisson distribution with a parameter of $\lambda_0$ = 6. 
+\newline
+Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
+\newline
+Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep ($\pi_1$ / $\pi_0$ = 2). Express the MAP decision rule, based on the observation of X, under this new assumption. 
+\end{exercise}
+
+\begin{exercise}
+A level 99 archer tower is shooting arrows at an invading army. Each arrow always hits its target and the probability of hitting a barbarian or a goblin is 50/50. How many arrows does the tower need to shoot such that the probability will be at least 0.8 that the ratio of the barbarians to goblins will be between 0.3 and 0.7.
+\end{exercise}
+
+\begin{exercise}
+The probability of surviving a night at Circle-K is 20\%. Suppose you spend 5 nights at Circle-K. Find a bound for the probability that you survive at least 3 nights.
+\end{exercise}
+
+\begin{exercise}
+Ian ends up playing an old Soviet era board game with some friends. This board game involves rolling a 5 sided die and a 7 sided die to determine how far he moves his babushka across the board. Say the number of spaces he can move is a variable called X. Determine the sample space of X, the magnitude of the sample space, the pmf of X, the support of the pmf of X, the mean of X, and the variance of X.
+\newline
+Now, let's say we multiply the value of each role of the dice by 3 and add 4. Calculate the new mean and variance of X.
+\end{exercise}
+
+\end{document}
+
+Steve the ECE major has procrastinated on his assignment and the code he wrote is not compiling. If he goes to sleep right now the number of bugs in his code, X, can be modeled by a poisson distribution with a mean lambda1 = 2. If he pulls an all nighter, X, has the Poisson distribution with a parameter of lambda0 = 6. 
+
+Part A:
+Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
+
+solution: likelihood ratio function (all nighter) : poisson(k, 6) / poisson(k,2) = some function
+determine value of k 
+
+Part B: 
+Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep. (pi1 / pi0 = 2) Express the MAP decision rule, based on the observation of X, under this new assumption. 
+
+solution: same thing but you take the frequency into account when finding the likelihood ratio function
+
+
+
+
+A level 99 archer tower is shooting arrows at an invading army. Each arrow always hits its target and the probability of hitting a barbarian or a goblin is 50/50. How many arrows does the tower need to shoot such that the probability will be at least 0.8 that the ratio of the barbarians to goblins will be between 0.3 and 0.7. (Hint: Use Chebychev's inequality.)
+
+Solultion: Let X/n represent the proportion of barbarians killed in battle. Thus E[x] = n*p = n/2, Var(X) = n*p*q = n/4
+P(0.3 <= X/n <= 0.7) >= 0.8
+P(0.3-0.5 <= X/n-0.5 <= 0.7-0.5) >= 0.8
+P(-0.2 <= X/n-0.5 <= 0.2) >= 0.8
+P(|X/n-0.5| <= 0.2) >= 0.8
+Given that Var(X/n) = 1/n^2 Var(X) = 1/4n
+0.8 = 1-1/k^2, where k*oemga = 0.2
+
+
+The probability of surviving a night at Circle-K is 20%. Suppose you spend 5 nights at Circle-K. Find a bound for the probability that you survive at least 3 nights. (Hint: Use Markov's Inequality)
+
+Solution: Let X be the number of nights you survive. Given that n = 5, p = 0.2, E[x] = 1. Required Probability : P(X >= 3) <= E[X]/3 = 1/3 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
