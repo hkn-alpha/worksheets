@@ -164,8 +164,35 @@ KVL Loops are shown above with assumptions the Voltage source has extremes high 
 \textbf{Question 22:} In the circuit below, which diodes are on? Furthermore, if Vs = 10 V, all the diodes have Von = 2V under the offset ideal model, and the voltage drop over R1 is also 2V, what is the voltage drop across the other resistors, assuming they have an equal resistance?
 
 \begin{center}
-    \includegraphics[width=0.75\linewidth]{figures/46.png}
+    \includegraphics[width=0.75\linewidth]{figures/q22_sol.png}
 \end{center}
+
+\textbf{Solution:} 
+
+When looking at $D_3$, we notice two things:
+\begin{itemize}
+    \item The \textbf{positive} terminal of $D_3$ is connected to the \textbf{negative} terminal of $V_S$ through a resistor.
+    \item There is only one source of power in the circuit ($V_S$). (Because of this, the smallest nodal voltage that any node could be held at is 0V (the negative terminal of the $V_S$))
+\end{itemize}
+
+Thus, it is impossible for the voltage difference across the diode, $V_{D_3}$, to be greater than $0V$. In fact, if we assume $D_1$ to be on, we can calculate that $V_{yellow} = V_S - V_{R_1} - V_{ON} = 6V$. $V_{pink}$ would need to be $2V$ greater than $V_{yellow}$ in order for $D_3$ to turn on. Since a resistor is a passive component (adds no power to the circuit), it is impossible to raise the pink node to above $6V+2V = 8V$, which would allow $D_3$ to turn on 
+
+Since $D_3$ is not conducting any current, $I_{R_1} = I_{R_2} = I_{R_3} = I_{D_1} = I_{D_2} > 0A $. 
+We know the currents will be positive since $R_1$'s voltage drop is positive and moving away from the voltage source 
+(no other supply of power in the circuit). 
+Because the currents are all positive, we can conlcude that \boxed{D_1 \text{ and } D2 \text{ are ON}}. 
+For any two resistors of equal resistance and equal current, 
+we know that their voltage drops must also be equal.
+ Algebraically, we can show this as follows:
+\begin{align*}
+    I_{R_1} &= I_{R_2} = I_{R_3} \\
+    \text{Using Ohm's Law: }\frac{2V}{R} &= \frac{V_{R_2}}{R} = \frac{V_{R_3}}{R} \\
+    2V &= V_{R_2} = V_{R_3} \\ 
+    V_{R_2} &= \boxed {2V } \\
+    V_{R_3} &= \boxed {2V }
+\end{align*} 
+
+
 
 \pagebreak
 
