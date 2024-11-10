@@ -69,6 +69,64 @@ This worksheet does not cover content in lectures after November 25th and is not
         \includegraphics[width=0.75\linewidth]{figures/image.png}
 \end{center}
 
+\textbf{Part 1:}
+
+We calculate the equivalent resistance step by step:
+
+1. \( R_8 \) and \( R_{10} \) are in series:  
+   \( R_{s1} = R_8 + R_{10} = 12 \, \Omega \).
+
+2. \( R_{s1} \) and \( R_9 \) are in parallel:  
+   \( R_{p1} = \left( \frac{1}{R_{s1}} + \frac{1}{R_9} \right)^{-1} = 4 \, \Omega \).
+
+3. \( R_{p1} \) and \( R_7 \) are in series:  
+   \( R_{s2} = R_{p1} + R_7 = 12 \, \Omega \).
+
+4. \( R_{s2} \) and \( R_6 \) are in parallel:  
+   \( R_{p2} = \left( \frac{1}{R_{s2}} + \frac{1}{R_6} \right)^{-1} = 4 \, \Omega \).
+
+5. \( R_{p2} \) and \( R_5 \) are in series:  
+   \( R_{s3} = R_{p2} + R_5 = 8 \, \Omega \).
+
+6. \( R_{s3} \) and \( R_4 \) are in parallel:  
+   \( R_{p3} = \left( \frac{1}{R_{s3}} + \frac{1}{R_4} \right)^{-1} = 4 \, \Omega \).
+
+7. \( R_{p3} \) and \( R_3 \) are in series:  
+   \( R_{s4} = R_{p3} + R_3 = 8 \, \Omega \).
+
+8. \( R_{s4} \) and \( R_2 \) are in parallel:  
+   \( R_{p4} = \left( \frac{1}{R_{s4}} + \frac{1}{R_2} \right)^{-1} = 4 \, \Omega \).
+
+9. \( R_{p4} \) and \( R_1 \) are in series:  
+   \( R_{s5} = R_{p4} + R_1 = 10 \, \Omega \).
+
+Thus, the total equivalent resistance is \( R_{\text{eq}} = 10 \, \Omega \).
+
+\bigskip
+
+\textbf{Part 2:}
+
+For the second circuit:
+
+1. The 4$\Omega$ and 8$\Omega$ resistors are in series:  
+   \( R_1 = 4 \, \Omega + 8 \, \Omega = 12 \, \Omega \).
+
+2. Two 6$\Omega$ resistors are in parallel:  
+   \( R_2 = \left( \frac{1}{6} + \frac{1}{6} \right)^{-1} = 3 \, \Omega \).
+
+3. The 3$\Omega$ from Step 2 and another 3$\Omega$ resistor are in series:  
+   \( R_3 = 3 \, \Omega + 3 \, \Omega = 6 \, \Omega \).
+
+4. The 6$\Omega$ from Step 3 and the 12$\Omega$ from Step 1 are in parallel:  
+   \( R_4 = \left( \frac{1}{6} + \frac{1}{12} \right)^{-1} = 4 \, \Omega \).
+
+5. The 4$\Omega$ from Step 4 and the 2$\Omega$ resistor are in series:  
+   \( R_{\text{eq}} = 4 \, \Omega + 2 \, \Omega = 6 \, \Omega \).
+
+Thus, the total equivalent resistance is \( R_{\text{eq}} = 6 \, \Omega \).
+\bigskip
+
+
 \textbf{Question 10:} If the voltage between nodes A and B in the second circuit is 9V...
 \begin{enumerate}
 \item What is the current through the 3 ohm resistor?
