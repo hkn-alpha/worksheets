@@ -1,0 +1,361 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{xfrac}
+\usepackage{indentfirst}
+\usepackage{tikz}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning, fit, calc, arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,}
+\usepackage[siunitx, RPvoltages]{circuitikz}
+\usepackage{etoolbox}
+\AtBeginEnvironment{quote}{\par\singlespacing}
+ 
+\usepackage{enumitem}
+
+\title{ECE313 Final Review - Cramming Carnival}
+\author{Author: Members of HKN}
+\date{Fall 2024}
+
+\newcommand{\dd}[1]{\mathrm{d}#1}
+
+\usepackage[makeroom]{cancel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+
+\pagenumbering{arabic}
+
+\begin{document}
+
+\maketitle
+
+\section{Dutiful Drills}
+
+All parts of this problem are unrelated to each other.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Suppose a random variable $T$ has the exponential distribution with parameter $\lambda$. Suppose it is observed that $T = t$ for some fixed value of $t$. Find the ML estimate, $\hat{\lambda}_{ML}(t)$, of $\lambda$, based on this observation. \vfill
+    \item Suppose it is assumed that $X$ is drawn at random from the uniform distribution on the interval $[0, b]$, where $b$ is some parameter. Find the ML estimator of $b$ given $X = u$ is observed. \vfill
+    \item Consider a Poisson process on the interval $[0, T]$ with rate $\lambda > 0$, and let $0 < \tau < T$. Define $X_1$ to be the number of counts during $[0, \tau]$, $X_2$ to be the number of counts during $[\tau, T]$, and $X$ to be the total number of counts during $[0, T]$. Let $i, j, n$ be nonnegative integers such that $n = i + j$. Express the following probabilities in terms of $n, i, j, \tau, T, $ and $\lambda$, simplifying your answers as much as possible:
+
+    \begin{enumerate}[label=(\roman*)]
+    \itemsep3em
+        \item $P\{X = n\}$
+        \item $P\{X_1 = i\}$
+        \item $P\{X_2 = j\}$
+        \item $P\{X_1 = i \vert X = n\}$
+        \item $P\{X = n \vert X_1 = i\}$
+    \end{enumerate}
+\end{enumerate}
+
+\vspace{3em}
+
+\newpage
+
+\section{Persistent Particles 1}
+
+Hyouin is playing with his quantum particle generator. Specifically, he is interested in the spins of the particles that he generates. A generated particle has a $50\%$ chance of being spin-up and a $50\%$ chance of being spin-down. All generated particles are independent from each other.
+
+Hyouin decides that he will keep generating particles until the following conditions are met. For each of the following conditions, compute the expected number of particles that Hyouin needs to generate in order to meet the condition. As soon as Hyouin satisfies the condition, he will stop generating particles.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Hyouin gets at least one spin-up particle.\vfill
+    \item Hyouin gets at least one spin-up and at least one spin-down particle.\vfill
+    \item Hyouin gets at least two spin-up particles.\vfill
+    \item Hyouin gets at least two spin-up particles in a row.\vfill
+    \item Hyouin gets a spin-up particle followed immediately by a spin-down particle.\vfill
+    \item Hyouin gets more spin-up particles than spin-down particles.\vfill
+    \item Hyouin gets the same number of spin-up particles as spin-down particles.\vfill
+    \item Hyouin gets the same positive number of spin-up particles as spin-down particles.\vfill
+    \item Hyouin gets more than twice as many spin-up particles as spin-down particles.\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Persistent Particles 2}
+
+Suppose that Hyouin generates two quantum particles. Let $A$ denote the event that the first quantum particle was spin-up. Let $B$ denote the event that the second quantum particle was spin-up. Let $C$ denote the event that the quantum particles match each other.
+
+Are $A$, $B$, and $C$ pairwise independent? Are they completely independent?
+
+\vfill\vfill
+
+\section{Persistent Particles 3}
+
+Hyouin continues to generate his quantum particles. Suppose that he generates $n$ of them. Let $X_k$ be equal to $\frac{1}{2}$ if the $k$'th particle is spin-up, and $0$ otherwise. Let $Y_k$ be equal to $\frac{1}{2}$ if the $k$'th particle is spin-down, and $0$ otherwise. Let $Z_k = X_k^2 + 2Y_k$.
+
+Now let $X$ be the sum of all $X_k$, $Y$ be the sum of all $Y_k$, and $Z$ be the sum of all $Z_k$.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Find $E[X_1]$ and $E[Z_1]$.\vfill
+    \item Find $E[Z]$ and Var$(Z)$.\vfill
+    \item Find Cov$(X_i, Y_j)$ and Cov$(Y_i, Z_j)$ if $1 \leq i \leq n$ and $1 \leq j \leq n$.\vfill
+    \item Find Cov$(X, Y)$ and Cov$(Y, Z)$.\vfill
+    \item Are $X$ and $Y$ positively correlated, negatively correlated, or uncorrelated?\vfill
+    \item Are $Y$ and $Z$ positively correlated, negatively correlated, or uncorrelated?\vfill
+    \item Are $X$ and $Z$ positively correlated, negatively correlated, or uncorrelated?\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Persistent Particles 4}
+
+Ryan decides to modify Hyouin's quantum particle generator to have some fun. In particular, Ryan's quantum particle generator now does the following to generate particles:
+
+\begin{enumerate}
+    \item The first particle will have a $50\%$ chance to be spin-up and a $50\%$ chance to be spin-down.
+    \item The $i$'th particle, where $i \neq 1$, will be spin-up with probability $p_1$ if the $i-1$'th particle was spin-up (and $1-p_1$ probability of spin-down). It will be spin-down with probability $p_2$ if the $i-1$'th particle was spin-down (and $1-p_2$ probability of spin-up in this scenario).
+    \item The quantum particle generator completely resets after generating $10$ particles.
+\end{enumerate}
+
+Hyouin now generates $10000$ particles. Note: For parts (b)-(f), use the scenario from part (b).
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Ryan first sets $p_1 = p_2 = 0.6$. What is the expected number of spin-up particles?\vfill
+    \item For the remainder of this problem, Ryan sets $p_1 = 0.6$ and $p_2 = 0.55$. What is the expected number of spin-up particles?\vfill
+    \item Give an upper bound on the probability that the actual number of spin-up particles is more than $8000$.\vfill
+    \item Give an upper bound on the probability that the actual number of spin-up particles vary from the expected value by more than $250$.\vfill
+    \item What is the estimated probability that the actual number of spin-up particles vary from the expected value by less than $250$?\vfill
+    \item What is the estimated probability that the actual number of spin-up particles vary from the expected value by less than or equal to $1$?\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Gullible Gaussian}
+
+Aaron is drawing from a Gaussian distribution with mean $4$ and variance $9$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose he draws from the Gaussian distribution once and multiplies what he gets by $2$. What is the mean of his result? The variance?
+    \vfill
+
+    \item Suppose he draws from the Gaussian distribution twice independently and sums what he gets. What is the mean of his result? The variance?
+
+    \vfill
+
+    \item Is this a contradiction?
+
+    \vfill
+
+    \item (Unrelated to the previous parts) Give an informal argument for why Poisson processes with large $\lambda$ can be well-approximated by a Gaussian distribution with mean $\lambda$ and variance $\lambda$.
+
+    \vfill
+\end{enumerate}
+
+\section{Burning Bridges}
+
+Esther is building a bridge between ECEB and Beckman. Her bridge will use ten concrete pillars as supports, each of which requires eight concrete blocks. The bridge is designed such that each concrete pillar can tolerate two cracked concrete blocks, and the overall bridge can tolerate a single failed concrete pillar. Thus, in order for Esther's bridge to fall, there has to be at least two concrete pillars that each have at least three cracked concrete blocks. Suppose concrete blocks crack independently with probability $p$.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Find an expression for the exact probability, $p_0$, that a particular concrete pillar fails, in terms of $p$.\vfill
+    \item Find an expression for the exact probability, $p_1$, that the bridge falls, in terms of $p_0$.\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Articulate Arrival}
+
+Calls arrive to a cell in a certain wireless communication system according to a Poisson process with an arrival rate of $\lambda = 5$ calls per minutes. We now measure time in minutes and consider an interval of time beginning at $t = 0$. Let $N_t$ denote the number of calls that arrive in $t$ minutes. For a fixed $t > 0$, the random variable $N_t$ is a Poisson random variable with parameter $5t$.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Find the probability that no calls arrive in the first four minutes.\vfill
+    \item Find the probability that the first call arrives after four minutes.\vfill
+    \item Find the probability that two of fewer calls arrive in the first four minutes.\vfill
+    \item Find the probability that the third call arrives before time $t$.\vfill
+    \item Derive the pdf of the arrival time of the third call.\vfill
+    \item Find the expected arrival time of the sixth call.\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Noble Normal}
+
+Let $X$ have the $N(10, 16)$ distribution. Find the numerical values of the following probabilities (practice using the $Q$ tables).
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item $P\{X \geq 15\}$\vfill
+    \item $P\{X \leq 5\}$\vfill
+    \item $P\{X^2 \geq 400\}$\vfill
+    \item $P\{X = 2\}$\vfill
+\end{enumerate}
+
+\section{Uniquely Uniform}
+
+\begin{enumerate}[label=(\alph*)]
+    \item Suppose $X$ is a continuous random variable with CDF $F_X$. Let $Y$ be the result of applying $F_X$ to $X$ (aka $Y = F_X(X)$). What is the distribution of $Y$?\vfill
+    
+    \item Find a function $g$ such that, if $U$ is uniformly distributed over the interval $[0, 1]$, $g(U)$ is a Rayleigh distribution with $\sigma^2 = 9$. \vfill
+\end{enumerate}
+
+\newpage
+
+\section{Displeased Distribution}
+
+Let $T$ have the pdf $f_{\sigma^2}(t) = I_{\{t \geq 0\}} \frac{t}{\sigma^2} e^{-\frac{t^2}{2 \sigma^2}}$, where $\sigma^2$ is unknown. Find the ML estimate of $\sigma^2$ if it is observed that $T = 12$. Note that $I_{\{t \geq 0\}} = 1$ if $t \geq 0$ and $0$ otherwise.
+
+\vfill
+
+\section{Gruesome Gaussian}
+
+Suppose $X$, $Y$, and $Z$ are independent Gaussian distributions. $X$ has mean $1$ and variance $4$. $Y$ has mean $0$ and variance $9$. $Z$ has mean $10$ and variance $1$. Find the pdf of $X + Y + Z$.
+
+Hint: ECE210's frequency domain may be useful.
+
+\vfill
+
+\section{Bombastic Brain Cell}
+
+Suppose the failure rate function for someone's brain cell with lifetime $E$ is $h(t) = a^3$ for $0 \leq t \leq 2$ and $h(t) = bt + c$ for $t \geq 2$ (you get to decide what units to use). Find the CDF and mean of the lifetime $E$. For the mean, it is not necessary to evaluate the integral.
+
+\vfill\newpage
+
+\section{Bubbly Balloons}
+
+Aaron is blowing up balloons for his birthday party. However, he's not very consistent with how much helium he puts in his balloons. The radius of his balloons follow a uniform distribution with mean $4$ meters and variance $3$ meters. You may assume that the balloons are all perfect spheres. You may also assume that negative radii, however unlikely, are ok.
+
+Let $V$ be the random variable denoting the volume of the balloons, while $S$ is the random variable denoting the surface area of the balloons.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item What is the support of $S$ and $V$?\vfill
+    \item What is $E[S]$ and $E[V]$?\vfill
+    \item Find the CDF of $V$.\vfill
+    \item Find the pdf of $V$.\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Deft Distribution}
+
+Suppose $X$ and $Y$ have a bivariate Gaussian joint distribution with $E[X] = E[Y] = 1$ and Var$(X) = 2$. The variance of $Y$ and the correlation coefficient are not known. Finally, suppose that $X$ is independent of $X - Y$.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Find Cov$(X, Y)$.\vfill
+    \item Find $E[X \vert X - Y = 2]$.\vfill
+    \item Find $E[Y \vert X = 2]$.\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Dangerous Diagonal Darts (with Determinants!)}
+Lauren has challenged Alex to a game of darts. Unfortunately, Alex is quirky and he only
+owns a triangular dart board, with corners at $(0,0)$ and $(2,0)$ and $(0,w)$ in the $xy$-plane.
+Lauren is annoyed with this|any normal person has a triangular dart board with corners at $(0,0)$
+and $(2,0)$ and $(0,2)$ in the $xy$-plane. Let $X$ and $Y$ be the random variables for the location
+of Lauren's throw, and suppose their joint density is given by
+\[
+    f(x,y ) = \begin{cases}
+        0 & x < 0 \text{ or } x > 2 \text{ or } y < 0 \text{ or } y > 2 \\
+        \frac{3}{16}x^2(2-y) & \text{otherwise}
+    \end{cases}
+\]
+To be fair to Lauren, Alex will let her define two linear transformations, $U = g_1(X) = c_1X$
+and $V = g_2(Y) = c_2Y$ before her throw, and will use the transformed position $(U,V)$
+to determine where her throw hit on his wide dartboard.
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Show that $U$ and $V$ are invertible and differentiable.\vfill
+    \item Find the values of $c_1$ and $c_2$ to maximize the probability that $(U,V)$
+        lies within the region defined by Alex's dartboard. Hint: it's simpler than you think!
+        If you do want to work out all the math, you'll probably want a computer algebra system. \vfill
+    \item What is the geometric interpretation of your solution to the above? \vfill
+    \item Bonus: Alex thinks this is too easy: now Lauren must define two \textit{cubic}
+        transformations, $U = c_1 X^3$ and $V = c_2 Y^3$. Again, find $c_1$ and $c_2$
+        to maximize her chances of hitting Alex's dartboard. \vfill
+\end{enumerate}
+
+\newpage
+
+\section{Packed Plane}
+
+Ryan is the first person to board a plane that contains $n$ seats. However, he has forgotten what seat he is supposed to take, and he has also lost his boarding pass (what is the probability of that!) Therefore, he simply chooses a random seat and sits down.
+
+Aaron is the second person to board the same plane. However, he has also forgotten what seat he was supposed to take. Aaron's boarding pass is buried beneath $200$ bags of Swedish Fish, so he's not in the mood to pull it out. Therefore, he also picks an empty seat randomly.
+
+The next $n - 2$ passengers behind Aaron then board the plane. When a passenger boards and finds Ryan or Aaron in their seat, they will ask them to move. Ryan or Aaron will then choose another empty seat randomly. Importantly, Aaron and Ryan don't know that the other person also does not know what their seat is. Therefore, Aaron will never ask Ryan to move, and vice versa.
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em 
+    \item What is the probability that Ryan never needs to move after choosing a seat randomly for the first time? What about Aaron?\vfill
+    \item What is the exact probability that the $k$'th passenger has to ask Ryan to move?\vfill
+    \item What is the exact probability that the $k$'th passenger has to ask Aaron to move?\vfill
+    \item What is the expected number of times that Ryan has to move? What about Aaron?\vfill
+    \item What is the exact probability that Ryan and Aaron end up in their assigned seats?\vfill
+    \item Bonus: Is there some other method of choosing seats such that Ryan and Aaron are more likely to end up in their assigned seats?\vfill
+    \item Bonus: Is there some other method of choosing seats such that Ryan and Aaron have to move around less?\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Demonic Dice}
+
+Ryan is at board-game night and is learning a fun new game called Dungeons and Dragons. The game requires $20$-sided dice. Unfortunately, the party only has $6$-sided dice.
+
+Devise a method to roll a $20$-sided die such that each number could be rolled with equal probability using only $6$-sided die. The method should use the least expected number of rolls possible (for example, solutions that are expected to use $4$ rolls are better than solutions that are expected to use $4.3$ rolls). Also give the expected number of rolls that your method will use.
+
+\vfill \vfill
+
+\section{Meticulous Matches}
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Tabish is going to do what no child should do: play with matches. Tabish takes a match stick and breaks it into three parts. He then attempts to arrange these three parts into a triangle. If Tabish breaks the match at two randomly chosen positions, what is the probability that the three parts can be arranged into a triangle?\vfill
+    
+    \item Tabish instead chooses to first break the match at a random position, then break the longest of the two resulting parts at a random position. What is the probability that the three parts can be arranged into a triangle?\vfill
+\end{enumerate}
+
+\newpage
+
+\section{Scenic Sleepwalk}
+
+Sania tends to sleepwalk. However, she sleepwalks in a peculiar way: every minute, starting at minute $1$, she will randomly choose a direction ($+x$, $-x$) and walk one foot towards that direction. Suppose that the room she's sleeping in is a $n$ feet long. Sania will wake up when she runs into a wall (i.e. at $x = 0$ or $x = n+1$). Since we don't want this to happen for various reasons, answer the following questions below:
+
+\begin{enumerate}[label=(\alph*)]
+\itemsep0em
+    \item Given that she starts at $x = 1$, what is the probability that she wakes up by running into the $x = n + 1$ wall?\vfill
+    
+    \item Given that she starts at $x = k$, what is the probability that she wakes up by running into the $x = n + 1$? Express your answer in terms of $k$.\vfill
+    
+    \item Given that she starts at $x = 1$, what is the expected amount of time that elapses before she runs into a wall?\vfill
+    
+    \item Given that she starts at $x = k$, what is the expected amount of time that elapses before she runs into a wall? Express your answer in terms of $k$.\vfill
+\end{enumerate}
+
+Bonus: How do you solve the 2D version of this problem? In the 2D version, Sania will randomly choose a direction ($+x$, $-x$, $+y$, $-y$). The room she's sleeping in is $n \times n$. Sania will wake up when she hits any of the four walls. She starts at $(a, b)$.
+
+\newpage
+
+\section{Spry Stairs}
+
+Sahan needs to climb the four flights of stairs to get to his Academic Advisor meeting (otherwise he can't register for classes again). However, he has a bit of extra time, so he decides to have a little bit of fun. At each step he will take either one stair or two stairs at a time. How many ways can he climb $n$ stairs?\vfill
+
+\section{Enigmatic Envelopes}
+
+Before you are two envelopes, of which you can only pick one. Both of the envelopes contain money, but one contains twice the amount compared to the other. You first choose one randomly, open it, and see that it contains \$Y. Should you then change your choice of envelope?
+
+Grant uses the following reasoning:
+
+\begin{quote}
+    The expected amount of money gained if you simply walk away is trivially \$Y. If you switch, half of the time you will walk away with \$Y/2 (because half the time you picked the better envelope) and half the time you will walk away with 2\$Y (because you picked the worse envelope). Adding everything up, switching is expected to give you $\frac{5Y}{4}$ reward, so you should always switch.
+\end{quote}
+
+Is Grant correct? Explain why or why not.
+
+\vfill
+
+\end{document}
