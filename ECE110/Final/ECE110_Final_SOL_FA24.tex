@@ -130,9 +130,55 @@ Thus, the total equivalent resistance is \( R_{\text{eq}} = 6 \, \Omega \).
 \textbf{Question 10:} If the voltage between nodes A and B in the second circuit is 9V...
 \begin{enumerate}
 \item What is the current through the 3 ohm resistor?
+\\
+\\
+We know from Question 9 that the equivalent resistance \( R_{\text{eq}} = 6 \, \Omega \). Using Ohm's law, the total current flowing through the circuit is:
+    \[
+    I_{\text{total}} = \frac{V}{R_{\text{eq}}} = \frac{9V}{6 \, \Omega} = 1.5 \, \text{A}.
+    \]
+    Using the current divider rule, we can find the current through the middle branch, which has a resistance of 6\(\Omega\) (the combination of 3\(\Omega\) and two 6\(\Omega\) resistors in parallel):
+    \[
+    R_{\text{middle}} = 3 \, \Omega + \left( \frac{1}{6} + \frac{1}{6} \right)^{-1} = 3 \, \Omega + 3 \, \Omega = 6 \, \Omega.
+    \]
+    The current divides between the middle branch and the right branch with resistance 12\(\Omega\) (the 4\(\Omega\) and 8\(\Omega\) resistors in series). By the current divider rule:
+    \[
+    I_{\text{middle}} = I_{\text{total}} \times \frac{R_{\text{right}}}{R_{\text{middle}} + R_{\text{right}}} = 1.5 \, \text{A} \times \frac{12 \, \Omega}{6 \, \Omega + 12 \, \Omega} = 1 \, \text{A}.
+    \]
+    Thus, the current through the 3\(\Omega\) resistor is \( 1 \, \text{A} \).
+\\
 \item What is the power through the 3 ohm resistor?
+\\
+\\
+The power dissipated through a resistor is given by \( P = I^2 R \). For the 3\(\Omega\) resistor:
+    \[
+    P_3 = I_{\text{3}\Omega}^2 \times 3 \, \Omega = (1 \, \text{A})^2 \times 3 \, \Omega = 3 \, \text{W}.
+    \]
+
+
 \item What is the power through the 8 ohm resistor?
+\\
+\\
+The current through the 8\(\Omega\) resistor is the same as the current through the right branch, which is:
+    \[
+    I_{\text{8}\Omega} = I_{\text{total}} - I_{\text{middle}} = 1.5 \, \text{A} - 1 \, \text{A} = 0.5 \, \text{A}.
+    \]
+    The power dissipated through the 8\(\Omega\) resistor is:
+    \[
+    P_8 = I_{\text{8}\Omega}^2 \times 8 \, \Omega = (0.5 \, \text{A})^2 \times 8 \, \Omega = 2 \, \text{W}.
+    \]
+
 \item What resistor has the highest power output?
+\\
+\\
+Since power is given by \( P = I^2 R \), we can analyze the power dissipated in each resistor.
+
+- The 4\(\Omega\) resistor and the 8\(\Omega\) resistor have the same current flowing through them. Since the current is the same, we know the 4\(\Omega\) resistor does not have the highest power output. 
+\\
+- The 3\(\Omega\) resistor dissipates more power than the 8\(\Omega\) resistor, as we computed earlier, and the power dissipated in each of the 6\(\Omega\) resistors in parallel is \( P = 0.5^2 \times 6 = \frac{3}{2} \, \text{W} \).
+\\
+- The power through the 2\(\Omega\) resistor is \( P = 1.5^2 \times 2 = 4.5 \, \text{W} \).
+
+Thus, the 2\(\Omega\) resistor has the highest power output.
 \end{enumerate}
 
 \section*{PWM}
