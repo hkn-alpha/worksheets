@@ -1,0 +1,115 @@
+\documentclass{article} 
+ 
+\usepackage[utf8]{inputenc} 
+\usepackage[T1]{fontenc} 
+\usepackage{geometry} 
+\geometry{a4paper} 
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{multirow}
+ 
+\title{HKN Latex Reference Guide}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section*{Starting a Latex File}
+\par To start a basic Latex file,
+\begin{enumerate}
+    \item Include \textbackslash documentclass\{article\} at the beginning of the document
+    \item A title can be created by specifying the title name with \textbackslash \{\textit{your\_title}\}. Then include \textbackslash maketitle in the main body of your document.
+    \item Start the main body of your document with \textbackslash begin\{document\}. Also specify the end of the document with \textbackslash end\{document\}. This is where you will do most of your writing in Latex.
+\end{enumerate}
+
+\section*{Basic Formatting}
+
+\begin{itemize}
+\item Sections can be inserted with \textbackslash section\{\textit{your\_heading}\} for a numbered heading and \\ \textbackslash section*\{\textit{your\_heading}\} for an unnumbered heading.
+\item Newlines can be inserted with \textbackslash\textbackslash
+\item Paragraphs can be inserted with \textbackslash par
+\item Pagebreaks can be inserted with \textbackslash newpage
+\item Italicize with \textbackslash textit\{\textit{your\_text}\}
+\item Bold with \textbackslash textbf\{\textit{your\_text}\}
+\item Underline with \textbackslash underline\{\textit{your\_text}\}
+\item Center by enclosing what you wish to be centered with \textbackslash begin\{center\} and \textbackslash end\{center\}
+%\item Align left with \textbackslash raggedleft
+%\item Align right with \textbackslash raggedright
+%add indentation%
+\end{itemize}
+
+\section*{Math}
+\par To insert mathematical expressions into your Latex document, enclose the expression in dollar signs. \\
+\par For example:
+The function f of x equals x squared minus 5 is: \\
+\begin{center}
+\$f(x)=x\^\{2\} -5\$ \\
+$f(x)=x^{2}-5$
+\end{center}
+\par There are many different latex codes for mathematical expressions. Generally, one can search online for the math symbol you need.
+
+\section*{Figures}
+\begin{enumerate}
+    \item To insert figures, include \textbackslash usepackage\{graphicx\} at the beginning of your Latex document.
+    \item Also include \textbackslash graphicspath\{ \{\textit{./file\_path/}\} \} to specify the folder that inlcudes the images you want to insert.
+    \item Simply use \textbackslash includegraphics\{\textit{file\_name}\} to insert an image. The file extension is not required to be included.
+\end{enumerate}
+\par See the different examples of figure position available in Latex here: \\
+\url{https://www.overleaf.com/project/new/template/19663?id=66518064&templateName=Example+of+positioning+tables+and+figures&latexEngine=pdflatex&texImage=texlive-full%3A2020.1&mainFile=}
+
+\section*{Lists}
+\begin{itemize}
+    \item Unordered lists can be created with \textbackslash begin\{itemize\} and ended with \textbackslash end\{itemize\}.
+    \item Ordered lists can be created with \textbackslash begin\{enumerate\} and ended with \textbackslash end\{enumerate\}.
+    \item Individual items in lists are created with \textbackslash item \textit{Your text here}
+\end{itemize}
+
+\section*{Tables}
+\par To include tables in your document,
+\begin{enumerate}
+    \item Include \textbackslash usepackage\{tabularx\} at the beginning of your file.
+    \item Begin a table with \textbackslash begin\{tabular\}
+    \item Specify the format of your table with \{| c | c | c |\}, where 'c' indicates an additional column and | indicates a vertical line separating a column. (These vertical lines can be customized to your needs.)
+    \item Insert the main body of the table by entering the text you want to include in each cell and then separated each cell by \&. Insert new lines to go to the next row.
+    \item Horizontal lines can be inserted within your table with \textbackslash hline.
+    \item Multiple rows can be combined using \textbackslash multirow\{\textit{number\_of\_rows}\}\{width\_of\_cell (e.g., 4em. Increase number to increase width)\}\{content\_of\_cell\}. Make sure to include \textbackslash usepackage\{multirow\}.
+    \item The same can be done with combining columns. Just use \textbackslash multicol and \textbackslash usepackage\{multicol\}.
+\end{enumerate}
+\par For example:
+\newpage
+\textbackslash begin\{tabular\}\{ |c|c|c| \} \\
+\textbackslash hline \\
+ cell1 \& cell2 \& cell3 \textbackslash\textbackslash \\
+ \textbackslash hline \\
+ 
+ \textbackslash multirow\{2\}\{4em\}\{multiple rows\} \& cell5 \& cell6 \textbackslash\textbackslash \\
+ \& cell8 \& cell9 \textbackslash\textbackslash \\
+ \textbackslash hline \\
+\textbackslash end\{tabular\} \\
+\par Creates: \\ \\
+\begin{tabular}{ |c|c|c| } 
+ \hline
+ cell1 & cell2 & cell3 \\ 
+ \hline
+ \multirow{2}{4em}{multiple rows} & cell5 & cell6 \\
+ & cell8 & cell9 \\
+ \hline
+\end{tabular}
+
+\section*{Columns}
+\begin{itemize}
+    \item Include \textbackslash usepackage\{multicol\}
+    \item In the beginning of your file, specify the separation of columns with \textbackslash setlength\{\textbackslash columnsep\}\{1cm\}
+    \item Insert columns within your document with \textbackslash begin\{multicols\}\{\textit{number\_of\_cols}\[\textit{your\_text\_here}\]
+    \item End the columns with \textbackslash end\{multicols\}.
+\end{itemize}
+\par See an example here: \\
+\url{https://www.overleaf.com/docs?engine=pdflatex&snip_name=multicols+package+demo&snip=%5Cdocumentclass%7Barticle%7D%0A%5Cusepackage%7Bblindtext%7D%0A%5Cusepackage%7Bmulticol%7D%0A%5Csetlength%7B%5Ccolumnsep%7D%7B1cm%7D%0A%5Ctitle%7BSecond+multicols+Demo%7D%0A%5Cauthor%7BOverleaf%7D%0A%5Cdate%7BApril+2021%7D%0A%0A%5Cbegin%7Bdocument%7D%0A%5Cmaketitle%0A%0A%5Cbegin%7Bmulticols%7D%7B2%7D%0A%5B%0A%5Csection%7BFirst+Section%7D%0AAll+human+things+are+subject+to+decay.+And+when+fate+summons%2C+Monarchs+must+obey.%0A%5D%0A%5Cblindtext%5Cblindtext%0A%5Cend%7Bmulticols%7D%0A%0A%5Cend%7Bdocument%7D}
+
+\section*{Miscellaneous}
+\begin{itemize}
+    \item Insert hyperlinks by including \textbackslash usepackage\{hyperref\} at the beginning of your file. Then use \textbackslash url\{\textit{your\_url}\} to insert a hyperlink in your document.
+    \item Text can be colored with \textbackslash usepackage{xcolor}. Then use \textbackslash color\{\textit{your\_color}\} to specify a different color. See \url{https://www.overleaf.com/learn/latex/Using_colors_in_LaTeX} for colors.
+\end{itemize}
+
+\end{document}
