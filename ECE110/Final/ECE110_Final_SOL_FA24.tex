@@ -223,8 +223,47 @@ Thus, the total equivalent resistance is \( R_{\text{eq}} = 6 \, \Omega \).
     \includegraphics[width=0.75\linewidth]{figures/56.png}
 \end{center}
 
+\textbf{Solution:} 
+
+An important property of BJTs is that $V_{CE}$ can only ever assume the values ranging from $[V_{CE,sat},V_{CC}]$. A great graph to view that displays the behavior of a BJT is Figure 6 of the Canvas Module, "BJT Applications."
+
+Calculate $V_{CE}$ assuming that the BJT is in the ON, ACTIVE region for both extreme values of $V_i$:
+\begin{itemize}
+    \item If $I_C \le 0$ (equivalent statements: $V_{CE} > V_{CC}$, $V_i < V_{BE,ON}$), then the assumption that the BJT is ON is incorrect, and $V_{CE}$'s actual value is $V_{CC}$.
+    \item If $V_{CE,sat} < V_{CE} < V_{CC}$, then the assumption that the BJT is in the ON, ACTIVE region is correct and the calculated value of $V_{CE}$ is correct.
+    \item If $V_{CE} \le V_{CE,sat}$, then the BJT is in the ON, SATURATED region and $V_{CE}$'s actual value is $V_{CE,sat}$.
+\end{itemize}
+
+We see that $V_I$ gets below the value of $V_{BE,ON}$, so we know that
+\begin{center}
+    \boxed{V_{CE,max} = V_{CC} = 9V}.
+\end{center}
+
+Assuming the BJT is in the active region: 
+\begin{align*}
+    I_C &= \beta I_B \\
+    \frac{V_{CC}-V_{CE,min}}{R_C} &= \beta \frac{V_{i,max} - V_{BE,on}}{R_B} \\
+    \Rightarrow V_{CE,min} &= V_{CC} - \beta\frac{R_C(V_{i,max} - V_{BE,on})}{R_B} \\
+    V_{CE,min} &= 9V - (120)\frac{(150\Omega)(9V-1V)}{30k\Omega} \\
+    V_{CE,min}&= \boxed{4.2V} \text{ (within bounds } V_{CE,sat}<V_{CE}< V_{CC}. \text{)}
+\end{align*} 
+
+\vspace{5mm}
 
 \textbf{Question 24:} If Vi was set to 5V, what would VCE be?
+
+\textbf{Solution:}
+
+Assume that the BJT is in the active region: 
+\begin{align*}
+    I_C &= \beta I_B \\
+    \frac{V_{CC}-V_{CE}}{R_C} &= \beta \frac{V_i - V_{BE,on}}{R_B} \\
+    \Rightarrow V_{CE} &= V_{CC} - \beta\frac{R_C(V_i - V_{BE,on})}{R_B} \\
+    V_{CE} &= 9V - (120)\frac{(150\Omega)(5V-1V)}{30k\Omega} \\
+    &= \boxed{6.6V} \text{ (within bounds } V_{CE,sat}<V_{CE}< V_{CC}. \text{)}
+\end{align*}
+
+Since $V_{CE}$ is in the range $V_{CE,sat} < V_{CE} < V_{CC}$, we know our assumption that the BJT was in the active region is correct, and our calculated $V_{CE}$ is correct.
 
 
 \section*{MOSFETs/cMOS logic}
