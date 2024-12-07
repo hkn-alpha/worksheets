@@ -53,13 +53,13 @@ All parts of this problem are unrelated to each other.
 
     $$\frac{d}{d\lambda} \lambda e^{-\lambda t} = e^{-\lambda t} - \lambda te^{-\lambda t} = (1 - \lambda t)e^{-\lambda t} = 0$$
 
-    The exponential can never truly equal $0$, so we can drop it. We are then left with $\boxed{\lambda = \frac{1}{t}}$.
+    The exponential can never truly equal $0$, so we can drop it. We are then left with $\boxed{\hat{\lambda}_{ML}(t) = \frac{1}{t}}$.
 
     \vspace{3cm}
     
     \item \textbf{Suppose it is assumed that $X$ is drawn at random from the uniform distribution on the interval $[0, b]$, where $b$ is some parameter. Find the ML estimator of $b$ given $X = u$ is observed.}
 
-    Recall that pdf of the uniform distribution is $\frac{1}{b}$ for all values in the range. In order to maximize this value, we want to minimize $b$. However, we can't minimize $b$ such that $u$ can't even be observed. Therefore, we should set $\boxed{b = u}$.
+    Recall that pdf of the uniform distribution is $\frac{1}{b}$ for all values in the range. In order to maximize this value, we want to minimize $b$. However, we can't minimize $b$ such that $u$ can't even be observed. Therefore, we should set $\boxed{\hat{b}_{ML}(u) = u}$.
 
     \vspace{3cm}
     
@@ -94,11 +94,11 @@ All parts of this problem are unrelated to each other.
 
         Now we can just evaluate and multiply. The exponential and the $\lambda$s drop off.
 
-        $$= \frac{n!}{i!j!} \left( \frac{\tau}{T} \right)^i \left(\frac{T - \tau}{T} \right)^j$$
+        $$= \boxed{\frac{n!}{i!j!} \left( \frac{\tau}{T} \right)^i \left(\frac{T - \tau}{T} \right)^j}$$
 
-        If we allow $p = \frac{\tau}{T}$, this can be written suggestively as
+        Note that if we allow $p = \frac{\tau}{T}$, this can be written suggestively as
 
-        $$\boxed{{n \choose x} p^i (1 - p)^{n - i}}$$
+        $${n \choose x} p^i (1 - p)^{n - i}$$
 
         It's a binomial distribution! Cool.
         
@@ -147,11 +147,11 @@ Hyouin decides that he will keep generating particles until the following condit
     
     Let $X$ denote the number of flips required to get two spin-up particles in a row. We wish to find $E[X]$, which stands for the expected number of particles required to get two spin-up particles in a row. We arrive at the following expression $E[X]$:
     
-    $$E[X] = 1 + \frac{1}{2}E[X] + \frac{1}{2}\left(\frac{1}{2} (1) + \frac{1}{2} (1 + E[X])\right)$$
+    $$E[X] = 1 + \frac{1}{2}E[X] + \frac{1}{2}\left(1 + \frac{1}{2}E[X]\right)$$
     
     Where did this expression come from? First, we have to generate a particle (this is where the first $1$ comes from). If the particle generated was spin-down, which happens half the time, then we're back to where we started; i.e. we now need to generate two spin-up particles in a row once again. This is why we add $\frac{1}{2}E[X]$.
     
-    The second term occurs when we get spin-up. We then generate another particle. Half the time it will be spin-up as well, which means we are done. This takes only one more generation. The other half of the time we generate a spin-down particle. This resets our whole problem, and we go back to the situation where we need to generate two spin-up particles in a row once again. So we add $1 + E[X]$ (the $1$ comes from performing the second generation). 
+    The second term occurs when we get spin-up. We then generate another particle (hence the $1$). Half the time it will be spin-up as well, which means we are done. The other half of the time we generate a spin-down particle. This resets our whole problem, and we go back to the situation where we need to generate two spin-up particles in a row once again, which is why we add the $\frac{1}{2}E[X]$. 
     
     Now we have one equation and one unknown, so we can just solve for $E[X]$. This will give us $\boxed{6}$.
 
@@ -218,7 +218,9 @@ Event $B$ and event $C$ both happening only occurs with probability $\frac{1}{4}
 
 Event $A$ and event $C$ both happening only occurs with probability $\frac{1}{4}$ (both particles had to be spin-up). Therefore, events $A$ and $C$ are pairwise independent, since $\frac{1}{2} \frac{1}{2} = \frac{1}{4}$.
 
-The probability that all three events happen occurs with probability $\frac{1}{4}$ (both particles had to be spin-up). This means that $A$, $B$, and $C$ are not independent, since $\frac{1}{2} \frac{1}{2} \frac{1}{2} \neq \frac{1}{4}$.
+Since events $A$ and $B$, $A$ and $C$, and $B$ and $C$ are all pariwise independent, $\boxed{\text{$A$, $B$, and $C$ are pairwise independent}}$.
+
+The probability that all three events happen occurs with probability $\frac{1}{4}$ (both particles had to be spin-up). This means that since $\frac{1}{2} \frac{1}{2} \frac{1}{2} \neq \frac{1}{4}$, $\boxed{\text{$A$, $B$, and $C$ are not completely independent}}$.
 
 \vspace{4cm}
 
@@ -511,7 +513,7 @@ Calls arrive to a cell in a certain wireless communication system according to a
 
     \vspace{2cm}
     
-    \item \textbf{Find the probability that two of fewer calls arrive in the first four minutes.}
+    \item \textbf{Find the probability that two or fewer calls arrive in the first four minutes.}
 
     This is the same as the probability that $N_4$ is less than or equal to $2$.
 
@@ -914,7 +916,7 @@ to determine where her throw hit on his wide dartboard.
     transformations, $U = c_1 X^3$ and $V = c_2 Y^3$. Again, find $c_1$ and $c_2$
     to maximize her chances of hitting Alex's dartboard.}
 
-    Apply the same procedure as part (2), but with $J_g = 9c_1c_2 X^2 Y^2$.
+    Apply the same procedure as part (b), but with $J_g = 9c_1c_2 X^2 Y^2$.
     
 \end{enumerate}
 
@@ -1212,15 +1214,11 @@ Is Grant correct? Explain why or why not.
 
 \subsection{Solution:}
 
-Let one envelope contain \$X and the other envelope contain \$2X.
-
 Grant is not correct! This result defies all intuition. The answer should be ``it doesn't matter'', since you technically didn't gain any information.
-
-\vspace{1cm}
 
 Let's say that after switching, some Men in Black come by and wipe your memory. You then look at the envelope you just switched to and you are given the option to switch again. The exact same argument will convince you to switch the envelopes. Given enough options and memory wipes, you'll be switching envelopes forever! A paradox!
 
-Another way to view this problem is to note that half the time you will gain \$Y, while the other half of the time you will lose \%Y. Therefore, the net gain is $0$, so it won't matter whether you switch or not switch.
+Another way to view this problem is to instead define the values in the envelopes before you first pick. Let one envelope contain \$X and the other envelope contain \$2X. This means that if you switch, half the time you will gain \$X, while the other half of the time you will lose \$X. Therefore, the net gain is $0$, so it won't matter whether you switch or not switch.
 
 In fact, Grant's analysis is wrong. This is because the two envelopes are already locked in by the time you open an envelope. Therefore, ``half the time the other envelope contains \$2Y and the other half of the time the other envelope contains \$Y/2'' is invalid - this just simply isn't true.
 
