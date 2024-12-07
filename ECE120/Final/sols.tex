@@ -74,7 +74,7 @@
         \item 343 \textcolor{blue}{9 [10 if 2’s complement]}
         \item 1709 \textcolor{blue}{11 [12 if 2’s complement]}
         \item -123 \textcolor{blue}{8}
-        \item -1 \textcolor{blue}{2}
+        \item -2 \textcolor{blue}{2}
         \item 0 \textcolor{blue}{1}
     \end{enumerate}
     \item \textbf{Representing a Number Using Two's Complement Representation}: Give the 6-bit two's complement representation of the value of the following decimal values
@@ -93,7 +93,7 @@
     \end{enumerate}
     \item \textbf{Two's Complement Subtraction}: If these numbers are in two’s complement representation subtract the numbers.
     \begin{enumerate}[label=(\roman*)]
-        \item 101001 - 111111 \textcolor{blue}{1101010}
+        \item 101001 - 111111 \textcolor{blue}{101010}
         \item 001101 - 001010 \textcolor{blue}{0000011}
         \item 110010 - 110110 \textcolor{blue}{100}
         \item 111100 - 000110 \textcolor{blue}{110110}
@@ -213,16 +213,16 @@
         }
         \end{center}
         \columnbreak
-        F1 (SOP) = \textcolor{blue}{A'B'C'+CD+A'BC+AC'D'}
+        F1 (SOP) = \textcolor{blue}{A'B'C'+CD+A'BC+B'C'D'+ABD}
         \newline
         \newline
-        F1 (POS) = \textcolor{blue}{(A’+C+D’)(A+B’+C)}
+        F1 (POS) = \textcolor{blue}{(B'+C+D)(A+B'+D)(A'+B+C+D')\\ (A+B+C')(A'+C'+D)}
         \newline
         \newline
-        F2 (SOP) = \textcolor{blue}{A’B’+A’C}
+        F2 (SOP) = \textcolor{blue}{A'C'D'+ABC'+B'CD+A'BC+ACD'}
         \newline
         \newline
-        F2 (POS) = \textcolor{blue}{A’(B’+C)}
+        F2 (POS) = \textcolor{blue}{(A+C+D')(A'+B'+C'+D')\\(A'+B+C')(A+B+C'+D)}
         \newline
         \newline
         \end{multicols}
@@ -281,12 +281,8 @@ S1 / S0- & F \\
 \hline
 00 & 0 \\
 01 & 1 \\
-11 & 0 \\
-10 & 0 \\
-01 & 1 \\
 11 & 1 \\
 10 & 0 \\
-01 & 1 \\
 \hline
 \end{tabular}
 \caption{F Solutions }
@@ -352,7 +348,7 @@ S1S0 & I=0 & I=1 \\
 \caption{S0+ Solutions}
 \end{table}
             \item Give their minimal SOP Boolean logic expressions \newline\textcolor{blue}{S2+ = S1’S0’+S2’S1S0+S2S0’\newline
-S1+ = S1’S0+S2’So+S2S1S0’\newline
+S1+ = S1’S0+S2’S0+S2S1S0’\newline
 S0+ = S2}
         \end{enumerate}
         \begin{multicols}{2}
@@ -474,7 +470,7 @@ R = S1S0}
         \item \textbf{LC-3 FSM Concepts (Von Neumann model)}: Answer the conceptual questions below:
         \begin{enumerate}[label=(\roman*),itemsep = 10pt]
             \item What are the first 3 FSM instructions the LC-3 executes with each line of code in memory?
-            \newline \textcolor{blue}{$MAR<-PC, PC<-PC+1$ \newline $MDR <-M$ \newline $IR<-MDR$}
+            \newline \textcolor{blue}{$MAR \leftarrow PC, PC\leftarrow PC+1$ \newline $MDR \leftarrow M$ \newline $IR \leftarrow MDR$}
             \item If the ALUK value is 00, what is the opcode of the line currently being performed?
             \newline \textcolor{blue}{ADD}
             \item How many gates (that go to BUS) can be active at a time?
@@ -501,6 +497,13 @@ R = S1S0}
             \newline \textcolor{blue}{ADD R0, R0, R1}
             \newline \textcolor{blue}{ST R0, \#2}
             \item Given two values in x3004 and x3005 store their product in x3006
+            \\ \textcolor{blue}{LD R0, \#9}
+            \\ \textcolor{blue}{LD R1, \#9}
+            \\ \textcolor{blue}{ADD R2, R1, \#0}
+            \\ \textcolor{blue}{ADD R1, R1, R2}
+            \\ \textcolor{blue}{ADD R0, R0, \#-1}
+            \\ \textcolor{blue}{BRp \#-3}
+            \\ \textcolor{blue}{ST R0, \#5}
         \end{enumerate}
         \item \textbf{String Programming}: After the following code executes, what will be printed to the console? Assume that the data in the table has already been loaded into memory when the code is run.
         \newline
