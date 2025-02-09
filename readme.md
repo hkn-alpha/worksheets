@@ -1,4 +1,7 @@
 # Worksheets LaTeX files
+## How to use LaTeX
+Check `guide.pdf`!
+
 ## How to render
 Web:
 Use https://www.overleaf.com/
