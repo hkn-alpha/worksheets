@@ -1,0 +1,608 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+
+\usepackage{amsmath}
+\usepackage{hyperref}
+
+\title{ECE220 Midterm 2 Review}
+\author{Author: Members of HKN}
+\date{Fall 2024}
+
+\newcommand{\dd}[1]{\mathrm{d}#1}
+
+\usepackage[makeroom]{cancel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{multicol}
+\usepackage{xcolor}
+\usepackage{listings}
+
+\definecolor{mGreen}{rgb}{0,0.6,0}
+\definecolor{mGray}{rgb}{0.5,0.5,0.5}
+\definecolor{mPurple}{rgb}{0.58,0,0.82}
+\definecolor{backgroundColour}{rgb}{1,1,1}
+\newcommand{\wideunderscore}{\underline{\hphantom{n}}}
+
+\lstdefinestyle{CStyle}{
+    backgroundcolor=\color{backgroundColour},   
+    commentstyle=\color{mGreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{mGray},
+    stringstyle=\color{mPurple},
+    basicstyle=\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    language=C,
+    escapechar=\@
+}
+
+\pagenumbering{arabic}
+
+\begin{document}
+
+\maketitle
+
+\section{
+    Recursion and Arrays
+}
+
+\begin{enumerate}[label=(\alph*), itemsep = 120pt]
+    \item \textbf{All Possible Paths}: Given a 2D square grid with obstacles, write a recursive function to count the total number of paths from the top-left cell to the bottom-right cell. You can only move right or down, and you can only move into squares on the grid marked as '0', and most not leave the bounds of the grid. N is provided as the length of the side of the square grid.
+    
+    A function skeleton for num\_paths() has been provided for you, fill in the blanks. You must also fill in the blanks in the main() function to the first call of num\_paths().
+
+    \begin{lstlisting}[style=CStyle]
+    int array[N * N] = 
+    {
+    0, 0, 0, 0,
+    0, 1, 0, 0,
+    0, 1, 1, 0,
+    0, 0, 0, 0 
+    }
+    
+    int main() {
+      answer = num_paths(||array, 0, 0||);
+      printf("Num paths = %d", answer );
+      return 0;
+    }
+    
+    int num_paths(int array[], int x, int y) {
+      
+      int paths = 0;
+      // Reached destination
+      if (__________________) {
+        return 1;
+      }
+      // Out of bounds
+      if (__________________) {
+        return 0;
+      }
+      // Obstacle
+      if (array[__________________] == 1) {
+        return 0;
+      }
+      
+      // Recursive Cases
+      paths += num_paths(__________________, __________________, __________________);
+      paths += num_paths(__________________, __________________, __________________);
+    
+      return paths;
+    } \end{lstlisting}
+
+
+\item  \textbf{Minesweeper}: Minesweeper is a game where you are presented with a grid and you try not to step on a bomb. We present you a simplified version of minesweeper. When you tap on a cell, there are three possibilities. \newline \newline
+    1) if the cell is surrounded by at least one bomb, the cell is marked with the number of bombs it neighbors. \newline
+    2) The cell itself has a bomb, in which case the game is over. \newline
+    3) If no bombs surround the cell, then all of its neighboring cells are marked by how many bombs neighbor them. Of course, if a neighboring cell has no bombs, the process repeats for that cell. This is where recursion comes into play. For example, given a sample hidden grid and the corresponding sample blank player grid: 
+    \newline
+    
+    
+   
+    
+     \begin{center}
+      Hidden grid: \newline
+    \begin{tabular}{ | c | c | c | c | c |}
+    \hline
+      x &  & x & x & x \\
+      \hline
+       &  &  &  &  \\
+      \hline
+       &  &  & x &  \\
+      \hline
+       &  &  &  &  \\
+      \hline
+    \end{tabular}
+    \end{center}
+
+     \begin{center}
+     Player grid: \newline
+    \begin{tabular}{ | c | c | c | c | c |}
+    \hline
+       &  &  &  &  \\
+      \hline
+       &  &  &  &  \\
+      \hline
+       &  &  &  &  \\
+      \hline
+       &  &  &  &  \\
+      \hline
+    \end{tabular}
+    \end{center}
+
+    If you tap on the cell at row 1, column 1, the output player grid should look like 
+
+     \begin{center}
+    \begin{tabular}{ | c | c | c | c | c |}
+    \hline
+       &  &  &  &  \\
+      \hline
+       & 2 &  &  &  \\
+      \hline
+       &  & &  &  \\
+      \hline
+       &  &  & &  \\
+      \hline
+    \end{tabular}
+    \end{center}
+
+    However, if you tap on the cell at row 2, column 1, the output player grid should look like 
+
+     \begin{center}
+    \begin{tabular}{ | c | c | c | c | c |}
+    \hline
+       &  &  &  &  \\
+      \hline
+       1& 2 & 3 &  &  \\
+      \hline
+       0 &  0 &  1&  &  \\
+      \hline
+       0 & 0 &  1&  &  \\
+      \hline
+    \end{tabular}
+    \end{center}
+
+    A function skeleton for fillPlayerGrid() has been provided for you. It takes in 6 parameters: \newline \newline
+    toFill: this is an int array in row-major representing what the player grid should look like after the tap. All cells are initialized to -1, indicating unmarked cells. You are tasked with filling in this array so that it represents the player grid after a tap at a certain cell. \newline \newline
+    hiddenGrid: This is an int array in row-major where a 1 represents a bomb in that cell and a 0 represents no bombs. 
+    We have also provided a helper function, countBombs(), which takes in a hidden grid and indices r and c and returns you how many bombs neighbor that cell.  \newline \newline
+    r: this is an integer representing the row of the cell tapped. You may assume it is in-bounds. \newline \newline
+    c: this is an integer representing the column of the cell tapped. You may assume it is in-bounds.\newline \newline
+    rows: this is an integer representing the number of rows of the grid. \newline \newline
+    columns: this is an integer representing the number of columns of the grid.
+    
+    Fill in the blanks for fillPlayerGrid().
+
+
+    \begin{lstlisting}[style=CStyle]
+        
+    
+        /*
+            toFill -- array represented in row-major where all cells are initialized with -1s. 
+            Your job is to fill in the corresponding cells.
+            hiddenGrid -- array represented in row-major with locations of the bombs
+            r -- row index of current cell
+            c -- column index of current cell
+            rows -- number of rows in the grid
+            columns -- number of columns in the grid
+    
+            You are given a helper function, countBombs(). 
+            Given a cell at (r,c), it returns the number of neighboring bombs at that cell.
+            Function signature:
+
+
+            int countBombs(int * hiddenGrid, int r, int c, int rows, int columns)
+            The parameters are the same as above.
+        */
+
+        
+        
+        void fillPlayerGrid(int * toFill, int * hiddenGrid, int r, int c, int rows, int columns) 
+        {
+
+            //Base Case: There is a bomb AT the cell
+            if (hiddenGrid[r * columns + c])
+            {
+                return;
+            }
+            //Base Case: The cell has at least one neighboring bomb cell
+            // get number of neighboring bombs using countBombs()
+            int centerBombs = __________; 
+            if (___________ )  // If number of bombs is not zero
+            {
+                // Set toFill at (r,c) to the number of bombs
+                toFill[________] = centerBombs;
+                return;
+            }
+
+            /* Recursive case: The cell has zero neighboring bomb cells; check its neighbors */
+            // go from the previous row to the next row
+            for (int x = _________; x <= ________; x++)  
+            {
+                if ( ________________ ) // check if we are in row bounds
+                {
+                    // Go from the previous column to the next column
+                    for (int y = ____ ; y <= _____ ; y ++ ) 
+                    {
+                        if ( _________)  // check if we are in column bounds
+                        {
+                        /* check if this is not the same cell at (r,c) */
+                            if ( ___________ ) 
+                            {   
+                                /*  get count of number of neighboring bomb cells for cell (x,y) */
+                                int bombs = _________________________; 
+                                // If we haven't already updated toFill at (x,y)
+                                if (toFill[_____________]  == -1  ) 
+                                {
+                                    /* if the cell at (x,y) has at least one neighboring bomb */
+                                    if (__________ ) 
+                                    {
+                                        toFill[_____________] = bombs;
+                                    } else
+                                    {
+                                        toFill[_____________] = _______;
+                                        //Recursively call using x and y
+                                        fillPlayerGrid(_______, ______, ______, _____, ______, _______); 
+                                    }
+                                }
+                                
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    \end{lstlisting}
+
+    
+\end{enumerate}
+
+\newpage
+\section{C to Lovely LC3 Conversion}
+\begin{enumerate}[label=(\alph*), itemsep = 120pt]
+    \item \textbf{1.}: Gana decides to write a function to calculate his score on STAT 400 exams based on a measure of how much sleep, studying, and food he has. He came up with the code below:
+
+        \begin{lstlisting}[style=CStyle]
+int score(s, ss, f) {
+    int score;
+    score = ss + f - s;
+    return score;
+}
+
+int Gana()
+{
+    int sleep = 8;
+    int study = 7;
+    int food = 3;
+
+    return score(sleep, study, food);
+    
+} \end{lstlisting}
+\textbf{Caller setup}: Please complete the Lc3 code and how the RTS diagram looks like after caller setup. Assume that sleep, study, and food are stored in R1, R2, and R3 respectively. Please ensure to draw where R6 and R5 are after caller setup ends. Assume the values for the variables have already been set in the stack.
+
+RTS:
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+
+
+LC3 code: 
+
+; assume variables have already been set
+; Please load sleep, study, and food into R1, R2, and R3 
+ ; respectively 
+
+\begin{itemize}
+    \item 
+    \item 
+    \item
+\end{itemize}
+; Push score() arguments (only update stack pointer once)
+\begin{itemize}
+    \item 
+    \item 
+    \item
+    \item
+\end{itemize}
+; call score()
+\begin{itemize}
+    \item 
+\end{itemize}
+
+
+  \textbf{Callee setup}: After callee setup ends, Please draw what the stack looks like, including updated R6 and R5 values 
+  
+RTS:
+ \newline
+ \newline
+ \newline
+ \newline
+ \newline
+ \newline
+ \newline
+ \newline
+ \newline
+ \newline
+ 
+ LC3 code:
+  \newline
+; Set up bookkeeping information and allocate space
+\newline
+; for the local variable (only update stack pointer once) 
+ \begin{itemize}
+    \item  
+    \item   
+    \item   
+    \item     
+\end{itemize}
+
+
+
+\textbf{Function Logic}:
+\newline
+; Pop out variables into R2, R3, R4
+\newline
+; add up everything, store result into R4
+\newline
+; store R4 into score
+\newline
+; return to caller
+ \begin{itemize}
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    \item 
+    
+    
+\end{itemize}
+
+\textbf{Callee Teardown}: Please write the code for callee teardown, and then fill in the RTS after Callee Teardown has occurred. Make sure to include where R5 and R6 are as well!
+RTS:
+\newline
+\newline
+\newline
+\newline
+\newline
+\newline
+\newpage
+LC3:
+\newline
+; store score in return value, using R0 as a temp register
+\begin{itemize}
+    \item 
+    \item 
+\end{itemize}
+; restore R7, restore CFP, and deallocate space on the stack
+
+\begin{itemize}
+    \item 
+    \item 
+    \item 
+    \item
+\end{itemize}
+
+
+    \textbf{Caller Teardown}: Complete caller teardown, and show what RTS looks like after Caller teardown completes (make it look like how it was when we started the first question, not full caller teardown)
+    \newline
+RTS:
+    \newline
+    \newline
+    \newline
+    \newline
+    \newline
+    \newline
+    \newline
+
+
+
+
+
+
+LC3:
+\newline
+; Pop Return value into R3
+\newline
+; finish tearing down stack 
+ \begin{itemize}
+    \item 
+    \item 
+    
+\end{itemize}
+
+\end{enumerate}
+\newpage
+\section{Conceptual}
+\begin{enumerate}[label=(\alph*), itemsep = 120pt]
+    \item \textbf{Stack}: When using a stack, when you pop an item off the stack, is it removed from memory?
+    \item \textbf{Pointers}: Assume we declare 4 separate pointer variables in a C program as shown below.
+    \begin{lstlisting}[style=CStyle]
+    int* david;
+    char* eisa;
+    float* kyle;
+    void* xavier;
+    \end{lstlisting}
+    Which one of these variables takes up the most space in memory?
+    \newline
+    a. david
+    \newline
+    b. eisa
+    \newline
+    c. kyle
+    \newline
+    d. xavier
+    \newline
+    e. they are the same size
+    \newline
+    f. They take up no memory space
+    \item \textbf{Recursion}: What are some potential downsides in a recursive solution?
+    \newpage
+    \item \textbf{2D Arrays}: Suppose we have a 2d array stored in column major order as. 
+    \begin{center}
+    \begin{tabular}{ | c | c | c | c | c |}
+    \hline
+      123 & 93 & 0 & 76 & 67 \\
+      \hline
+      921 & 82 & 10 & 4 & 5 \\
+      \hline
+      42 & 13 & 43 & 1 & 65 \\
+      \hline
+      100 & 2 & 54 & 10 & 32 \\
+      \hline
+    \end{tabular}
+    \end{center}
+    How do you access the array to retrieve the element '9'? Assume the array is declared as array[4][5]. Write two answers using both 1d and 2d array notation.
+    \item \textbf{Passing Pointers}: Explain the importance of having the parameters of this function be pointers.
+    
+    \begin{lstlisting}[style=CStyle]
+void swap(int@$^*$@ a, int@$^*$@ b)
+{
+    int temp;
+    temp = @$^*$@a;
+    @$^*$@a = @$^*$@b;
+    @$^*$@b = temp;
+} \end{lstlisting}
+\item \textbf{Arrays}: in C, Arrays in functions are...
+\newline
+a. Pass by reference 
+\newline
+b. Pass by value
+\newline
+c. Either/or
+
+\newpage
+\item \textbf{Rambunctious Recursion}: When writing a recursive algorithm, what is the goal of each recursive step? (Hint: The base case represents the simplest form of the problem)
+
+  \item \textbf{Sorting algorithms}: Which type of sorting algorithm is written below?
+\begin{lstlisting}[style=CStyle]
+void sort(int arr[], int n) {
+    int i, j;
+    for (i = 0; i < n - 1; i++)
+        for (j = 0; j < n - i - 1; j++)
+            if (arr[j] > arr[j+1])
+                swap(&arr[j], &arr[j + 1]);
+}\end{lstlisting}
+
+        \item \textbf{Midpoint}: What is wrong with Lucas' recursive midpoint function?
+        
+\begin{lstlisting}[style=CStyle] 
+find@\wideunderscore@midpoint(int a, int b) {
+    if (a == b) { return a; }
+    else { return find_midpoint(a+1, b-1); }
+}\end{lstlisting}
+
+    \newpage
+    \item \textbf{Recursive Reversal}: What is the output of this program? If there is an error in ReverseArray, identify the line and fix it? (Hint: it might be nice and helpful to print every step of Reverse Array)
+
+\begin{lstlisting}[style=CStyle] 
+void ReverseArray(int array[], int size) {
+    int start = 0;
+    int end = size - 1;
+    int temp;
+    
+    if (start < end) {
+        // Swap First and Last
+        temp = array[start];
+        array[start] = array[end];
+        array[end] = temp;
+        
+        ReverseArray(array, size-1);
+    }
+}
+int main(){
+    int array[5], i;
+    for (i = 0; i<5; i++){
+        array[i] = i;
+    }
+    ReverseArray(array, 5);
+    printf("Reversed Array: ");
+
+    for (i = 0; i<5; i++){
+        printf("%d ", array[i]);
+    }
+    printf("\n");
+    return 0;
+}\end{lstlisting}
+
+\item \textbf{Arrays on stack}: Rahul initializes an array and calls a function"print" on it. Please write what the RTS looks like after Callee setup.
+\begin{lstlisting}[style=CStyle] 
+int main{
+    int agi = 1;
+    char arr[5] = {'R', 'A', 'H', 'U', 'L'};
+    print(char, agi);
+}
+\end{lstlisting}
+\newpage
+\item \textbf{Alternative Indexing}: Fill in the blanks to make the two arrays have identical values.
+\begin{lstlisting}[style=CStyle] 
+int array1[4][2];
+int array2[8];
+int i, j;
+for (i = 0; i < 2; i++) {
+    for(j = 0; j < 4; j++) {
+    array1[______][______] = i + j;
+    array2[_______] = i + j;
+    }
+}
+\end{lstlisting}
+\end{enumerate}
+\newpage
+\section{Extra Problems}
+\begin{enumerate}[label=(\alph*),itemsep = 120pt]
+\item \textbf{Difficult Student Sort}: Fill In the blanks to find the student with the highest GPA and store a pointer to them in best\_student
+\begin{lstlisting}[style=CStyle] 
+typedef struct StudentStruct {
+    int UIN;
+    float GPA;
+} Student;
+
+int main () {
+    Student all_students[5];
+    // Load data into all students:
+    load_students(all@\wideunderscore@students, 5);
+    // Find the student with the highest GPA:
+    Student* best@\wideunderscore@student = _________
+    find@\wideunderscore@best(all@\wideunderscore@students, 5, __________ );
+    printf("Best GPA:%f\n",  __________);
+}
+
+void find@\wideunderscore@best(Student* all, int num@\wideunderscore@students, Student** best) {
+    for (int i = 0; i < num@\wideunderscore@students; i++) {
+        if (all[i].GPA > __________) {
+            __________//Fill:
+        }
+    }
+}
+
+\end{lstlisting}
+ \item \textbf{C to LC3}: Convert the following C function into LC3 using Callee Setup and Teardown.
+    \begin{lstlisting}[style=CStyle] 
+int foo(int a, int b) {
+    int x;
+    x = a + b;
+    return x;
+}\end{lstlisting}
+
+\end{enumerate}
+\end{document}
