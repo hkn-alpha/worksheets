@@ -67,12 +67,16 @@
 \begin{document}
 \maketitle
 
+% 2.25, added ending statement about rotated arrangements being equivalent
 \begin{exercise}
-Alex is organizing a focus group to figure out how best he can market his homemade rocket engine. He has a group of 6 women and 6 men. To ensure impartiality, he wants to seat them in such a way that the women and men alternate (the women are not sitting next to another woman and the men are not sitting next to another man). He has to seat them around a round table. How many ways can he seat these people?
+\newline
+Alex is organizing a focus group to figure out how best he can market his homemade rocket engine. He has a group of 6 women and 6 men. To ensure impartiality, he wants to seat them in such a way that the women and men alternate (the women are not sitting next to another woman and the men are not sitting next to another man). He has to seat them around a round table. How many ways can he seat these people? (Seating arrangements with the same order rotated around the table are interchangeable).
 \end{exercise}
 
+%2.25, added clarification about all games being played with four ub dice
 \begin{exercise}
-Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games and play the ones where he is most likely to win.
+\newline
+Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games, involving four unbiased dice, and play the ones where he is most likely to win.
 \begin{enumerate}[label=\Alph*.]
     \item Calculate the probability that the sum of the 4 dice is 6.
     \item Calculate the probability that no more than 2 of the dice show a 2.
@@ -113,12 +117,14 @@ Tabish has a gambling addiction and decides he can double EWB's savings by going
     Jitao loves to play basketball. Suppose the probability that he hits a shot is 25\%. How many shots does he need to take to make sure that there’s a 90\% chance he makes at least one? %(Tail probability of Geometric distribution.)
 \end{exercise}
 
+%2.25 matched question with solution, L > 2 not L >=2
 \begin{exercise}
-    Imagine you are playing a game where you need to flip an unfair coin until you get heads. The probability of getting heads on any flip is 0.6. You have already flipped the coin three times, and all flips have been tails. What is the probability that you will need to flip the coin at least two more times to get the first heads? %(Memoryless probability of geometric distribution)
+    Imagine you are playing a game where you need to flip an unfair coin until you get heads. The probability of getting heads on any flip is 0.6. You have already flipped the coin three times, and all flips have been tails. What is the probability that you will need to flip the coin more than two more times to get the first heads? %(Memoryless probability of geometric distribution)
 \end{exercise}
 
+%2.25 matched question with solution, Markov is <= not <
 \begin{exercise}
-    Suppose the watch time of a YouTube video, X, is a random variable. The average watch time is 10 minutes. Find an upper bound for the proportion of views that lasted more than 25 minutes. %(Markov Inequality)
+    Suppose the watch time of a YouTube video, X, is a random variable. The average watch time is 10 minutes. Find an upper bound for the proportion of views that lasted at least 25 minutes. %(Markov Inequality)
 \end{exercise}
 
 \begin{exercise}
@@ -141,8 +147,10 @@ Tabish has a gambling addiction and decides he can double EWB's savings by going
     Aditya's hardware verification team is responsible for verifying a new mind control brain implant chip. Historical data shows that the probability of any given test resulting in a bug discovery is 0.2. The team decides to continue testing until they discover 5 bugs. What is the probability that they will discover the 5th bug on the 10th test?%(Negative Binomial distribution)
 \end{exercise}
 
+%2.25 made the list of questions look better
+%2.25 changed complaint probability to 20% to match solution
 \begin{exercise}
-    After receiving his PhD in Computer Engineering, Pradyun starts working at Intel as a call center manager. Pradyun's department receives 600 calls per hour. Historical data since Pradyun's hiring suggests the chance of each call receiving a complaint has increased to 5\%. 
+    After receiving his PhD in Computer Engineering, Pradyun starts working at Intel as a call center manager. Pradyun's department receives 600 calls per hour. Historical data since Pradyun's hiring suggests the chance of each call receiving a complaint has increased to 20\%. 
     \begin{enumerate}
     \item Calculate the probability of exactly 2 complaints tickets being generated in one hour. 
     \item Calculate the number of hours until Pradyun receives 2 complaints.
@@ -162,22 +170,23 @@ Say that two players take turns flipping a coin. The first person to get heads w
 Express the summation $\sum_{k=0}^{n}\binom{n}{k}a^kb^{n-k}$ in closed form.
 \end{exercise}
 
+%2.25 Matched list formatting with the solutons
 \begin{exercise}
 Pramod has a crippling addiction to caffeine, so he decides to buy a mystery box of Red Bulls from County Market since it was on sale. The box contains 4 orange cans, 3 green cans, 6 red cans, and 5 blue cans. Red Bull is his favorite drink in the whole wide world, so he decides to number each can, making them distinct. 
-\newline
-How many ways can he pick 2 red cans?
-\newline
-How many ways can he pick out 2 orange cans and 3 blue cans?
-\newline
-Say S is the set of all subsets of size 2 of the set consisting of all of the cans of Red Bull. What is the magnitude of S?
+\begin{enumerate}
+\item How many ways can he pick 2 red cans?
+\item How many ways can he pick out 2 orange cans and 3 blue cans?
+\item Say S is the set of all subsets of size 2 of the set consisting of all of the cans of Red Bull. What is the magnitude of S?
+\end{enumerate}
 \end{exercise}
 
+%2.25 Matched list formatting with the solutions
 \begin{exercise}
 Steve the ECE major has procrastinated on his assignment and the code he wrote is not compiling. If he goes to sleep right now the number of bugs in his code, X, can be modeled by a Poisson distribution with a mean $\lambda_1$ = 2. If he pulls an all nighter, X has the Poisson distribution with a parameter of $\lambda_0$ = 6. 
-\newline
-Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
-\newline
-Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep ($\pi_1$ / $\pi_0$ = 2). Express the MAP decision rule, based on the observation of X, under this new assumption. 
+\begin{enumerate}
+\item Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
+Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep ($\pi_1$ / $\pi_0$ = 2). \item Express the MAP decision rule, based on the observation of X, under this new assumption. 
+\end{enumerate}
 \end{exercise}
 
 \begin{exercise}
@@ -226,29 +235,3 @@ Given that Var(X/n) = 1/n^2 Var(X) = 1/4n
 The probability of surviving a night at Circle-K is 20%. Suppose you spend 5 nights at Circle-K. Find a bound for the probability that you survive at least 3 nights. (Hint: Use Markov's Inequality)
 
 Solution: Let X be the number of nights you survive. Given that n = 5, p = 0.2, E[x] = 1. Required Probability : P(X >= 3) <= E[X]/3 = 1/3 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
