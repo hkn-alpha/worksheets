@@ -51,7 +51,7 @@
 \renewcommand{\C}{\mathbb{C}}
 \newcommand{\R}{\mathbb{R}}
 \newcommand{\Q}{\mathbb{Q}}
-\newcommand{\F}{\mathbb{F}}
+\renewcommand{\F}{\mathbb{F}}
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\re}{\textup{Re}}
 \newcommand{\im}{\textup{Im}}
@@ -92,16 +92,17 @@
 \begin{document}
 \maketitle
 
+% 2.25, added ending statement about rotated arrangements being equivalent
 \begin{exercise}
-Alex is organizing a focus group to figure out how best he can market his homemade rocket engine. He has a group of 6 women and 6 men. To ensure impartiality, he wants to seat them in such a way that the women and men alternate (the women are not sitting next to another woman and the men are not sitting next to another man). He has to seat them around a round table. How many ways can he seat these people
+Alex is organizing a focus group to figure out how best he can market his homemade rocket engine. He has a group of 6 women and 6 men. To ensure impartiality, he wants to seat them in such a way that the women and men alternate (the women are not sitting next to another woman and the men are not sitting next to another man). He has to seat them around a round table. How many ways can he seat these people? (Seating arrangements with the same order rotated around the table are interchangeable).
 \begin{answer}We can start off by seating the first woman. Since we are seating people around a round table, the seat where we place the first woman does not matter. We now have 5! ways of organizing the remaining 5 women. Now, we can seat the men. We have 6! ways of seating the 6 men, so we have 5!*6! ways of seating all 12 of these people.
 \end{answer}
 \end{exercise}
 
  
-
+%2.25, added clarification about all games being played with four ub dice
 \begin{exercise}
-Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games and play the ones where he is most likely to win.
+Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games, involving four unbiased dice, and play the ones where he is most likely to win.
 \begin{enumerate}[label=\Alph*.)]
 \item Calculate the probability that the sum of the 4 dice is 6. 
 \begin{answer}There are only 2 combinations of 4 dices that give us a sum of 6: three 1's and one 3 or two 2's and two 1's. We have $\binom{4}{1}$ ways of getting three 1's and one 3, and we have $\binom{4}{2}$ ways of getting two 2's and two 1's, so that gives us $\binom{4}{1}+\binom{4}{2}$ acceptable rolls of the dice. We have $6^4$ possible rolls, so the probability that the sum of the dice is equal to 6 is $\frac{\binom{4}{1}+\binom{4}{2}}{6^4}$.
@@ -192,20 +193,20 @@ We first choose which two dice show different values, giving us $\binom{4}{2}$ w
 \end{exercise}
 
  
-
+%2.25 matched question with solution, L > 2 not L >=2
 \begin{exercise}
-    Imagine you are playing a game where you need to flip an unfair coin until you get heads. The probability of getting heads on any flip is 0.6. You have already flipped the coin three times, and all flips have been tails. What is the probability that you will need to flip the coin at least two more times to get the first heads? %(Memoryless probability of geometric distribution)
+    Imagine you are playing a game where you need to flip an unfair coin until you get heads. The probability of getting heads on any flip is 0.6. You have already flipped the coin three times, and all flips have been tails. What is the probability that you will need to flip the coin more than two more times to get the first heads? %(Memoryless probability of geometric distribution)
     \begin{answer}
     Notice that this is can be described with a geometric distribution, and geometric distributions have the memoryless property. We take the tail probability with $k = 2$ and $p = .6$. $P\{L > 2\} = (1 - .6)^2 = .16$
     \end{answer}
 \end{exercise}
 
  
-
+%2.25 matched question with solution, Markov is <= not <
 \begin{exercise}
-    Suppose the watch time of a YouTube video, X, is a random variable. The average watch time is 10 minutes. Find an upper bound for the proportion of views that lasted more than 25 minutes. %(Markov Inequality)
+    Suppose the watch time of a YouTube video, X, is a random variable. The average watch time is 10 minutes. Find an upper bound for the proportion of views that lasted at least 25 minutes. %(Markov Inequality)
     \begin{answer}
-        We have $\E[X] 10$. By Markov,
+        We have $\E[X] = 10$. By Markov,
         \[
             \P(X \geq 2.5\E[X]) \leq \frac{1}{2.5} = 0.4
         \]
@@ -214,10 +215,13 @@ We first choose which two dice show different values, giving us $\binom{4}{2}$ w
 \end{exercise}
 
  
-
+%2.25, there was no answer for this question so I added one
 \begin{exercise}
     Suppose we would like to estimate the fraction $p$ of ECE students taking ECE 313 this semester. $p$ is estimated by $\widehat{p}=\frac{X}{n}$, where $n$ is the sample size and $X$ is number of students taking the class in the sample. If $p$ is to be estimated to within 0.1 with 75\% confidence, what’s the minimum size of the sample? %(Confidence interval)
 \end{exercise}
+\begin{answer}
+    We will use a confidence interval to solve this problem. A confidence interval takes the form: Probability of $p$ is in range $(\hat{p} - \frac{a}{2\sqrt{n}}, \hat{p} + \frac{a}{2\sqrt{n}}) \geq 1 - \frac{1}{a^2}$. We want a probability of 75\% that p is in this range, so $1 - \frac{1}{a^2} = 0.75$, $\frac{1}{a^2} = 0.25$, $a = 2$. We want our interval to be within 0.1 of \hat{p}, so $\frac{a}{2\sqrt{n}} = 0.1$, $\frac{1}{\sqrt{n}} = 0.1$, $\sqrt{n} = 10$, $n = 100$. The minimum sample size is 100 people.
+\end{answer}
 
  
 
@@ -257,9 +261,9 @@ We first choose which two dice show different values, giving us $\binom{4}{2}$ w
 \end{exercise}
 
  
-
+    %I changed the chance to 20 percent to reflect the solution
 \begin{exercise}
-    After receiving his PhD in Computer Engineering, Pradyun starts working at Intel as a call center manager. Pradyun's department receives 600 calls per hour. Historical data since Pradyun's hiring suggests the chance of each call receiving a complaint has increased to 5\%. 
+    After receiving his PhD in Computer Engineering, Pradyun starts working at Intel as a call center manager. Pradyun's department receives 600 calls per hour. Historical data since Pradyun's hiring suggests the chance of each call receiving a complaint has increased to 20\%. 
     \begin{enumerate}
     \item Calculate the probability of exactly 2 complaints tickets being generated in one hour. 
     \item Calculate the expected number of hours until Pradyun receives 2 complaints.
@@ -334,27 +338,32 @@ Steve the ECE major has procrastinated on his assignment and the code he wrote i
     \item Design an ML decision rule to decide, based on the observation of X, that determines whether Steve pulled the all nighter or not.
     \item Suppose Steve did not learn from his mistakes and throughout the semester he pulls all nighters twice as often as going to sleep ($\pi_1$ / $\pi_0$ = 2). Express the MAP decision rule, based on the observation of X, under this new assumption. 
 \end{enumerate}
-
+\begin{answer}
+\begin{enumerate}
+    \item We denote the observation of X as k. A ML Decision Rule can be created by finding $\Lambda(k) = \frac{p1(k)}{po(k)}$, where $p_{1}(k)$ and $p_{0}(k)$ are the probabilities of k occuring for distributions 1 or 0. For Poisson distributions with $\lambda_{1} = 2$ and $\lambda_{1} = 6$, $p_{1}(k) = \frac{2^{k}e^{-2}}{k!}$, $p_{0}(k) = \frac{6^{k}e^{-6}}{k!}$. $\Lambda(k) = \frac{p1(k)}{po(k)} = \frac{2^{k}e^{-2}}{6^{k}e^{-6}} = \frac{e^4}{3^k}$. Our ML decision rule predicts that Steve went to sleep if $\frac{e^4}{3^k} > 1$, and that Steve pulled an all-nighter if  $\frac{e^4}{3^k} < 1$.
+    \item We can keep the $\Lambda(k)$ from the ML decision rule to solve this. We can make an MAP decision rule using $\Lambda(k) = \frac{\pi_0}{\pi_1} = \frac{1}{2}$ as our dividing point. Our MAP decision rule predicts that Steve went to sleep if $\frac{2e^4}{3^k} > 1$, and that Steve pulled an all-nighter if  $\frac{2e^4}{3^k} < 1$.
+\end{enumerate}
+\end{answer}
 \end{exercise}
 
  
-
+%2.25 modified solution, Var(X/n) should be 1/4 based on Var(X) = n/4
 \begin{exercise}
 A level 99 archer tower is shooting arrows at an invading army. Each arrow always hits its target and the probability of hitting a barbarian or a goblin is 50/50. How many arrows does the tower need to shoot such that the probability will be at least 0.8 that the ratio of the barbarians to goblins will be between 0.3 and 0.7.
 \begin{answer}
 Let X/n represent the proportion of barbarians killed in battle. Thus E[x] = n*p = $\frac{n}{2}$, Var(X) = n*p*q = $\frac{n}{4}$
 \newline
-P(0.3 $\leq \frac{X}{n} \leq$ 0.7) $\geq$ 0.8
+At least a 0.8 probability of X/n being between 0.3 and 0.7 is equivalent to at most a 0.2 probability that X/n is at or outside of 0.3 and 0.7
 \newline
-P(0.3-0.5 $\leq \frac{X}{n}-0.5 \leq$ 0.7-0.5) $\geq$ 0.8
+Chebychev Inequality: $P\{|X-\mu| \geq d\} \leq \frac{\sigma^2}{d^2}$
 \newline
-P(-0.2 $\leq \frac{X}{n}-0.5 \geq$ 0.2) $\leq$ 0.8
+$\mu = \frac{E[X]}{n} = \frac{1}{2}$, d = 0.2
 \newline
-P($\mid \frac{X}{n}-0.5\mid \leq$ 0.2) $\geq$ 0.8
+$\sigma = \sqrt{Var(X/n)} = \sqrt{4/n}$
 \newline
-Given that Var($\frac{X}{n}$) = $\frac{1}{n^2}$ Var(X) = $\frac{1}{4n}$
+$P\{|X-0.5| \geq 0.2\} \leq \frac{4/n}{0.04}$
 \newline
-0.8 = $1-\frac{1}{k^2}$, where k*omega = 0.2
+$\frac{4/n}{0.04} = 0.2$, $0.008n = 4$, $n=500$
 \end{answer}
 \end{exercise}
 
