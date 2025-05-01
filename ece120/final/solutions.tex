@@ -240,9 +240,15 @@
     \end{multicols}
 \section{Funky FSMs}
     \begin{enumerate}[label=(\alph*)]
-        \item \textbf{FSM Design Application}: Given the FSM below, find:
+        \item \textbf{FSM Design Application}: Given the FSM below:
+        \begin{multicols}{2}
+            \begin{center}
+            \includegraphics[width=6cm]{figures/FSMDesign.png}
+            \end{center}
+            \columnbreak
+        \end{multicols}    
         \begin{enumerate}[label=(\roman*),nolistsep]
-            \item The K-Maps for S1+,S0+, and F
+            \item Find the K-Maps for S1+,S0+, and F
             \begin{table}[h]
 \centering
 \begin{tabular}{|c|c|c|}
@@ -292,16 +298,16 @@ S1 / S0- & F \\
             \newline 
             \includegraphics{figures/ScuffedDiagram.PNG}
         \end{enumerate}
-        \begin{multicols}{2}
-        \begin{center}
-        \includegraphics[width=6cm]{figures/FSMDesign.png}
-        \end{center}
-        \columnbreak
-        \end{multicols}
         \newpage
-        \item \textbf{FSM Counter}: Given the FSM below, find:
+        \item \textbf{FSM Counter}: Given the FSM below:
+        \begin{multicols}{2}
+            \begin{center}
+            \includegraphics[width=6cm]{figures/FSMClock.png}
+            \end{center}
+            \columnbreak
+        \end{multicols}
         \begin{enumerate}[label=(\roman*),nolistsep]
-            \item The K-Maps for S2+,S1+, and S0+:
+            \item Find the K-Maps for S2+,S1+, and S0+:
             \newline
 \begin{table}[h]
 \centering
@@ -351,12 +357,6 @@ S1S0 & I=0 & I=1 \\
 S1+ = S1’S0+S2’S0+S2S1S0’\newline
 S0+ = S2}
         \end{enumerate}
-        \begin{multicols}{2}
-        \begin{center}
-        \includegraphics[width=6cm]{figures/FSMClock.png}
-        \end{center}
-        \columnbreak
-        \end{multicols}
 
     \newpage
     \item \textbf{FSM Sequence Detector}: Generate an FSM that detects the sequence 001: 
@@ -479,7 +479,8 @@ R = S1S0}
             \newline \textcolor{blue}{ADD, AND, NOT, LD, LDI, LDR, LEA}
             \item In the von Neumann model, where is the program stored?
             \newline \textcolor{blue}{Memory}
-            
+            \item How many phases are there in an instruction cycle?
+            \newline \textcolor{blue}{3 phases -- Fetch, Decode, Execute. Each of these might go through multiple states, as described by the control FSM.}
         \end{enumerate}
         \item \textbf{LC-3 Programming}: Write the following functions in RTL (For each part, assume your first line starts at x3000 and all registers are x3000. Each part is independent of the others.)
         \begin{enumerate}[label=(\roman*),itemsep = 10pt]
