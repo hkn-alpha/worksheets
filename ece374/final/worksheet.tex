@@ -1,0 +1,309 @@
+\documentclass[fleqn]{article}
+\usepackage[margin=1in]{geometry}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+\usepackage{hyperref}
+\usepackage{xparse}
+\usepackage{tikz}
+\usetikzlibrary{automata,positioning,decorations.text,topaths,arrows.meta,decorations.pathmorphing,quotes,calc}
+\usetikzlibrary{backgrounds}
+\usetikzlibrary{arrows,shapes}
+\usetikzlibrary{tikzmark}
+\tikzstyle{accepting}=[path picture={%
+  \draw let 
+    \p1 = (path picture bounding box.east),
+    \p2 = (path picture bounding box.center)
+    in
+      (\p2) circle (\x1 - \x2 - 2pt);
+  }]
+\usetikzlibrary {automata,positioning,calc,shapes.geometric} 
+% Pseudocode styling, thanks professor painter!
+\usepackage[plain]{algorithm}
+\usepackage{algorithmicx}
+\usepackage{algpseudocode}
+% allow input as a command for algorithms
+\algnewcommand\algorithmicinput{\textbf{Input:}}
+\algnewcommand\Input{\item[\algorithmicinput]}
+% allow output as a command for algorithms
+\algnewcommand\algorithmicoutput{\textbf{Output:}}
+\algnewcommand\Output{\item[\algorithmicoutput]}
+\algrenewcommand\textproc{\texttt}
+\algnewcommand\algorithmicforeach{\textbf{foreach}}
+\algdef{S}[FOR]{ForEach}[1]{\algorithmicforeach\ #1\ \algorithmicdo}
+
+\usepackage{lmodern}
+% \renewcommand*\familydefault{\sfdefault}
+\newenvironment{lmodern}{\fontfamily{lmss}\selectfont}{\par}
+% \algrenewcommand\ALG@beginalgorithmic{\begin{lmodern}}
+% \algrenewcommand\ALG@endalgorithmic{\end{lmodern}}
+
+\newif\ifanswerkey
+\answerkeytrue
+
+\NewDocumentEnvironment{answer}{ +b }{\ifanswerkey\newline \textbf{Solution:} #1\fi}{}
+
+\title{CS/ECE374 Cramming Carnival Worksheet}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+\begin{center}
+    This worksheet aims to ask problems similar to what you might see on the exam, but wasn't created with knowledge of exam content. Answers are available on the HKN website (\hyperlink{https://hkn.illinois.edu/services}{https://hkn.illinois.edu/services}).
+\end{center}
+
+\section{Regular Expressions}
+Write a regular expression for the following languages:
+\begin{enumerate}
+    \item Strings that contain $01$ as a substring, but not $10$
+    \item Strings where every run of $1$s has odd length
+    \item Strings that contain $101$ as a subsequence
+    \item Strings representing a binary number divisible by $2$
+    \item Strings representing a binary number that's a power of $2$
+    \item Strings where runs of $1$s alternate between odd and even length (starting with odd length)
+\end{enumerate}
+
+\section{Short Answer}
+Answer true or false for each question. Justify your answers.
+\begin{enumerate}
+    \item If $AB$ is not a context-free language, then at least one of $A$ and $B$ is not a CFL.
+    \item If $A$ is regular and $B$ is a CFL, then $AB$ may not be context free.
+    \item If $L$ is not regular, then $L^*$ is not regular.
+    \item When reading a string of length $n$, an NFA with $\epsilon$-transitions will be in at most $n+1$ different states.
+    \item A DFA recognizing strings with $101$ as a subsequence requires at least $2^3 = 8$ states.
+    \item For a regular language $L$, there exists an upper bound on the number of states required to represent $L$ as a DFA.
+\end{enumerate}
+
+\section{Standalone NFAs and DFAs}
+Provide an NFA or DFA that decides each language. Consider why you chose to use one representation over the other.
+\begin{enumerate}
+    \item $L = \{w \in \Sigma^* : \text{101 is a subsequence of}~w\}$
+    \item $L = \{w \in \Sigma^* : \text{101 is a substring of}~w\}$
+    \item $L = \{w \in \{0,1,2\}^* : \sum_{i}w_i \equiv 0~(\text{mod}~5)\}$
+    \item $L = \{w \in \Sigma^* : w = x111~\text{for some}~x \in \Sigma^*\}$
+    \item $L_z = \{w \in \Sigma^* : z~\text{is a prefix of}~w\}$
+\end{enumerate}
+
+\section{Product Construction}
+Let $L_1, L_2, L_3$ be regular languages. Provide an NFA or DFA that decides each language. Your final answer should use tuple notation, and not be a drawing.
+\begin{enumerate}
+    \item $L_{eo} = \{w \in \Sigma^* : \#(1,w) \equiv \#(0, w) \equiv 1~(\text{mod}~2)\}$
+    \item $L = \{w : w \in \overline{L_1 \cup L_2}\}$
+    \item $L = \{w : w~\text{is in at least two of}~L_1,L_2,L_3\}$
+    \item $L = \{w : w~\text{has an odd number of}~1\text{s and contains the subsequence}~101\}$
+    \item $L_{ps} = \{w : w~\text{ends in}~111\wedge ~\text{the digits in $w$ sum to a number not divisible by}~5\}$
+\end{enumerate}
+
+\section{Language Transformations}
+Prove that each of the following languages are regular by creating an NFA, DFA, or regular expression for them.
+\begin{enumerate}
+    \item Let $\Sigma = \{0,1,2\}$ and let $\text{replace}(w)$ replace every $1$
+    in $w$ with a $2$ (ex $\text{replace}(120) = 220$). Define $\text{Two}(L) = \{\text{replace}(w) : w \in L\}$.
+    \item Using $\text{replace}$ as above, define $\text{UnTwo}(L) = \{w \in \Sigma^*: \text{replace}(w) \in L\}$
+    \item Let $\text{prepend}(w)$ prepend $11$ to $w$ (ex $\text{prepend}(10) = 1110$). Define $\text{Prepend}(L) = \{\text{prepend}(w) : w \in L\}$.
+    \item Let $\text{add}(w)$ append $111$ to $w$ (ex $\text{add}(10) = 10111$). Define $\text{Add}(L) = \{\text{add}(w) : w \in L\}$.
+    \item Let $\text{d2}(w)$ delete the second-to-last character of $w$ (ex $\text{d2}(1010) = 100$). Define $\text{D2}(L) = \{\text{d2}(w) : w \in L\}$.
+    \item Using $\text{d2}$ as above, define $\text{A2}(L) = \{w : \text{d2}(w) \in L\}$.
+    \item Let $\text{insert0}(w)$ be a function that generates all the ways to insert a single $0$ into $w$ at an arbitrary location (ex $\text{insert0}(10) = \{010, 100\}$). Define $\text{AddZero}(L) = \cup_{w \in L}\text{insert0}(w)$.
+    \item Using $\text{insert0}$ as above, define $\text{DeleteZero}(L) = \{w \in \Sigma^* : \text{insert0}(w) \cap L \neq \emptyset\}$
+\end{enumerate}
+
+\section{Fooling Sets}
+Find the largest fooling set you can for each of the given languages.
+\begin{enumerate}
+    \item $L = \{0^n w 1^n : w \in \Sigma^* \wedge |w| \leq 3 \wedge n \geq 0\}$
+    \item $L = \{0^n w 1^n : w \in \Sigma^* \wedge n \geq 0\}$
+    \item $L = \{0^n 1^m : n~\text{is divisible by}~m \wedge n,m \geq 0\}$
+    \item $L = \{z0z^r : z \in \Sigma^*\}$
+    \item (Hard.) $L_k = \{w : \text{the}~ k\text{th to last character of}~w~\text{is } 1\}$
+\end{enumerate}
+
+\section{Context Free Languages}
+Write a context-free grammar for each of the provided languages.
+\begin{enumerate}
+    \item $L = \{1^n 0^{3n} : n \geq 0\}$
+    \item $L = \{w \in \Sigma^* : w~\text{has exactly two more }1\text{s than }0\text{s}\}$
+    \item $L = \{w 0^n 1^n w^r : w \in \Sigma^* \wedge n \geq 0\}$
+\end{enumerate}
+
+\noindent Describe the languages generated by each context-free grammar.
+\begin{enumerate}
+    \item 
+    \[
+        \begin{aligned}
+            S \to 00 S 1~|~ \epsilon
+        \end{aligned}
+    \]
+    \item 
+    \[
+        \begin{aligned}
+            S &\to 2 S 3~|~ 3 S 2 ~|~ R \\
+            R &\to 11R ~|~ R00 ~|~ \epsilon
+        \end{aligned}
+    \]
+    \item
+    \[
+        \begin{aligned}
+            S &\to 0 S 1 | 1 S 0 | 1 | 0
+        \end{aligned}
+    \]
+\end{enumerate}
+
+\section{Sums and Recurrences}
+Provide a tight asymptotic upper bound for each of the following sums and recurrences.
+\begin{enumerate}
+    \item $\sum^n_{i=1} i \sqrt{i}$
+    \item $A(n) = 4A\left(\frac{n}{2}\right) + n^2, \quad n \geq 2 \quad \text{and} \quad A(1) = 1$
+    \item $T(n) = 2 T\left(\frac{n}{2}\right) + n^2$
+    \item $T(n) = 4 T\left(\frac{n}{4}\right) + cn$
+    \item $T(n) = \sqrt{n} \cdot T(\sqrt{n}) + 1$ for $n \geq 2, T(2) = 1$
+\end{enumerate}
+
+\section{Graphs - Conceptual}
+\begin{enumerate}
+    \item Draw a small connected graph $G$ and label a node $s$ of G such that the following properties hold: (i) $G$ has a cycle (ii) $G$ does not have a cycle containing $s$ and (iii) degree of $s$ is at least 2
+
+    \item Let $G = (V, E)$ be an undirected graph and let $s \in V$. Describe an efficient algorithm that checks if there is a cycle in G that contains s.
+
+    \item Makefiles specify the dependencies of programs during compilation. How can a Makefile be modeled as a graph? How can one compute an ordering of programs so that the programs are compiled under the dependency constraints.
+
+    \item  (CS374 SP23) Let G = (V, E) be a directed graph. Call a vertex of G good if it is in some cycle. Describe a linear-time algorithm to count the number of good vertices in G.
+
+    \item Let G = (V, E) be a directed graph where the length of each edge is either 2 or 3. Describe a linear-time algorithm to find the shortest paths from a given node s.
+    
+\end{enumerate}
+
+\section{DP - Subsequences}
+\begin{enumerate}
+    \item Given arrays $A$ and $B$, find the subsequences $A'$ and $B'$ such that $A' \cdot B'$ is maximized.
+    \item Find the longest common palindromic subsequence of arrays $A$, $B$, and $C$.
+    \item The \textit{hamming distance} of two arrays $A_1$, $A_2$ of size $k$ is the number of bits that must be flipped to turn $A_1$ into $A_2$. Given array $A$ and array $B$, find the subsequence of $A$ with the smallest hamming distance to $B$.
+    \item An element of array $A$ at index $i$ is \textit{proper} if $A[i] \geq \sum_{j=1}^{i-1} A[j]$. Find the longest sequence of proper elements.
+    \item (Hard.) Find the subsequence of $A$ with the largest geometric mean (product of all the elements divided by count), and output the geometric mean of that sequence. 
+\end{enumerate}
+
+\section{DP - Subarrays}
+\begin{enumerate}
+    \item Compute the longest common subarray of $A$ and $B$.
+    \item Given an array $A$, partition $A$ into as few subarrays as possible such that the concatenation of digits in each subarray is prime. Assume you have access to an $O(1)$ black box for \texttt{IsPrime}.
+\end{enumerate}
+
+\section{DP - Optimization}
+\begin{enumerate}
+    \item At Willy Wonka's Chocolate Factory, Charlie|who is now remarkably jaded|wants to take as much chocolate as he can to resell. On his tour, Charlie will visit $n$ rooms, each with chocolate worth $C[i]> 0$. Rooms that are risky to steal from have $R[i] = 1$, else $R[i] = 0$. Given Charlie can only steal from $k$ risky rooms, what is the maximum amount of candy he can obtain?
+    \item (Hard.) Aaron wants to open $k$ gyms in Champaign, which can be represented as a 1D line of $n$ houses. Each gym will replace one house. Each house has a demand $D[i]$ for how much they want to use a gym. When a house has demand $D[i]$ and a gym is $m$ houses away, the house's demand for that gym is $D[i]/m$. Find the maximum demand Aaron can obtain.
+\end{enumerate}
+
+\section{DP - Graphs}
+\begin{enumerate}
+    \item Sania is trying to infiltrate the Siebel Center for Computer Science to take all the free food she can. She starts off with a single key|Ryan's stolen iCard|which will get her inside the building. Once inside, the building is represented as a directed graph $G = (V, E)$. We can write $V = P \cup S$, where $P$ are publicly accessible rooms, and $S$ are staff accessible rooms. Some vertices may also contain a staff key left out that Sania can steal ($s(v) = 1$ if this is the case, else $s(v) = 0$) to gain access to staff accessible rooms. Each vertex offers $f(v)$ free food. What is the maximum amount of food Sania can steal?
+    \item An NFA (with no $\epsilon$-transitions can be represented as a (not necessarily acylic) directed graph $G = (V, E)$, where edges are labeled with one or more symbols and represent transitions and vertices represent states. Let $\ell(e)$ denote the set of characters corresponding to the transition given by $e$. Given a start state $s$, string $w$, and array $A$ of accepting states, does the NFA accept $w$?
+\end{enumerate}
+
+\section{Divide and Conquer}
+\begin{enumerate}
+    \item In a sorted array of distinct positive integers, is there an index $i$ such that $A[i] = i$?
+    \item Given array $A$, compute the 75th percentile value. Extend your algorithm to compute the $p$th percentile.
+    \item (Kinda hard.) Given an array $A$, two indices $i$ and $j$ are $k$-close if $|A[i] - A[j]| \leq k$. Report the number of $k$-close indicies.
+\end{enumerate}
+
+\section{Graphs - Transformations and Shortest Paths}
+\begin{enumerate}
+    \item Given a directed graph $G = (V, E)$, a vertex is lighted if $\ell(v) = 1$. A path is safe if it has no more than three consecutive unlit vertices. Given a vertex $s$ and vertex $t$, what is the shortest lighted path from $s$ to $t$?
+    \item Given a vertex $v$ is a graph with postive weights, what is the lightest cycle that includes $v$, if one exists?
+\end{enumerate}
+
+\section{Reductions - Concepts}
+For each statement below, select all claims that must be true if the statement is true regardless of the choice of the problem $X$.
+\begin{enumerate}
+    \item $X \leq_p \text{SAT}$: $X \in P$, $X \in NP$, $X$ is decidable, $X$ is undecidable
+    \item $\text{SAT} \leq_p X$: $X \in P$, $X \in NP$, $X$ is decidable, $X$ is undecidable
+    \item $X \leq_p \text{ShortestPath}$: $X \in P$, $X \in NP$, $X$ is decidable, $X$ is undecidable
+    \item $X \implies HALT$: $X \in P$, $X \in NP$, $X$ is decidable, $X$ is undecidable
+    \item $HALT \implies X$: $X \in P$, $X \in NP$, $X$ is decidable, $X$ is undecidable
+\end{enumerate}
+
+\noindent Determine whether each of the following claims are true or false.
+\begin{enumerate}
+    % \item If $X \in NP$, then $X$ is recursively enumerable
+    \item If $X$ is regular, then $X \in NP$
+    \item If $X$ is decidable, then $X \in NP$
+    \item If $X$ is undecidable, then $X \notin NP$
+    \item If $X$ is in $P$, then $X \leq_p Y$ for \textit{any} $Y \in P$
+    \item If $X$ is $NP$-complete, then $Y \leq_p X$ for \textit{any} $Y \in NP$
+\end{enumerate}
+
+\noindent Briefly describe reductions to show each of the following statements.
+\begin{enumerate}
+    \item $3SAT \implies HALT$
+    \item $SAT \leq_p CircuitSAT$
+    \item $\{\langle G, s, t \rangle : \text{$G$ has a path from $s$ to $t$}\} \leq_p SAT$
+\end{enumerate}
+
+\noindent Select which of the following decision problems are $NP$-hard, and provide a short justification for your answer.
+\begin{enumerate}
+    \item Given a graph $G$, is there a simple (no repeated vertices) path of length $k$?
+    \item Given a graph $G$, is there a path from $s$ to $t$?
+    \item Given an acyclic circuit $C$ and its inputs, what is the output?
+    \item Given an acyclic circuit $C$, are there some inputs so that it will output $1$?
+    \item Given a graph with one node colored red, can the remainder of the graph be three-colored?
+\end{enumerate}
+
+\noindent Select which of the following problems are decidable or undecidable, and provide a short justification for your answer.
+\begin{enumerate}
+    \item $\{\langle M \rangle : 0 \in L(M)\}$
+    \item $\{\langle M \rangle : M\text{ has at most 374 states}\}$
+    \item $\{\langle M \rangle : |L(M)| = 374\}$
+    \item $\{\langle M \rangle : M\text{ halts on all inputs}\}$
+    \item $\{\langle M, w, t \rangle : M\text{ halts on $w$ in at most $t$ steps}\}$
+\end{enumerate}
+
+\noindent Did you notice any pattern about the undecidability questions above?
+% 10 questions (mostly conceptual)
+
+\section{Undecidability Reductions}
+Provide a proof that each of the following languages is undecidable (assume $M$ is always a TM). Do not use Rice's theorem.
+\begin{enumerate}
+    \item $L = \{\langle M \rangle : M~\text{accepts all even-length strings}\}$
+    \item $L = \{\langle M \rangle : |L(M)| \geq 1 \}$
+    \item $L = \{\langle M, w \rangle : M~\text{accepts $w$}\}$
+    \item $L = \{\langle M, w, x \rangle : M~\text{accepts one of $w$ or $x$, but not both}\}$
+    \item $L = \{\langle M \rangle : M~\text{runs for more than $n$ steps on some input of size $n$}\}$
+    \item $L = \{\langle M \rangle : L(M) \text{ is regular}\}$
+    \item $L = \{\langle M \rangle : L(M) \text{ is  not regular}\}$
+    % \item $L = \{\langle M \rangle : \}$
+\end{enumerate}
+
+\noindent We've seen that questions about the languages of Turing machines are typically undecidable. This is not the case for NFAs and DFAs: most questions are decidable. Provide an algorithm to decide each of the following languages (assume $M$ is always a DFA and $N$ an NFA).
+\begin{enumerate}
+    \item $L = \{\langle M, n \rangle : \text{$M$ accepts all binary strings of length $n$}\}$
+    \item $L = \{\langle M, w \rangle : \text{$M$ accepts $w$}\}$
+    \item $L = \{\langle M, w \rangle : \text{$M$ accepts some string ending in $012$}\}$
+    \item $L = \{\langle N \rangle : \text{All strings accepted by $N$ begin with a $1$}\}$
+    \item $L = \{\langle N, w \rangle : \text{All computations by $N$ on $w$ lead to acceptance}\}$
+\end{enumerate}
+% 10 questions
+
+\section{NP-Hardness Reductions}
+Prove that each problem is NP-Hard. Problems denoted (*) are more challenging than average.
+%3SAT 
+\begin{enumerate}
+    \item A SAT formula is \textit{mostly-satisfiable} if there is exactly one variable which, after being removed, results in the formula becoming satisfiable. Determine if a formula $\Phi$ is mostly-satisfiable.
+    \item (*) Xavier thinks microwaves are too complicated, so he's set out to design his own. He doesn't want to worry about starting a timer on the microwave, so he's devised the following strategy: each food's box will specify any number of variables $v_1, \dots, v_n$, as well as any number of linear constraints (i.e. $v_1 + v_2 \le 2$ or $v_1 \geq v_n$) on a QR code the microwave will scan. Xavier's microwave will try to assign each $v_i$ to either $0$ or $1$ while satisfying the provided constraints and maximizing $\sum v_i$, the cooking time (since it's better to overcook than undercook!). If the microwave can't figure out how to cook the food, it will just turn off.
+    \item A boolean circuit $C$ is \textit{kinda-ok} if, after switching exactly one or-gate to an and-gate (or vice versa), the circuit is satisfiable. Given a circuit $C$, is it kinda-ok?
+    \item The University of Illinois has decided to open its own zoo! The can choose from a list of $n$ animals, and have access to a list of tuples $(i,j)$, which mean animal $i$ would eat animal $j$ if given the opportunity. Unfortunately, the only animals available to them have a tendency to escape, so they want to find the largest subset of animals that will not eat one another if they escape (called a \textit{safe} subset).
+    \item A set of vertices is \textit{mostly independent} if each vertex in the set is adjacent to at most one other vertex in the set. Compute the size of the largest mostly independent set of vertices.
+    \item A clique is \textit{light} if it contains at most $n/2$ vertices. Find the size of the largest light clique in $G$.
+    \item Hans is planning his wedding and wants to seat guests with similar interests at the same table. His guests are eccentric, and each have exactly two interests. Compute the minimum number of tables Hans must rent, assuming each guest must sit down.
+    \item (*) A vertex cover $C$ of size $k$ is \textit{balanced} if it can be partitioned into sets $C_1$ and $C_2$ so that $C_1 \cup C_2 = C$, $C_1 \cap C_2 = \emptyset$, $|C_1| = |C_2|$ and there are no edges between vertices in $C_1$ and $C_2$. Compute the size of the smallest balanced vertex cover.
+    \item Given a graph $G$ with red and white edges, \textit{candy cane path} alternates between red and white edges. Compute the length of the longest candy cane path.
+    \item A \textit{half-assed Hamiltonian cycle} visits at least $(1/100)$th of the vertices of a graph $G$. Compute the length of the longest half-assed Hamiltonian cycle. (Hint: start with $1/2$).
+    \item Given a directed graph $G$, is there a cycle starting at node $s$ which contains $k$ vertices? (Hint: use a directed graph)
+    \item When compiling code, variables must be stored in registers and/or the stack. Two variables which are used at the same point in a program cannot both be stored in the same register. For example, if variables $a$, $b$, and $c$ are used in the body of a loop, and there are two registers, one must be on the stack. Given an integer $k$, a list of variables, and a list of tuples $(a,b)$ indicating that variables $a$ and $b$ are used at the same time, can the program be compiled to use only $k$ registers and store no variables on the stack?
+    \item A graph is almost three-colorable if there is only one pair of neighboring vertices with the same color. Determine whether a graph $G$ can be almost three-colored.
+    \item A graph is $k$-nearly three-colorable if there are at most $k$ pairs of neighboring vertices with the same color. Determine whether a graph $G$ can be $k$-nearly three-colored.
+\end{enumerate}
+
+\end{document}

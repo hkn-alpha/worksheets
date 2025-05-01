@@ -240,30 +240,31 @@
 \section{Funky FSMs}
     \begin{enumerate}[label=(\alph*)]
         \item \textbf{FSM Design Application}: Given the FSM below:
-        \begin{enumerate}[label=(\roman*),nolistsep,itemsep = 60pt]
-            \item Find the K-Maps for S1+,S0+, and F.
-            \item Give their minimal SOP Boolean logic expressions.
-            \item Implement the FSM as D flip-flops and gates.
-        \end{enumerate}
         \begin{multicols}{2}
         \begin{center}
         \includegraphics[width=6cm]{figures/FSMDesign.png}
         \end{center}
         \columnbreak
         \end{multicols}
+        \begin{enumerate}[label=(\roman*),nolistsep,itemsep = 60pt]
+            \item Find the K-Maps for S1+,S0+, and F.
+            \item Give their minimal SOP Boolean logic expressions.
+            \item Implement the FSM as D flip-flops and gates.
+        \end{enumerate}
         \newpage
 
         \item \textbf{FSM Counter}: Given the FSM below:
+        \begin{multicols}{2}
+            \begin{center}
+            \includegraphics[width=6cm]{figures/FSMClock.png}
+            \end{center}
+            \columnbreak
+            \end{multicols}
         \begin{enumerate}[label=(\roman*),nolistsep,itemsep = 60pt]
             \item Find the K-Maps for S2+,S1+, and S0+.
             \item Give their minimal SOP Boolean logic expressions.
         \end{enumerate}
-        \begin{multicols}{2}
-        \begin{center}
-        \includegraphics[width=6cm]{figures/FSMClock.png}
-        \end{center}
-        \columnbreak
-        \end{multicols}
+
 
     \item \textbf{FSM Sequence Detector}: Generate an FSM that detects the sequence 001: 
     
@@ -314,7 +315,7 @@
             \item How many gates (that go to BUS) can be active at a time?
             \item Which opcodes set CC?
             \item In the von Neumann model, where is the program stored?
-            \item How many steps are there at minimum in an instruction cycle?
+            \item How many phases are there in an instruction cycle?
         \end{enumerate}
         \item \textbf{LC-3 Programming}: Write the following functions in RTL (For each part, assume your first line starts at x3000 and all registers are x3000. Each part is independent of the others.)
         \begin{enumerate}[label=(\roman*),itemsep = 10pt]
@@ -658,5 +659,26 @@
         \item Implement R1 NOR R2 in only 3 lines of code
         \item Implement R3 XOR R4 in only 5 lines of code
         \item Implement R5 OR R6 in only 4 lines of code
+    \end{enumerate}
+
+    \newpage
+    \section{Bonus: Incredible ISA Design (very hard)}
+    We want to design a datapath and control FSM for a 4-bit processor with 10-bit instructions that can perform the below operations.
+    \begin{table}[!h]
+    \begin{tabular}{|l|l|l|}
+    \hline
+    \textbf{Opcode} & \textbf{Operands}    & \textbf{Operation}                                                                                                                                                                                            \\ \hline
+    00              & DR, SR1, SR2, imm2   & DR \textless{}= (SR1 NAND SR2) + imm2                                                                                                                                                                      \\ \hline
+    01              & DR, SR, addr4,       & DR \textless{}= M{[}SR + addr4{]}{[}3:0{]}                                                                                                                                                                             \\ \hline
+    10              & SR, DR, addr4        & M{[}DR + addr4{]} \textless{}= SR                                                                                                                                                                             \\ \hline
+    11              & DR, trap, sign, jmp4 & \begin{tabular}[c]{@{}l@{}}If trap == 1, halt.\\ If trap == 0, sign == 0, DR \textgreater{}= 0, PC \textless{}= PC + jmp4.\\ If trap == 0, sign == 1, DR \textless{} 0, PC \textless{}= PC + jmp4.\end{tabular} \\ \hline
+    \end{tabular}
+    \end{table}
+    \\ Assume the processor has 4-bit registers R0 through R3 and PC, 10-bit register IR, $2^4$ memory locations, and 10-bit memory addressability. Assume all values that can be stored in registers are signed 4-bit integers. 
+
+    \begin{enumerate}[label=(\alph*), itemsep = 120pt]
+    \item Create a FSM diagram for this ISA's control FSM. You do not have to write out control signals or next-state expressions. The fetch and decode stage should be very similar to the LC-3.
+    \item Create a diagram representing the datapath for this ISA. Again, this should be structured similarly to the LC-3. 
+    \item In this new ISA, write a program that takes a 4-bit signed integer at M[xF][3:0] and make it positive if it is negative. Assume PC = x0 and all registers are initialized to x0. 
     \end{enumerate}
 \end{document}
