@@ -632,7 +632,11 @@ Q: Let a system be defined by its input-output relation $y(t) = x(102841) + x(t)
 
 \subsection{Solution:}
 
-\boxed{\text{Nonlinear}}. This is an example of an affine transformation, which takes the form $y = Mx + b$, where $b$ is some constant, and $M$ is some linear map. Affine transformations are 'shifts' of linear transformations but are not themselves linear. To prove this, you can test the non-linearity of this system by putting in $f(t)$ and $g(t)$ into the system separately, and then putting in $f(t)+g(t)$ as a single input. The affine shift doubles when the two inputs are put in separately, when comapred to the output.
+\boxed{\text{Linear}}. To prove this, you can test the non-linearity of this system by putting in $f(t)$ and $g(t)$ into the system separately, and then putting in $f(t)+g(t)$ as a single input.
+$y(f(t)) = f(101824) + f(t)$.
+$y(g(t)) = g(101824) +g(t)$.
+$y(f(t) + g(t)) = f(101824) + g(101824) + f(t) + g(t)$.
+Therefore, $y(f(t)) + y(g(t)) = y(f(t) + g(t))$.
 
 \boxed{\text{Time-variant}}. Let's do this one formally. First we time-shift the input and then put it through our system. We'll get $x(102841 - t_0) + x(t - t_0)$. Now we put the input through our system and then time-shift. We'll get $y(t-t_0) = x(102841) + x(t-t_0)$. These two are not the same!
 
