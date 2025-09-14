@@ -1,0 +1,58 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{xcolor}
+
+\title{HKN ECE 310 Review Worksheet 2}
+\author{Author: Members of HKN }
+\date{}
+\usepackage[makeroom]{cancel}
+\usepackage[letterpaper, portrait, margin=1in]{geometry}
+\pagenumbering{arabic}
+
+\begin{document}
+
+\maketitle
+
+\section{The very basics}
+\begin{enumerate}
+    \item What is the relation between the Z-transform and the Discrete-Time Fourier Transform? When is this relation not valid?
+    \textcolor{red}{$$ X_{d}(\omega) = X(z)\vert_{z=\exp(j\omega)} $$}
+
+\end{enumerate}
+
+\section{Sampling and DTFTs}
+(Let the output of a radio be) Consider a signal given by
+$$
+x(t) = 2\cos(10\pi t) + \sin(30\pi t)
+$$
+\begin{enumerate}
+    \item What is the nyquist sampling rate of this signal?
+    
+    \textcolor{red}{Since the maximum frequency of any of the components of this signal is 15Hz, the minimum sampling rate must be $2\cdot 15$Hz $= 30$Hz.}
+
+    \item Let's say the signal is sampled at twice the nyquist rate. What does the discrete-time signal look like for three samples starting at $n=0$? What is the $n$'th sample?
+
+    \textcolor{red}{We are sampling at $60$Hz, so the sampled signal is
+    $$x[n] = 2\cos\left( \frac{1}{6}\pi n \right) + \sin\left( \frac{1}{2}\pi n \right)$$}
+   
+    \item Find the Discrete-Time Fourier Transform of the signal. Plot both the real and imaginary components of the DTFT over the range $(-\pi, \pi)$.
+
+    \textcolor{red}{The DTFT is
+    $$X_{d}(\omega) = 2\pi \left[ \delta\left(\omega - \frac{\pi}{6}\right) + \delta\left(\omega + \frac{\pi}{6}\right) \right] - j \pi \left[ \delta\left(\omega - \frac{\pi}{2}\right) - \delta\left(\omega + \frac{\pi}{2}\right) \right]$$}
+
+    \item What is the power contained in this signal? Make sure to include units!
+
+    \textcolor{red}{Using Parseval's Relation, the power is 5$\pi$ watts.}
+
+    \item If we want to build a low-pass filter to filter out the fastest component of this signal, what is the smallest value of $\omega$ at which the filter can start attenuating? 
+
+    \textcolor{red}{$$\omega_\text{cutoff} = \frac{\pi}{6}$$}
+
+    \item Lets say we have a perfect filter to do said filtering. We then amplify the signal such that the magnitude of each component is doubled. How does the power of the signal change?
+
+    \textcolor{red}{Using Parseval's relation again, the power contained is $16\pi$ watts.}
+    
+\end{enumerate}
+
+\end{document}
