@@ -213,8 +213,6 @@ Remember that the logical output for one slice of a full adder is:
 \begin{enumerate}[label=\alph*.]
     \item Find an expression for Cout and S using AND and OR gates.\\
     \textbf{Multiple possible solutions. Use K-maps or simplify the boolean expressions.}\\
-    $S = A \bigoplus B \bigoplus Cin$ \\
-    $S = (AB' + A'B) \bigoplus Cin$ \\
     $S = (AB')' \cdot Cin + (AB') \cdot Cin' + (A'B)' \cdot Cin + (A'B) \cdot Cin'$ \\
     \\
     $Cout = AB + AC + BC$
@@ -237,7 +235,7 @@ Build each of these circuits using only adders, inverters, and fixed inputs (1 o
         \includegraphics[width=1\textwidth]{figures/adder2a_solution.png}
     \end{figure}
     
-    \item For two 4-bit two's complement integers $A_3A_2A_1A_0$ and $B_3B_2B_1B_0$ , calculate the 4-bit two's complement integer $S_3S_2S_1A_0$ where $S=A-B$. \\
+    \item For two 4-bit two's complement integers $A_3A_2A_1A_0$ and $B_3B_2B_1B_0$ , calculate the 4-bit two's complement integer $S_3S_2S_1S_0$ where $S=A-B$. \\
     \begin{figure}[!h]
         \centering
         \includegraphics[width=1\textwidth]{figures/adder2b_solution.png}
