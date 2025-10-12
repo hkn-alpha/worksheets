@@ -43,7 +43,7 @@ Write these conversions in decimal. Truncate if necessary.
     \textbf{Since it must be 9 bits, the top 3 bits are disregarded to get $1 0010 1101_2$, which becomes 1 + 4 + 8 + 32 + (-256) = -211$_{10}$}
     \item Convert $0010 1101_2$ to a 12-bit unsigned integer.\\
     \textbf{Since it must be 12 bits unsigned, zero extend to the required length to get 000000101101$_2$, which becomes 1 + 4 + 8 + 32 = 45$_{10}$}
-    \item Convert $1 0111_2$ to a 16-bit signed integer.\\
+    \item Convert $1 0111_2$ to a 16-bit 2's complement integer.\\
     \textbf{Since it must be 16 bits signed, sign extend to the required length to get 1111111111110111$_2$, which becomes 1 + 2 + 4 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + (-2048) = -9$_{10}$}
 \end{enumerate}
 
@@ -638,4 +638,3 @@ Convert the following IEEE-754 floating point representations to decimal.
 
 
 \end{document}
-
