@@ -1,433 +1,230 @@
 \documentclass{article}
 \usepackage[utf8]{inputenc}
 
+\usepackage{enumitem}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
 \usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{setspace}
+\usepackage{xfrac}
+\usepackage{indentfirst}
+\usepackage{tikz}
 \usepackage{hyperref}
+\usetikzlibrary{positioning, fit, calc, arrows,shapes.gates.logic.US,shapes.gates.logic.IEC,}
+\usepackage[siunitx, RPvoltages]{circuitikz}
 
-\title{ECE342 Final Review - Cramming Carnival}
+\usepackage{enumitem}
+
+\title{ECE350 Final Review - Cramming Carnival Worksheet}
 \author{Author: Members of HKN}
-\date{Fall 2024}
-
+\date{}
 \newcommand{\dd}[1]{\mathrm{d}#1}
 
 \usepackage[makeroom]{cancel}
 \usepackage[letterpaper, portrait, margin=1in]{geometry}
 \usepackage{graphicx}
-\usepackage{float}
-\usepackage{enumitem}
-\usepackage{graphicx}
-\usepackage{multicol}
 
 \pagenumbering{arabic}
 
 \begin{document}
 
-\begin{center}
-\textbf{
-{\Large HKN ECE 342 Final Worksheet - Cramming Carnival - Key}
-}
-\end{center} 
-\noindent\makebox[\linewidth]{\rule{\linewidth}{0.2pt}}
-\section*{DC Analysis}
-\subsection*{Transistor Parameters}
-\textbf{MOSFETs:}
-$$\mu_nC_{ox} = 100\:\mu \text{A/V}^2; \ V_{TN} = 1\text{ V}$$
-$$\mu_pC_{ox} = 50\:\mu \text{A/V}^2; \ |V_{TP}| = 1\text{ V}$$
-\textbf{BJTs:}
-$$\beta = 99; V_{\rm BE, on} = 0.7\text{ V}$$
-\subsection*{Problem 1}
-For this problem, refer to the circuit below. Use $V_{DD} = 5$ V, $I_B = 200\ \mu$A, 1X = $\frac{100}{1}$.
-\begin{figure}[!htb]
-\begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/cc_dc_2 (1).jpg}
-\end{center}
-\end{figure}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-    \item Determine the DC voltages $V_1$, $V_2$, and $V_3$.
-$$V_{\rm OV1} = \sqrt{\frac{2I_{B}}{\mu_nC_{ox}(100/1)}} = 0.2\text{ V}$$
-$$V_1 = V_{OV1} + V_{TN}$$
-$$\boxed{V_1 = 1.2\text{ V}}$$
-$$I_{D2} = 2I_B = 2(200)\ \mu\text{A}$$
-$$V_{OV3} = 0.2 \text{ V}$$
-$$V_2 = V_{DD} - V_{OV3} - |V_{TP}|$$
-$$\boxed{V_2 = 3.8\text{ V}}$$
-$$I_{D4} = 4I_B = 800\ \mu \rm A$$
-$$V_{3} = I_{D4}(4\rm k)$$
-$$\boxed{V_3 = 3.2\text{ V}}$$
-\newpage
-    \item Determine the value of R such that M5 is biased at the edge of saturation.
-$$I_{D5} = I_B = 200\ \mu \rm A$$
-$$V_{OV5} = 5 - I_{D5}R = 0.2\text{ V}$$
-$$R = \frac{4.8}{200 \mu}$$
-$$\boxed{R = 24 \text{ k} \Omega}$$
-\end{enumerate}
-\newpage
-\subsection*{Problem 2}
-For this problem, refer to the circuit below.
-\begin{figure}[!htb]
-\begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/cc_dc1 (1).png}
-\end{center}
-\end{figure}
-\begin{enumerate}[label=\textbf{(\alph*)}]
-    \item Determine the DC currents and voltages $V_B$, $V_E$, $V_C$, $I_B$, $I_E$, and $I_C$ of Q1.  What is its region of operation?
-    \\
+\maketitle
 
-\textbf{Solution:} \\
-Convert the biasing network at the base of Q1 to its Thevenin equivalent:
-$$V_{TH} = \left(5- (-5)\right)\left(\frac{20 \rm k}{20 \rm k + 20 k}\right) - 5 = 0\text{ V}$$
-$$R_{TH} = 20\text{k} || 20\text{k} = 10\text{ k}\Omega$$
-\newpage
-The circuit can then be simplified to be:
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.6\textwidth]{figures/cc_dc1_sol.png}
-\end{center}
-\end{figure}
-$$I_E = \frac{-I_B(10\text{k}) - 0.7 - (-5)}{330}$$
-$$330(\beta + 1)I_B = -I_B(10\text{k}) - 0.7 - (-5)$$
-$$I_B(33\text{k} + 10\text{k}) = 4.3$$
-$$\boxed{I_B = 100\ \mu\text{A}}$$
-$$\boxed{I_E = (\beta + 1)I_B = 10\text{ mA}}$$
-$$\boxed{I_C = \beta I_B = 9.9\text{ mA}}$$
-$$\boxed{V_{B} = -(10 \text{k})I_B = -1\text{ V}}$$
-$$\boxed{V_{E} = -5 + (330)I_E = -1.7\text{ V}}$$
-$$\boxed{V_{C} = 5 - (1/9)\text{k}I_C = 3.9\text{ V}}$$
-$$V_{CE} = 5.6\text{ V} > V_{BE} = 0.7 \text{ V}$$
-Q1 is operating in forward active mode.
-    \item Determine the value of R such that M1 is biased at the edge of saturation.
-$$V_{\rm OV1} = 5 - V_C - |V_{TP}| = 0.1$$
-$$I_{D1} = \frac{\mu_p C_{ox}}{2}\left(\frac{400}{1}\right)V_{\rm OV1}^2 = \frac{5 - V_{OV1} - (-5)}{R}$$
-$$100\mu R = 9.9$$
-$$\boxed{R = 99\text{ k}\Omega}$$
-\end{enumerate}
-\newpage
-\section*{Small-Signal Analysis}
-\subsection*{Problem 1}
-Determine the values of $G_M$, $R_{OUT}$, and $A_v = v_{out}/v_{in}$ of this amplifier.  Assume all MOSFETs are biased in saturation.  Do not assume $r_{ds} = \infty$, though you can assume $g_mr_{ds} >> 1$.
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.85\textwidth]{figures/cc_amp1.png}
-\end{center}
-\end{figure} \\
-\textbf{Solution: }
-For such problems, it is often advantageous to break down the problem into multiple stages, find the gain of that particular part, and multiply with gain of subsequent state, etc. \\
-Let $A_{v1}$ be defined as gain at the drain of M1. Then,   
-$$G_{M1} = \frac{g_{m1}}{(1+g_{m1}R_2)}$$ 
-$$R_{OUT1} = (1/g_{m4})  ||  (R_1) || (r_{ds1} + R_2 + g_{m1}r_{ds1}R_2)$$
-$$A_{v1} = -G_{M1}R_{OUT1}$$
-$$$$
-Let $A_{v3}$ be defined as gain at the drain of M3: 
-$$G_{M3} = g_{m3}$$
-$$R_{OUT3} = r_{ds2}  ||  r_{ds3} $$
-$$A_{v3} = -G_{M3}R_{OUT3}$$
-Then by ${i_d = g_m  v_{gs}}$:
-$$G_M = A_{v1}A_{v3}g_{m6} + A_{v1}g_{m5}$$
-$$R_{OUT} = r_{ds5} || r_{ds6}$$
-$$A_v = -G_{M}R_{OUT}$$
-\newpage
-\subsection*{Problem 2}
-Determine the values of $G_M$, $R_{OUT}$, and $A_v = v_{out}/v_{in}$ of this amplifier.  Assume all MOSFETs are biased in saturation, all BJTs are biased in forward active mode, $r_{ds} \ne \infty$, $r_0 = \infty$, and $g_mr_{ds} \gg 1$.
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.65\textwidth]{figures/cc_amp_2.png}
-\end{center}
-\end{figure}\\
-\textbf{Solution:}
-$$G_{M1} = -g_{m2}$$
-$$R_{\rm OUT1} = r_{ds2}||\left(\frac{R_1||R_2 + r_{\pi 1}}{\beta + 1}\right)$$
-$$A_{v1} = -G_{M1}R_{\rm OUT1}$$
-$$G_{M2} = \frac{1}{\frac{\rm R_{OUT1} + r_{\pi 3}}{\beta} + \frac{\beta + 1}{\beta} R_3}$$
-$$R_{\rm OUT2} = \frac{r_{\pi 4}}{\beta + 1}$$
-$$A_{v2} = -G_{M2}R_{\rm OUT2}$$
-$$A_{v} = A_{v1}A_{v2}$$
-\newpage
-\subsection*{Problem 3}
-Determine the values of $G_M$, $R_{OUT}$, and $A_v = v_{out}/v_{in}$ of this amplifier.  Assume all MOSFETs are biased in saturation, all BJTs are biased in forward active mode, $r_{ds} \ne \infty$, $r_0 = \infty$, and $g_mr_{ds} \gg 1$.
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.75\textwidth]{figures/cc_amp_3.png}
-\end{center}
-\end{figure} \\
-\textbf{Solution:}
-At the gate of M3,
-$$G_{M1} = \frac{1}{\frac{\rm R_{1} + r_{\pi 1}}{\beta_1} + \frac{\beta_1 + 1}{\beta_1} R_2} $$
-$$R_{\rm OUT1} = \frac{r_{\pi 2}}{\beta_2 + 1} + R_3$$
-$$A_{v1} = -G_{M1}R_{\rm OUT1}$$
-At the source of M3,
-$$G_{M2} = -\frac{g_{m3}}{1+\frac{R_4}{r_{ds3}}}$$
-$$R_{\rm OUT2} = \frac{1}{g_{m3}} (1 + \frac{R_4}{r_{ds3}}) || R_5$$
-$$A_{v2} = -G_{M2}R_{\rm OUT2}$$
-The last branch is basically repeat of first branch.
-$$G_{M3} = \frac{1}{\frac{\rm  r_{\pi 5} + R_{OUT2}}{\beta_5} + \frac{\beta_5 + 1}{\beta_5} R_y}$$
-$$R_y = \frac{r_{\pi 6}}{\beta_6 + 1}$$
-$$A_{v3} = -G_{m3}R_{\rm out3}$$
-$$A_{v} = A_{v1}A_{v2}A_{v3}$$
-\newpage
-\subsection*{Problem 4}
-Determine the values of $G_M$, $R_{OUT}$, and $A_v = v_{out}/v_{in}$ of this amplifier.  Assume all MOSFETs are biased in saturation.  Do not assume $r_{ds} = \infty$, though you can assume $g_mr_{ds} >> 1$.
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.5\textwidth]{figures/cc_amp_4.png}
-\end{center}
-\end{figure}
-$$G_{M1} = -g_{m3}$$
-$$R_{OUT1} = r_{ds3} || \left(\frac{1}{g_{m1}}\right)$$
-$${A_{v1} = -G_{M1}R_{OUT1}}$$
-$$\boxed{G_{M} = A_{v1}g_{m2}}$$
-$$\boxed{R_{\rm OUT} = r_{ds5} || \left(\frac{1}{g_{m4}}\left(1 + \frac{r_{ds2}}{r_{ds4}}\right)\right)}$$
-$$\boxed{A_{v} = -G_{M}R_{OUT}}$$
-\newpage
-\subsection*{Problem 5}
-Determine the values of $G_M$, $R_{OUT}$, and $A_v = v_{out}/v_{in}$ of this amplifier.  Assume all MOSFETs are biased in saturation, all BJTs are biased in forward active mode, $r_{ds} \ne \infty$, $r_0 = \infty$, and $g_mr_{ds} \gg 1$. 
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.8\textwidth]{figures/cc_amp5.jpg}
-\end{center}
-\end{figure}
-$$G_{M1} = -\frac{1}{\frac{R_1 + r_{\pi2}}{\beta + 1} }$$
-$$R_{OUT1}=\left(\frac{R_1 + r_{\pi2}}{\beta + 1}\right)||\left[r_{\pi 7} + (\beta + 1)R_3\right]$$
-$$A_{v1} = -G_{M1}R_{OUT1}$$
-$$\boxed{G_{M} = A_{v1}\frac{g_{m8}}{1 + g_{m8}r_{ds9}}}$$
-$$\boxed{R_{OUT} = r_{ds8} + (1+g_{m8}r_{ds8})r_{ds9}}$$
-$$\boxed{A_{v} = G_{M}R_{OUT}}$$
+\section{Fiber Optics}
+\includegraphics{figures/Optical Fiber Diagram.png}
+The diagram above shows an Optical Fiber that is hit with a beam of light that enters the core(blue) of the fiber optic cable. The refractive index for the core $n_{1}=1.66$, the refractive index for the cladding(red) $n_{2}=1.63$, and the refractive index for air $n_{0}=1$. The wavelength of the light shown is $1200 nm$.
 
-\newpage
-\section*{Bode Plots}
-\subsection*{Problem 1}
-For the following amplifier transfer functions, \textbf{(i)} plot the magnitude response, \textbf{(ii)} determine the unity gain frequency, and \textbf{(iii)} plot the phase response:
-\begin{enumerate}[label=\textbf{(\alph*)}]
-    \item $$H(s) = \frac{10^4}{s(1+s/10^3)}$$
-    \\ \textbf{Solution:}\\ \\
-    \textbf{(i)} The magnitude response is plotted below:
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/ece342_cc_mag_a.png}
-    \end{figure} \\
-    \textbf{(ii)} 
-    $$\boxed{\omega_{ugf} = \sqrt{10} \cdot 10^3 \text{ rad/s}}$$
-    \newpage
-    \textbf{(iii)} The phase response is plotted below:
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/cc_phase_a.png}
-    \end{figure}
-    \item $$H(s) = \frac{2000\left(1 + \frac{s}{10^2}\right)}{\left(1 + \frac{s}{10}\right)\left(1 + \frac{s}{10^3}\right)\left(1 + \frac{s}{10^4}\right)}$$
-    \\ \textbf{Solution:}\\ \\
-    \textbf{(i)} The magnitude response is plotted below:
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/ece342_cc_mag.png}
-    \end{figure} \newpage
-    \textbf{(ii)} After $\omega = 10^4$ rad/s, the magnitude response decreases at 40 dB / decade, or 12 dB / octave.  Thus, $|H(s)|_{dB}$ =  6 dB at $\omega = \sqrt{10} \cdot 10^4$ rad/s.  Since the magnitude response decreases at 12 dB / octave, $|H(s)|_{dB}$ will be 0 dB at $\omega = \sqrt{2} \cdot \sqrt{10} \cdot 10^4$ rad/s.
-    $$\boxed{\omega_{ugf} = \sqrt{20} \cdot 10^4 \text{ rad/s}}$$
-    \textbf{(iii)} The phase response is plotted below:
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/ece342_cc_phaseresponse.png}
-    \end{figure}
-    \newpage
-    \item $$H(s) = \frac{4000(1+s/10^2)}{(1+s/10)(1+s/10^4)^2}$$
-    \\ \textbf{Solution:}\\ \\
-    \textbf{(i)} The magnitude response is plotted below:
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/ece342_cc_mag_c.png}
-    \end{figure} \\
-    \textbf{(ii)} 
-    $$\boxed{\omega_{ugf} = 2 \cdot 10^5 \text{ rad/s}}$$
-    \newpage
-    \textbf{(iii)} The phase response is plotted below:
-    \begin{figure}[!h]
-    \centering
-    \includegraphics[width=0.7\textwidth]{figures/cc_phase_c.png}
-    \end{figure}
-\end{enumerate}
-\newpage
-\subsection*{Problem 2}
-For each of the amplifier transfer functions in Problem 1, determine the incremental output voltage response $v_{out}(t)$ to an incremental input voltage $v_{in}(t) = 10\cos(10^3 \cdot t)$ mV. \\ \\
-\textbf{Solution:} \\
-\begin{enumerate}[label=\textbf{(\alph*)}]
-\item $$H(s) = \frac{10^4}{s(1+s/10^3)}$$
-From the Bode plot:
-$$|H(j10^3)| = 20\text{ dB} = 10\text{ V/V}$$
-$$\angle H(j10^3) = -135^{\circ}$$
-$$v_{out}(t) = 10\cdot |H(j10^3)| \cos(10^3 \cdot t + \angle H(j10^3))\text{ mV}$$
-$$\boxed{v_{out}(t) = 100 \cos(10^3 \cdot t -135^{\circ})\text{ mV}}$$
-\item $$H(s) = \frac{2000\left(1 + \frac{s}{10^2}\right)}{\left(1 + \frac{s}{10}\right)\left(1 + \frac{s}{10^3}\right)\left(1 + \frac{s}{10^4}\right)}$$
-From the Bode plot: 
-$$|H(j10^3)| = 46\text{ dB} = 200\text{ V/V}$$
-$$\angle H(j10^3) = -45^{\circ}$$
-$$v_{out}(t) = 10\cdot |H(j10^3)| \cos(10^3 \cdot t + \angle H(j10^3))\text{ mV}$$
-$$\boxed{v_{out}(t) = 2 \cos(10^3 \cdot t -45^{\circ})\text{ V}}$$
-\item $$H(s) = \frac{4000(1+s/10^2)}{(1+s/10)(1+s/10^4)^2}$$
-From the Bode plot: 
-$$|H(j10^3)| = 52\text{ dB} = 400\text{ V/V}$$
-$$\angle H(j10^3) = 0^{\circ}$$
-$$v_{out}(t) = 10\cdot |H(j10^3)| \cos(10^3 \cdot t + \angle H(j10^3))\text{ mV}$$
-$$\boxed{v_{out}(t) = 4 \cos(10^3 \cdot t)\text{ V}}$$
-\end{enumerate}
-\newpage
-\section*{Open Circuit Time Constants}
-\subsection*{Problem 1}
-Use the open-circuit time constant method to estimate the -3 dB frequency, $\omega_{\rm -3 dB}$, of this amplifier.  Consider $C_{gs}$, $C_{gd}$, $C_{\pi}$, $C_{\mu}$, and $r_{ds}$.  Ignore $r_0$. \\ 
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.65\textwidth]{figures/cc_octc2.png}
-\end{center}
-\end{figure} \\
-\textbf{Solution:} \\
-$\tau_{C_{\pi 1}}$:
-$$R_{C_{\pi 1}} = 0$$
-$$\boxed{\tau_{C_{\pi 1}} = 0}$$
-$\tau_{C_{\mu 1}}$:
-$$R_{C_{\mu 1}} = \left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right) $$
-$$\boxed{\tau_{C_{\mu 1}} = \left[\left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right)\right]C_{\mu 1}}$$
-$\tau_{C_{gs2}}$:
-$$R_{C_{gs2}} = \left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right) $$
-$$\boxed{\tau_{C_{gs2}} = \left[\left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right)\right]C_{gs 2}}$$
-$\tau_{C_{gd2}}$:
-$$R_{C_{gd2}} = 0$$
-$$\boxed{\tau_{C_{gd2}} = 0}$$
-$\tau_{C_{\pi 3}}$:
-$$R_{C_{\pi 3}} = \left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right) $$
-$$\boxed{\tau_{C_{\pi 3}} = \left[\left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right)\right]C_{\pi 3}}$$
-$\tau_{C_{\mu 3}}$:
-$$R_{C_{\mu 3}} = 0 $$
-$$\boxed{\tau_{C_{\mu 3}} = 0}$$
-$$\omega_{\rm -3dB} = \frac{1}{\tau_{C_{\pi 1}} + \tau_{C_{\mu 1}} + \tau_{C_{gs2}} + \tau_{C_{gd2}} + \tau_{C_{\pi 3}} + \tau_{C_{\mu 3}}}$$
-$$\boxed{\omega_{\rm -3 dB} = \frac{1}{\left[\left(\frac{1}{g_{m2}}\right) || \left(\frac{r_{\pi 3}}{\beta + 1}\right)\right](C_{\mu 1} + C_{gs 2} + C_{\pi 3})}}$$
-\newpage
-\subsection*{Problem 2}
-Use the open-circuit time constant method to estimate the -3 dB frequency, $\omega_{\rm -3 dB}$, of this amplifier.  Consider $C_{gs}$, $C_{gd}$, $C_{\pi}$, $C_{\mu}$, and $r_{ds}$.  Ignore $r_0$. \\ 
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/cc_octc1.jpg}
-\end{center}
-\end{figure} \\
-\textbf{Solution:} \\
-$\tau_{C_{\pi}}$:
-$$R_{C_{\pi}} = R_1 || r_{\pi 1}$$
-$$\boxed{\tau_{C_{\pi}} = \left(R_1 || r_{\pi 1}\right)C_{\pi}}$$
-$\tau_{C_{\mu}}$:
-$$R_{left} = R_1 || r_{\pi 1}$$
-$$R_{right} = R_2$$
-$$G_M = \frac{1}{\frac{r_{\pi 1}}{\beta _1}} = g_{m1}$$
-$$R_{C_{\mu}} = R_{left} + R_{right} + G_MR_{left}R_{right}$$
-$$\boxed{R_{C_{\mu}} = R_1 || r_{\pi 1} + R_2 + g_{m1}\left(R_1 || r_{\pi 1}\right)R_2}$$
-$$\boxed{\tau_{C_{\mu}} = R_{C_{\mu}}C_{\mu}}$$
-$\tau_{C_{gs2}}$:
-$$R_{C_{gs2}} = R_2$$
-$$\boxed{\tau_{C_{gs2}} = R_2C_{gs2}}$$
-$\tau_{C_{gd2}}$:
-$$R_{left} = R_2$$
-$$R_{right} = r_{ds2}||r_{ds3}$$
-$$G_M = g_{m2}$$
-$$R_{C_{gd2}} = R_2 + R_{right} + G_MR_{left}R_{right}$$
-$$\boxed{R_{C_{gd2}} = R_2 + r_{ds2}||r_{ds3} + g_{m2}R_2\left(r_{ds2}||r_{ds3}\right)}$$
-$$\boxed{\tau_{C_{gd2}} = R_{C_{gd2}}C_{gd2}}$$
-$\tau_{C_{gs3}}$:
-$$R_{C_{gs3}} = 0$$
-$$\boxed{\tau_{C_{gs3}} = 0}$$
-$\tau_{C_{gd3}}$:
-$$R_{C_{gd3}} = r_{ds2}||r_{ds3}$$
-$$\boxed{\tau_{C_{gd3}} = \left(r_{ds2}||r_{ds3}\right)C_{gd3}}$$
-
-$\tau_{C_L}$:
-$$R_{C_L} = r_{ds2}||r_{ds3}$$
-$$\boxed{\tau_{C_L} = \left(r_{ds2}||r_{ds3}\right)C_{L}}$$
-
-Using the OCTC method:
-$$\boxed{\omega_{\rm -3dB} = \frac{1}{\tau_{C_{\pi}} + \tau_{C_{\mu}} + \tau_{C_{gs2}} + \tau_{C_{gd2}} + \tau_{C_{gs3}} + \tau_{C_{gd3}} + \tau_{C_L}}}$$
-\newpage
-\subsection*{Problem 3}
-Use the open-circuit time constant method to estimate the -3 dB frequency, $\omega_{\rm -3 dB}$, of this amplifier.  Consider $C_{gs}$, $C_{gd}$, $C_{\pi}$, $C_{\mu}$, and $r_{ds}$. 
-\begin{figure}[!h]
-\begin{center}
-    \includegraphics[width=0.7\textwidth]{figures/cc_octc3 (2).jpg}
-
-\end{center}
-\end{figure} \\
-\textbf{Solution:} \\
-$\tau_{C_{gs1}}$:
-$$R_{C_{gs1}} = 0$$
-$$\boxed{\tau_{C_{gs1}} = 0}$$
-$\tau_{C_{gd1}}$:
-$$R_{C_{gd1}} = \left[\frac{1}{g_{m2}}\left(1 + \frac{R_x}{r_{ds2}}\right)\right]||r_{ds1}$$
-$$R_x = \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gd1}} = R_{C_{gd1}}C_{gd1}}$$
-$\tau_{C_{gs2}}$:
-$$R_{C_{gs2}} = \left[\frac{1}{g_{m2}}\left(1 + \frac{R_x}{r_{ds2}}\right)\right]||r_{ds1}$$
-$$R_x = \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gs2}} = R_{C_{gs2}}C_{gs2}}$$
-$\tau_{C_{gd2}}$:
-$$R_{C_{gd2}} =  \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right] || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gd2}} = R_{C_{gd2}}C_{gd2}}$$
-$\tau_{C_{gs3}}$:
-$$R_{C_{gs3}} = \left[\frac{1}{g_{m3}}\left(1 + \frac{R_y}{r_{ds3}}\right)\right]||\left(\frac{1}{g_{m4}}\right)$$
-$$R_y = \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right] || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gs3}} = R_{C_{gs3}}C_{gs3}}$$
-$\tau_{C_{gd3}}$:
-$$R_{C_{gd3}} =  \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right] || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gd3}} = R_{C_{gd3}}C_{gd3}}$$
-$\tau_{C_{gs4}}$:
-$$R_{C_{gs4}} = \left[\frac{1}{g_{m3}}\left(1 + \frac{R_y}{r_{ds3}}\right)\right]||\left(\frac{1}{g_{m4}}\right)$$
-$$R_y = \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right] || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gs4}} = R_{C_{gs4}}C_{gs4}}$$
-$\tau_{C_{gd4}}$:
-$$R_{C_{gd4}} = 0$$
-$$\boxed{\tau_{C_{gd4}} = 0}$$
-$\tau_{C_{gs5}}$:
-$$R_{C_{gs5}} = 0$$
-$$\boxed{\tau_{C_{gs5}} = 0}$$
-$\tau_{C_{gd5}}$:
-$$R_{C_{gd5}} = \left[\frac{1}{g_{m6}}\left(1 + \frac{R_z}{r_{ds6}}\right)\right]||r_{ds5}$$
-$$R_z = \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right]$$
-$$\boxed{\tau_{C_{gd5}} = R_{C_{gd5}}C_{gd5}}$$
-$\tau_{C_{gs6}}$:
-$$R_{C_{gs6}} = \left[\frac{1}{g_{m6}}\left(1 + \frac{R_z}{r_{ds6}}\right)\right]||r_{ds5}$$
-$$R_z = \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right]$$
-$$\boxed{\tau_{C_{gs6}} = R_{C_{gs6}}C_{gs6}}$$
-$\tau_{C_{gd6}}$:
-$$R_{C_{gd6}} =  \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right] || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{gd6}} = R_{C_{gd6}}C_{gd6}}$$
-$\tau_{C_{L}}$:
-$$R_{C_{L}} =  \left(r_{ds3} + \frac{1}{g_{m4}}\right) || \left[r_{ds2} + (1 + g_{m2}r_{ds2})r_{ds1}\right] || \left[r_{ds6} + (1 + g_{m6}r_{ds6})r_{ds5}\right]$$
-$$\boxed{\tau_{C_{L}} = R_{C_{L}}C_{L}}$$
-
-Using the OCTC method:
-$$\boxed{\omega_{\rm -3dB} = \frac{1}{\tau_{C_{gs1}} + \tau_{C_{gd1}} + \tau_{C_{gs2}} + \tau_{C_{gd2}} + \tau_{C_{gs3}} + \tau_{C_{gd3}} + \tau_{C_{gs4}} + \tau_{C_{gd4}} + \tau_{C_{gs5}} + \tau_{C_{gd5}} + \tau_{C_{gs6}} + \tau_{C_{gd6}} + \tau_{C_L}}}$$
-\newpage
-\section*{CMOS Logic Circuits}
-For each part, design and draw the schematic of a CMOS logic gate that implements the Boolean expression. In each schematic, label the size of each transistor such that the worst case delays of the pull-up and pull-down networks are equivalent to those of a standard minimum-sized inverter with $(W/L)_P/(W/L)_N$ = 2.  Inverted inputs are not available.
 \begin{enumerate}[label=(\alph*)]
-    \item $Z_1 = \overline{(A+B) \cdot C}$ \\
+    \item {Find the maximum value of $\varphi$ such that the wave is contained within the core(i.e., there is Total Internal Reflection when the wave in the core hits the cladding).}
     
-    \textbf{Solution:}
-        \begin{figure}[!h]
-        \centering
-        \includegraphics[width=0.5\textwidth]{figures/ece342_cc_q8_a.png}
-        \end{figure}
-        \newpage
-    \item $Z_2 = \overline{(A \cdot B \cdot C) + (D \cdot E)}$ \\
-    
-    \textbf{Solution:}
-        \begin{figure}[!h]
-        \centering
-        \includegraphics[width=0.5\textwidth]{figures/ece342_cc_q8_b.jpg}
-        \end{figure}
+    \item {For the following questions, the Optical Fiber is now given a coating around the cladding with a refractive index $n_{3}=1.7$, $\varphi=10^{\circ}$, and we are operating in TE mode.}
+    \begin{enumerate}[label=(\roman*)]
+        \item {Find the angle of incidence of the wave in the core onto the cladding.}
+        \item { What should the width d of the cladding be such that the transmittance is .0001 at the coating that surrounds the cladding?}
+        \item {What is the angle of incidence of the wave transmitted through the coating?}
+    \end{enumerate}
+\end{enumerate}
+
+\section{Waveguide Warm Up}
+A parallel plate waveguide is filled with a dielectric with $\varepsilon=16*\varepsilon_{o}$. What is the spacing $a$, such that $5.5$ GHz is equal to $90\%$ of the $TE_{3}$ mode cutoff frequency?
+
+
+\section{Finding modes}
+A given parallel plate waveguide contains an air-filled region with a plate separation $a = 10$ cm. Find the propagating $TE_{m}$ modes for a frequency of 5.5 GHz, and for each mode determine $f_{c}$, $\lambda_{g}$, and $\theta$.
+
+\section{Guided Waveguides}
+We have a parallel plate waveguide that is filled with a dielectric with $\varepsilon=4*\varepsilon_{o}$. A signal frequency of 280 Mhz is propagating in the Waveguide. We have found that for the $TE_{2}$ mode the phase velocity is $v_{p} = 1.5*c$. Using this information we want to find the guided wavelength of $TM_{1}$ mode.
+
+\begin{enumerate}[label=(\alph*)]
+    \item {Find the width, $a$, of the waveguide.}
+
+    \item {Find the phase velocity, $v_{p}$, of the $TM_{1}$ mode.}
+
+    \item {Find the guided wavelength, $\lambda_{g}$, of the $TM_{1}$ mode.}
+
+\end{enumerate}
+
+\section{Disruptive Doppler}
+
+Shomik is carrying a $\hat{z}$-polarized short dipole antenna, which is driven by an input current $i(t) = I_o cos(\omega t)$, where $\omega = 6 \cdot 10^9$ rad/s. Shomik is moving with the trajectory $(x, y, z) = (400 + 50t, 200 + 10t, t^2)$. Grant, moving with a trajectory of $(x, y, z) = (200 + 70t, 200 + 90t, t^2)$, is carrying another $\hat{z}$-polarized short dipole antenna which is displaying an open circuit voltage with a time-varying carrier phase $\Phi(t)$ in response to the field incident from Shomik's dipole. Assume free-space propagation for this problem.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Express the carrier phase $\Phi(t)$ explicitly in terms of $\omega$ and $t$. Hint: Shomik's dipole radiates a spherical wave of the form $cos(\omega t - kr)$. Hint 2: Be smart about your coordinate system choice.
+
+    \item Given that $\omega' = \frac{\partial \Phi}{\partial t}$, what is the Doppler frequency shift $\omega' - \omega$ of Grant's open-circuit voltage at $t = 0$?
+
+    \item What is the Doppler frequency shift $\omega' - \omega$ of Grant's open-circuit voltage at $t = 10$?
+
+    \item Find the time-point(s) at which the Doppler frequency shift $\omega' - \omega$ is zero. What is the physical significance of these time-points? How many such time-points are there?
+
+    \item Qualitatively, what is the behavior of the Doppler frequency shift at the limits $t \longrightarrow \infty$ and $t \longrightarrow -\infty$ (i.e. constant? linear? quadratic?)? Name the approximation that can you use in these cases (you've seen it before in ECE350!).
+
+    \item Are the calculations above relativistically correct?
+
+\end{enumerate}
+
 \newpage
-    \item $Z_3 = \overline{A} \cdot (\overline{B} + \overline{C} + \overline{D})$ \\
+
+\section{Clingy Conductors}
+
+\begin{center}
+\includegraphics[width=0.5\textwidth]{figures/PMC Prompt.jpg}
+\end{center}
+
+Given the situation above, sketch the three image antennas resulting from the perfect \textbf{magnetic} conductor (PMC) (shown as the blue rectangles on the boundary) based on image theory. Recall that a PMC enforces the boundary condition that the tangential B field is zero (what does a PEC do instead?)
+
+\section{Devious Duality}
+
+\begin{enumerate}[label=(\alph*)]
+    \item A line of negative charges sit on the $x = 0$ axis. The charges have a density of $\lambda$ charges per meter. What is the electric field as a function of position given off by these charges? What is the magnetic field as a function of position given off by these charges?
     
-    \textbf{Solution:}
-    $$\overline{Z_3} = \overline{\overline{A} \cdot (\overline{B} + \overline{C} + \overline{D})}$$
-    $$\overline{Z_3} = A + \overline{(\overline{B} + \overline{C} + \overline{D})}$$
-    $$\overline{Z_3} = A + (B \cdot C \cdot D)$$
-    $$Z_3 = \overline{A + (B \cdot C \cdot D)}$$
-    \begin{figure}[!h]
-        \centering
-        \includegraphics[width=0.5\textwidth]{figures/cc_cmos3.png}
-        \end{figure}
+    \item You decide to now start travelling at $v = 0.5c$ in the $+\hat{x}$ direction. The charges now look like they are travelling at $0.5c$ in the $-\hat{x}$ direction. From your point of view, what is the electric field as a function of position given off by these charges? From your point of view, what is the magnetic field as a function of position given off by these charges?
+    
+    \item Points of view do not affect what is really happening. So what is the underlying truth?
+
+\end{enumerate}
+
+\newpage
+
+\section{Rigid Reciprocity}
+
+Let $\rho_1$ be a static charge distribution over free space with a corresponding potential distribution $\phi_1$, and $\rho_2$ be a static charge distribution over free space with a corresponding potential distribution $\rho_2$. 
+
+\vspace{3mm}
+
+Given Green's second identity on scalar functions:
+
+\[
+\int_U (\psi\nabla^2\varphi - \varphi\nabla^2\psi) dV = \oint_{\partial U}(\psi\nabla\varphi - \varphi\nabla\psi)\cdot dS
+\]
+
+prove Green's reciprocity theorem:
+
+\[
+\int \rho_1\phi_2 dV = \int \phi_2\rho_2 dV
+\]
+
+Note: The integral above is taken over $\textbf{all of free space}$. $\partial U$ represents the boundary of the set $U$.
+
+
+\section{Peanut Butter Dispute}
+
+Shomik and Grant are very angry with each other (something about peanut butter apparently). Shomik gets on his spaceship and travels away from Earth at a velocity of $0.6c$.  At the same time, Grant gets on his spaceship and travels away from Earth in the opposite direction at a velocity of $0.6c$. In the meantime, Shomik and Grant continue to send curse words and insults to each other using a radio with a frequency of $\omega$. The signals they send take the form of $Acos(\omega t)$, where $A$ is some (varying) amplitude.
+
+\begin{enumerate}[label=(\alph*)]
+    \item What is the frequency of the communication when detected from Earth?
+    
+    \item What is the frequency of Grant's communication as detected by Shomik?
+    
+    \item Using the normal formulae for velocity addition, how fast is Grant moving away from Shomik? Is this correct?
+    
+    \item Grant realizes that Shomik is not receiving his messages properly. What frequency must Grant use so that Shomik detects the frequency $\omega$?
+
+\end{enumerate}
+
+\newpage
+
+\section{Time-Bender}
+
+Shomik continues to send messages to Grant of the form $Acos(\omega t)$, which means that Grant receives them with the form $Acos(\omega' t - k'x) = Acos(\omega' t - k'vt) = Acos(\omega' \left(1 - \frac{v}{c} \right) t)$. Note that $\frac{\omega}{k} = c$ always in a vacuum, so if $\omega$ changes, then $k$ must also change. Also note the direction of our $x$-axis.
+
+Grant now resorts to mocking Shomik instead. Grant then sends the exact same message back at the exact frequency that he received it at, aka $\omega'$. Shomik then receives his own message at frequency $\omega''$, enraging him further.
+
+For this problem, assume that Grant is moving away from Shomik at velocity $v$. Be \textbf{extremely} careful about what point of view you are using. Really put yourself into Shomik's or Grant's shoes.
+
+\begin{enumerate}[label=(\alph*)]
+    \item At what velocity is Shomik moving away from Grant? (Yes, this is trivial.)
+    
+    \item What is $\omega'$, and $\omega''$? Express them as functions of $\omega$. Hint: Do problem 1 first.
+
+    \item From Grant's point of view, what is the form of signal sent out by Grant? Write it out in the same format as provided (a cosinusoidal), although set $x = 0$ since Grant is always at the origin (from Grant's point of view). Leave you answer in terms of $\omega'$.
+
+    \item From Shomik's point of view, what is the form of signal sent out by Grant? Write it out in the same format as provided (i.e. simplify your answer so that it does not use any version of $k$). Leave your answer in terms of $\omega''$.
+
+    \item However, the signals in part (d) and part (e) must be the same signal - Grant and Shomik are just calling it different things. This is a fundamental postulate of physics: One's point of view \textbf{\textit{CANNOT}} affect the underlying truth (for if it did, this must be a single correct point of view, which feels very bad). Therefore, the solutions of (d) and (e) must be set equal to each other.
+\end{enumerate}
+
+\section{Space-Bender}
+
+The above result has profound consequences. For this problem, assume that Grant is moving away from Shomik, from Shomik's point of view, at $v$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item How fast is Shomik moving away from Grant in Grant's point of view? (Yes, this is trivial.)
+    
+    \item Given this conclusion and the conclusion of the previous part, what other quantity must be changing as we switch from Shomik's point of view to Grant's point of view? Express the quantity from Grant's point of view in terms of the quantity from Shomik's point of view.
+\end{enumerate}
+
+\newpage
+
+\section{Dispersion Relation}
+
+Shomik and Grant finally agree to peacefully resolve their peanut butter dispute. They fly back home and land in the Atlantic Ocean, where they sit on their separate lifeboats eating peanut butter and waiting to be picked up by Elon Musk.
+
+However, Grant is determined to get the last word, and he has the perfect plan. Grant's lifeboat is equipped with a ocean-wave generator that generates perfect ocean waves at any frequency that he wishes. He wants to generate different frequencies of ocean waves from where he is such that all the waves will hit Shomik at peak amplitude at the same time, thus overturning Shomik's lifeboat and sending his inferior peanut butter into the ocean.
+
+Shomik is floating $+x$ meters away from Grant (for this problem, assume Grant is at the origin). Derive, as a function of frequency $f$, the time that the waves must be released and the phase that the waves should be released at such that all waves peak in amplitude at $t = 0$ at Shomik's location. Use the dispersion relation for ocean water, and assume the water they are swimming in is deep enough. Leave $g$ in your final answers. The dispersion relation is given as
+
+$$\omega = \sqrt{gk}$$
+
+
+\section{Simultaneity}
+
+Nathan is sitting in the middle of a spaceship of length $600$ million meters (a very long spaceship). At $t = 0$, he turns on two flashlights, one pointing in one direction along the spaceship and the other pointing in the other direction. The spaceship is moving at $0.6c$.
+
+Sania is gremlining on planet Earth, which is stationary for our purposes, and watching the spaceship pass by.
+
+For this problem, use $c = 3 \cdot 10^8 m/s$.
+
+\begin{enumerate}[label=(\alph*)]
+    \item From Nathan's point of view, when will the light hit the front end of the spaceship? When will the light hit the back end of the spaceship?
+    
+    \item From Sania's point of view, when will the light hit the front end of the spaceship? When will the light hit the back end of the spaceship? Hint: do Problem 3 first.
+
+    \item So who's right? What is the underlying truth?
+
+\end{enumerate}
+
+\section{Speed of Light}
+
+Design an experiment that can measure the one-way speed of light. You have any physical, real tool and an infinite budget at your disposal (no science fiction allowed).
+
+\section{Quantum Relativity}
+%this is usually a homework problem...
+
+The one-dimensional Schrodinger's equation for a free particle with mass $m$ is given as
+
+$$j \hbar \frac{\partial \Phi}{\partial t} = \frac{\hbar^2}{2m} \frac{\partial^2 \Phi}{\partial x^2}$$
+
+This equation governs the quantum mechanical model of the motion of the particle.
+
+\begin{enumerate}[label=(\alph*)]
+    \item Determine the dispersion relation of wave-like solutions $\Phi(x, t) = e^{j(\omega t - kx)}$.
+
+    \item Find the group velocity as a function of $k$.
+
+    \item Is Schrodinger's equation relativistically valid? When does it fall apart?
 \end{enumerate}
 
 \end{document}

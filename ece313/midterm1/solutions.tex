@@ -105,10 +105,10 @@ Alex is organizing a focus group to figure out how best he can market his homema
 Tabish has a gambling addiction and decides he can double EWB's savings by going to a casino. It does not work out in his favor and he ends up 50k in the hole. He has one last shot to recover EWB's money, so he decides to calculate the probability of winning the following games, involving four unbiased dice, and play the ones where he is most likely to win.
 \begin{enumerate}[label=\Alph*.)]
 \item Calculate the probability that the sum of the 4 dice is 6. 
-\begin{answer}There are only 2 combinations of 4 dices that give us a sum of 6: three 1's and one 3 or two 2's and two 1's. We have $\binom{4}{1}$ ways of getting three 1's and one 3, and we have $\binom{4}{2}$ ways of getting two 2's and two 1's, so that gives us $\binom{4}{1}+\binom{4}{2}$ acceptable rolls of the dice. We have $6^4$ possible rolls, so the probability that the sum of the dice is equal to 6 is $\frac{\binom{4}{1}+\binom{4}{2}}{6^4}$.
+\begin{answer}There are only 2 combinations of 4 dice that give us a sum of 6: three 1's and one 3 or two 2's and two 1's. We have $\binom{4}{1}$ ways of getting three 1's and one 3, and we have $\binom{4}{2}$ ways of getting two 2's and two 1's, so that gives us $\binom{4}{1}+\binom{4}{2}$ acceptable rolls of the dice. We have $6^4$ possible rolls, so the probability that the sum of the dice is equal to 6 is $\frac{\binom{4}{1}+\binom{4}{2}}{6^4}$.
 \end{answer}
 \item Calculate the probability that no more than 2 of the dice show a 2. 
-\begin{answer}We can split this problem up into case work. We can have none of the dice showing a 2, one of the dice showing a 2, or two of the dice showing a 2. The number of rolls we can get where none of the dice show a 2 is $5^4$ as all 4 dice can show any of 5 faces. The number of rolls we can get where only one of the dice shows a 2 is $\binom{4}{1}*5^3$ (we choose one dice to have the 2 and the rest can have any of the remaining 5 faces). The number of rolls we can get where two of the dice show a 2 is $\binom{4}{2}*5^2$. Now, we can just sum these values up and divide by the total number of rolls, and we get $\frac{5^4 + \binom{4}{1}*5^3 + \binom{4}{2}*5^2}{6^4}$.
+\begin{answer}We can split this problem up into case work. We can have none of the dice showing a 2, one of the dice showing a 2, or two of the dice showing a 2. The number of rolls we can get where none of the dice show a 2 is $5^4$ as all 4 dice can show any of 5 faces. The number of rolls we can get where only one of the dice shows a 2 is $\binom{4}{1}*5^3$ (we choose one die to have the 2 and the rest can have any of the remaining 5 faces). The number of rolls we can get where two of the dice show a 2 is $\binom{4}{2}*5^2$. Now, we can just sum these values up and divide by the total number of rolls, and we get $\frac{5^4 + \binom{4}{1}*5^3 + \binom{4}{2}*5^2}{6^4}$.
 \end{answer}
 \item Calculate the probability that none of the dice show a 6.
 \begin{answer}
@@ -118,9 +118,9 @@ All 4 dice can show any of 5 faces that are not 6, so the answer is $\frac{5^4}{
 \begin{answer}
 We can choose 6 values for the first dice, 5 values for the next one, 4 values for the third one, and 3 values for the last one. We can now just multiply these together and divide by $6^4$. This simplifies to $\frac{5}{18}$.
 \end{answer}
-\item Calculate the probability that two of the dice show different values.
+\item Calculate the probability of getting one pair.
 \begin{answer}
-We first choose which two dice show different values, giving us $\binom{4}{2}$ ways of picking them, and then we have 6 choices for the first die and 5 for the second. Now, we multiply these together and divide by the total number of rolls, giving us $\frac{\binom{4}{2}*6*5}{6^4}$.
+There are $\binom{4}{2}$ ways of choosing which two dice are in the pair, and 6 possible values for the pair. There are 5 possible values for the third die and 4 for the fourth to avoid having a three-of-a-kind or two pair. Now, we multiply these together and divide by the total number of rolls, giving us $\frac{\binom{4}{2}*6*5*4}{6^4}$.
 \end{answer}
 \end{enumerate}
 \end{exercise}
