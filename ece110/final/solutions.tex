@@ -37,9 +37,32 @@ This worksheet does not cover content in lectures after November 25th and is not
 
 \textbf{Question 2:} If a 15 kWh battery has to be recharged using a 60\% efficient generator with peak power of 500 W, how long does the generator need to run to fully charge the battery?
 
+\textbf{Solution:}
+% Solution steps
+\begin{align*}
+    Q &= \mu P t \\
+    t &= \frac{Q}{\mu P} = \frac{15 \cdot 10^3 \ Wh}{.6 \cdot 500 W}  \\ &= \boxed{50\ \textnormal{hours}}
+\end{align*}
+
 \textbf{Question 3:} What is the energy stored in a 4 nF capacitor charged to 9V?
 
+\textbf{Solution:}
+% Solution steps
+\begin{align*}
+    E_c &= \frac{1}{2}CV^2 \\ 
+    &= \frac{1}{2} \cdot (4 \cdot 10^{-9}) \cdot 9 \\
+    &= \boxed{1.8 \cdot 10^{-8} \ J}
+\end{align*}
+
 \textbf{Question 4:} What voltage is needed to charge the capacitor from the above question enough to lift a 2-gram mass 15 cm?
+
+\textbf{Solution:}
+% Solution steps
+\begin{align*}
+    E_c &= \frac{1}{2}CV^2 = mgh \\
+    V &= \sqrt{\frac{2mgh}{C}} = \sqrt{\frac{2 \cdot .002 \cdot 9.8 \cdot .15}{4 \cdot 10^{-9}}} \\
+    &= \boxed{1212.436 \ J}    
+\end{align*}
 
 \section*{Kirchoff's Laws/Dividers}
 
@@ -49,11 +72,50 @@ This worksheet does not cover content in lectures after November 25th and is not
     \includegraphics[width=0.75\linewidth]{figures/2.png}
 \end{center}
 
+\textbf{Solution:}
+% Solution steps
+\begin{align*}
+    \textnormal{KVL of Bottom Loop: } V_1 &- V_2 - V_4 - V_5 = 0 \\
+    V_1 &= V_2 + V_4 + V_5 = 16 + 14 + 20 \\
+    V_1 &= \boxed{50 \ V}
+\end{align*}
+\begin{align*}
+    \textnormal{KVL of Bottom Left Loop: } V_1 &- V_2 - V_3 = 0 \\
+    V_3 &= V_1 - V_2 =  50 - 16 \\
+    V_3 &= \boxed{34 \ V}
+\end{align*}
+\begin{align*}
+    \textnormal{KVL of Top Loop: } V_2 &- V_6 + V_4 = 0 \\
+    V_6 &= V_2 + V_4 =  16 + 14 \\
+    V_6 &= \boxed{30 \ V}
+\end{align*}
+\begin{align*}
+    \textnormal{KCL at Top Left Node: } I_1 &+ I_2 + I_6 = 0 \\
+    I_2 &= -I_1 - I_6 =  -2 - 0 \\
+    I_2 &= \boxed{-2 \ A}
+\end{align*}
+\begin{align*}
+    \textnormal{KCL at Center Node: } I_2 &= I_3 + I_4 \\
+    I_4 &= I_2 - I_3 = -2-3 \\
+    I_4 &= \boxed{-5 \ A}
+\end{align*}
+\begin{align*}
+    \textnormal{KCL at Bottom Node: } I_1 &+ I_3 + I_5 = 0 \\
+    I_5 &= -I_1 - I_3 =  -2-3 \\
+    I_5 &= \boxed{-5 \ A}
+\end{align*}
+
 \textbf{Question 6:} Find V1 in the circuit below.
 
 \begin{center}
     \includegraphics[width=0.75\linewidth]{figures/3.png}
 \end{center}
+
+\textbf{Solution:} The 1 Ohm and 3 Ohm resistors are in parallel with the current source. Therefore, the voltage across both resistors is equal to 2V. From here, we can use the voltage divider rule because the resistors are in series.
+\begin{align*}
+    V_1 &= \frac{1}{1+3} \cdot 2 \\
+        &= \boxed{\frac{1}{2} \ V}
+\end{align*}
 
 \textbf{Question 7:} What value of R will result in Vo = 1V for the following circuit? (given: $R_1=9\Omega, R_2=10\Omega, R_3=15\Omega, V_s=4V$)
 
@@ -83,7 +145,7 @@ Solving for \( R \), we find:
 \frac{1}{R} = \frac{2}{6} - \frac{1}{6} = \frac{1}{6}.
 \]
 \[
-R = 6 \, \Omega.
+\boxed{R = 6 \, \Omega.}
 \]
 
 \textbf{Question 8:} Find I in the circuit below.
@@ -106,7 +168,7 @@ where \( R_1 = R_2 = 2 \text{k}\Omega \).
 
 Substituting values:
 \[
-I_1 = 22 \text{ mA} \cdot \frac{2}{2 + 2} = 22 \text{ mA} \cdot \frac{1}{2} = 11 \text{ mA}.
+I_1 = 22 \text{ mA} \cdot \frac{2}{2 + 2} = 22 \text{ mA} \cdot \frac{1}{2} = \boxed{11 \text{ mA}.}
 \]
 
 \section*{Equivalent Resistance / Power}
@@ -171,7 +233,7 @@ For the second circuit:
 5. The 4$\Omega$ from Step 4 and the 2$\Omega$ resistor are in series:  
    \( R_{\text{eq}} = 4 \, \Omega + 2 \, \Omega = 6 \, \Omega \).
 
-Thus, the total equivalent resistance is \( R_{\text{eq}} = 6 \, \Omega \).
+Thus, the total equivalent resistance is \( \boxed{ R_{\text{eq}} = 6 \, \Omega } \).
 \bigskip
 
 
