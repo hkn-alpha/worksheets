@@ -106,18 +106,31 @@ Logical Little Computer 3 Language Lessons}
     MULTIPLY \newline
     ;your code goes here: \newline
     \newline\textcolor{blue}{
-    ST R4, SaveR4    \hfill ; Callee-Save R4 \newline
-    AND R0, R0, \#0   \hfill ; Clear R0 \newline
-    MULTIPLY \newline
-    ADD R0, R0, R3 \hfill \newline
-    ADD R4, R4, \#-1 \hfill ; Decrement R4 \newline
-    BRp MULTIPLY \hfill ; Loop Back if R4 is positive \newline
-    \newline
-    LD R4, SaveR4 \hfill ; Callee-Restore R4
+    ST R4, SaveR4    \qquad \quad ; Callee-Save R4 \newline
+    AND R0, R0, \#0   \qquad ; Clear R0 \newline
+    ADD R4, R4, \#0 \qquad ; Check R4's condition code \\
+    BRz DONE \qquad \qquad \enskip; if R4 is 0, return 0\\
+    BRn NEG \qquad \qquad \quad \\
+    \\
+    POS \qquad \qquad \qquad \quad \enskip ; R4 is positive\\
+    ADD R0, R0, R3 \qquad ; Add R3 to R0\\
+    ADD R4, R4, \#-1 \quad \enskip ; Decrement R4\\
+    BRp POS \qquad \qquad \quad \,; Complete R4 number of loops\\
+    BRnzp DONE \qquad \quad \,; R0 has R4*R3\\
+    \\
+    NEG \qquad \qquad \qquad \quad  \, ; R4 is negative\\
+    ADD R0, R0, R3 \qquad ; Add R3 to R0\\
+    ADD R4, R4, \#1 \qquad ; Increment R4 (since R4 is negative)\\
+    BRn NEG \qquad \qquad \quad ; Loop abs(R4) times\\
+    NOT R0, R0 \qquad \qquad ; \\
+    ADD R0, R0, \#1 \qquad ; Negate R0 (Since R0 has -R4*R3)\\
+    \\
+    DONE \\
+    LD R4, SaveR4 \qquad \quad ; Callee-Restore R4
     \newline
     RET
     \newline
-    SaveR4 .BLKW \#1 \hfill ; Save this spot for R4}
+    SaveR4 .BLKW \#1 \quad \, ; Save this spot for R4}
 
     \item 
     \textbf{More subroutines}: What extra step do you need to take when executing a subroutine inside a subroutine? (Hint: What gets overwritten when JSR is called?)\newline
