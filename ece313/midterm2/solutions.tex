@@ -1,0 +1,187 @@
+\documentclass{exam}
+\usepackage{graphicx} % Required for inserting images
+\usepackage{amsmath}
+
+\title{ECE 313 Midterm 2 Solutions}
+\author{HKN Members}
+\date{}
+\renewcommand\thesection{Q\arabic{section}:}
+\renewcommand\thesubsection{Part \Alph{subsection}:}
+\begin{document}
+
+\maketitle
+
+\renewcommand\thesection{Answer to Q\arabic{section}:}
+\renewcommand\thesubsection{Part \Alph{subsection}:}
+\setcounter{section}{0}
+\section{Pramod's Great Escape}
+\subsection{The Rocket}
+We have $500$ engines, numbered 0 through 499. Pramod will not successfully escape if at least one engine fails. Let $F_m$ be the event that engine $m$ fails, and let $M$ be the event that Pramod will not successfully escape. Then $P\{M\} = P\{F_0 \cup F_1 \cup \dots \cup F_{499}\}$, and $P\{F_m\} = (\frac{1}{10^3})(\frac{9}{10})^m$.
+\newline
+Because the probability of any given engine failing is small ($\leq \frac{1}{10^3}$), it is appropriate use the union bound to estimate $P\{M\} \approx P\{F_0\} + P\{F_1\} + \dots + P\{F_{499}\}$. This gives:
+\newline
+$P\{M\} \approx (\frac{1}{10^3})(\frac{9}{10})^0 + (\frac{1}{10^3})(\frac{9}{10})^1 + \dots + (\frac{1}{10^3})(\frac{9}{10})^{499}$
+\newline
+$P\{M\} \approx \sum_{m=0}^{499}(\frac{1}{10^3})(\frac{9}{10})^m$
+\newline
+$P\{M\} \approx \sum_{m=0}^{\infty} (\frac{1}{10^3})(\frac{9}{10})^m - \sum_{m=500}^{\infty}(\frac{1}{10^3})(\frac{9}{10})^m$
+\newline
+Because $(\frac{9}{10})^{500} \approx 10^{-23}$, the $\sum_{m=500}^{\infty}(\frac{1}{10^3})(\frac{9}{10})^m$ term is insignificant in this calculation.
+\newline
+$P\{M\} \approx \sum_{m=0}^{\infty} (\frac{1}{10^3})(\frac{9}{10})^m$
+\newline
+Because $\sum_{k=0}^{\infty} ar^k = \frac{a}{1-r}$, we have:
+\newline
+$P\{M\} \approx \frac{\frac{1}{10^3}}{1-\frac{9}{10}}$
+\newline
+$P\{M\} \approx \frac{1}{100}$
+\newline
+So the likelihood that Pramod will not successfully escape is approximately \textbf{0.01}.
+\newline
+\newline
+For the second part of this problem, we need to estimate the order of magnitude of the error of this estimate.
+\newline
+We wanted to find $P\{F_0 \cup F_1 \cup \dots \cup F_{499}\}$, but we actually calculated $P\{F_0\} + P\{F_1\} + \dots + P\{F_{499}\}$. Let $E$ we the error of our calculation. Because the probability of more than two engines failing is orders of magnitude less than the probability of two engines failing, we can approximate this error as $E = P\{F_0F_1\} + P\{F_0F_2\} + \dots + P\{F_0F_{499}\} + P\{F_1F_2\} + P\{F_1F_3\} + \dots + P\{F_1F_{499}\} + \dots + P\{F_{498}F_{499}\}$. This gives $E = \sum_{m=1}^{499}P\{F_0F_m\} + \sum_{m=2}^{499}P\{F_1F_m\} + \dots \sum_{m=499}^{499}P\{F_{498}F_m\}$.
+\newline
+$\sum_{m=1}^{499}P\{F_0F_m\} = \sum_{m=1}^{499}(\frac{1}{10^3})(\frac{9}{10})^0(\frac{1}{10^3})(\frac{9}{10})^m = \sum_{m=1}^{499}(\frac{1}{10^6})(\frac{9}{10})^m$
+\newline
+Since the $m\geq500$ terms are negligible, we can approximate this as an infinite sum:
+\newline
+$\sum_{m=1}^{499}P\{F_0F_m\} = \sum_{m=1}^{\infty}(\frac{1}{10^6})(\frac{9}{10})^m$
+\newline
+$\sum_{m=1}^{499}P\{F_0F_m\} = \sum_{m=0}^{\infty}(\frac{1}{10^6})(\frac{9}{10})^m - (\frac{1}{10^6})(\frac{9}{10})^0$
+\newline
+$\sum_{m=1}^{499}P\{F_0F_m\} = \frac{\frac{1}{10^6}}{1-\frac{9}{10}} - (\frac{1}{10^6})$
+\newline
+$\sum_{m=1}^{499}P\{F_0F_m\} = 9*10^{-6}$
+\newline
+Using the same method, we can find $\sum_{m=2}^{499}P\{F_1F_m\} = 7.29*10^{-6}$
+\newline
+The later summations in the equation for $E$ will decrease towards zero, and the sum of first two summations is on the order of magnitude of $10^{-5}$. Therefore, the order of magnitude of the error is $10^{-5}$.
+
+\newpage
+\subsection{The Asteroids}
+The question has a fixed-rate continous time event, i.e a Poisson process. The question being asked involves the $k$th instance of this event, which can be modelled by an Erlang distribution, so using its CDF:
+
+$P = 1 - \sum_{n=0}^{k-1} \frac{e^{-\lambda t}(\lambda t)^n}{n!}$
+
+Inserting $\lambda = 1$, $k=500$, and $t=500$
+
+$P = 1 - \sum_{n=0}^{499} \frac{e^{-500}(500)^n}{n!}$
+
+This is a rather unfortunate sum that we would rather not solve. However, recall that the question does not ask for precision past 1\%. We can therefore re-frame the question like this:
+\newline
+\newline
+Given a random variable $X$, which is defined as the sum of $500$ exponential distributions with rate $\lambda=1$, what is the likelihood that $X>500$?
+\newline
+\newline
+Which is a trivial CLT problem because in this case $E[X] = 500$, meaning that $P \approx 0.5$. Note that this only holds because the mean and median are equal in Gaussian distributions, which is not the case in the original Erlang distribution. 
+
+\section{Captain's Treasure}
+\subsection{The Shipwreck}
+Notice how since Captain Chatterjee has no idea where the treasure is, it could be anywhere in that 30km zone, making this a uniform distribution. Which means it does not matter where he pays the surveyor to work, and the probability of success will always be $p=\frac{1}{3}$
+
+\subsection{The Mines}
+Since the mines appear at a fixed rate in distance, we can model this situation as an exponential distribution over distance. As such, the rate $\lambda = 3$ mines per km. Using $P(X \leq x) = 1 - e^{-\lambda x}$, the probibility that the next mine is between 100m and 200m is the following: $P (0.1 \leq X \leq 0.2) = P(X \leq 0.2) - P(X \leq 0.1) = (1-e^{-0.6}) - (1-e^{-0.3}) = 0.192$.
+
+\newpage
+\section{Not Fine Fines}
+\subsection{The Payment}
+This can be modeled using a binomial distribution,  with n = 2000000 and p = 0.5. For large n, we can approximate it by a normal distribution due to the Central Limit Theorem. Its mean would be $np = 0.5*2000000 = 1000000$ and its standard deviation would be $\sigma = \sqrt{n*p*(1-p)}$ = $\sqrt{2000000*0.5*0.5}$ = $\sqrt{500000} = 707.1$
+For calculating the probability of less than 500000 lands heads-up, we do the following: $P \left\{ \frac{X - 1000000}{707.1} \leq \frac{500000 - 1000000}{707.1} \right\} = \Phi(\frac{500000 - 1000000}{707.1}) = \Phi(-707.1) = Q(707.1) = 0$. Q(707.1) is so small that the probability of less than 500000 heads-up would be very small, essentially 0.  
+
+
+\subsection{The Casino}
+This question can be modeled as a Poisson distribution of $\lambda = 0.012$ because it has a low p of 0.001 and n = 12. To win a gazillion dollars in 12 hours, he needs to succeed 3 times. First, we can calculate the probability of winning less than three times, $P(X<3)$, by calculating the sum of the likelihood of winning 0, 1, 2 times: \newline \newline
+$P(X=0) = \lambda^0*\frac{e^{-\lambda}}{0!}=e^{-\lambda}=e^{-0.012}\approx0.988$ \newline
+$P(X=1) = \lambda^1*\frac{e^{-\lambda}}{1!}=\lambda*e^{-\lambda}=0.012*e^{-0.012}\approx0.0119$ \newline
+$P(X=2) = \lambda^2*e^\frac{{-\lambda}}{2!}=\lambda^2*\frac{e^\lambda}{2}=0.012^2*\frac{e^{-0.012}}{2}\approx0.000071$ \newline
+$P(X<3) = 0.988+0.0119+0.000071 = 0.999971$ \newline \newline
+Therefore, we can get the possibility of succeeding more than or equal to 3 times:
+\newline
+$P(X \ge 3) = 1 - P(X<3) = 0.000029$
+
+\subsection{The Last Stand}
+We model it as an exponential distribution with parameter \(\lambda\). To get the maximum likelihood (ML) estimate of \(\lambda\), we want to maximize the likelihood function \(\lambda e^{-\lambda t}\) for \(t = 10\), since the town goes bankrupt in 10 days. 
+
+By taking the derivative to find the maximum, we have:
+\[
+\frac{d}{d\lambda} \left( \lambda e^{-\lambda t} \right) = (1 - \lambda t) e^{-\lambda t} = 0,
+\]
+which gives us 
+\[
+\lambda_{\text{ML}} = \frac{1}{t} = 0.1.
+\]
+
+
+
+
+% \section{Conjurers of Distributions}
+
+\section{ML Estimators}
+\subsection{}
+Most of the work of this problem is knowing how to deal with functions of random variables. Start by setting up the relation:
+ \begin{center}
+$P\{X = 7\} = P\{3Y - 2 = 7\} = P\{Y = 3\}$. 
+\newline
+\end{center}
+ Now you just need to use the $\widehat{p}_{ML}$ equation for geometric distributions, $\widehat{p}_{ML} = \frac{1}{k}$. This equation is derived in the textbook by taking the derivative of the geometric distribution with respect to p. This gives you a final answer of  $\widehat{p}_{ML} = \frac{1}{3}$.
+\subsection{}
+Since all values in the set have an equal probability, the pmf of x is 
+\begin{equation}
+    P_x(n) = \begin{cases}
+    \frac{1}{n}, &\text{ $1,3,5,...,2n+1$} \\
+    0, &\text{otherwise}
+    \end{cases}
+\end{equation}
+The probability is minimized when n is as small as possible. This means n should be the smallest value for which the set is still valid. Since 13 is observed, it must be in the set, so the smallest possible value of n is 6.
+
+\section{Hypothesis Testing}
+\subsection{}
+Both hypotheses can be modeled using the binomial distribution. Using the binomial distribution formula: 
+\begin {equation}
+P(x) = \binom{n}{x} \cdot (p)^x \cdot (1-p)^{(n-x)}
+\end{equation}
+
+The ML decision table is shown below.
+
+\begin{table}[h!]
+\centering
+\begin{tabular}{llllll}
+\hline
+\multicolumn{1}{|l|}{Hypothesis} & \multicolumn{1}{l|}{0} & \multicolumn{1}{l|}{1} & \multicolumn{1}{l|}{2} & \multicolumn{1}{l|}{3} & \multicolumn{1}{l|}{4} \\ \hline
+\multicolumn{1}{|l|}{$H_{1}$}         & \multicolumn{1}{l|}{\underline{0.3164}}  & \multicolumn{1}{l|}{\underline{0.421875}}  & \multicolumn{1}{l|}{0.2109375}  & \multicolumn{1}{l|}{0.046875}  & \multicolumn{1}{l|}{0.00390625}  \\ \hline
+\multicolumn{1}{|l|}{$H_{0}$}         & \multicolumn{1}{l|}{0.0625}  & \multicolumn{1}{l|}{0.25}  & \multicolumn{1}{l|}{\underline{0.375}}  & \multicolumn{1}{l|}{\underline{0.25}}  & \multicolumn{1}{l|}{\underline{0.0625}}  \\ \hline
+                                 &                        &                        &                        &                        &                       
+\end{tabular}
+\end{table}
+
+The ML decision rule is underlined in the table. 
+
+\subsection{}
+
+By convention, $P_{false alarm}$ is defined by the conditional probability 
+\begin{equation}
+    P_{false alarm} = P(declare\, H_{1}\, true\, |\, H_{0} )
+\end{equation}
+and $P_{miss}$ is defined by the conditional probability 
+\begin{equation}
+    P_{miss} = P(declare\, H_{0}\, true\, |\, H_{1} )
+\end{equation}
+$P_{false alarm}$ can be found by taking the sum of the non underlined elements in the $H_0$ row.
+\begin{center}
+$P_{false alarm}$ = 0.0625 + 0.25 = 0.3125.
+\end{center}
+Similarly, $P_{miss}$ is the sum of the non underlined elements in the $H_1$ row.
+\begin{center}
+$P_{miss}$ = 0.2109 + 0.0469 + 0.0039 = 0.2617
+\end{center}
+Finally, \( p_e \) is found through
+\[
+p_e = \pi_{0} p_{\text{false alarm}} + \pi_{1} p_{\text{miss}}
+\]
+\begin{center}
+$p_e = \frac{1}{3}*0.3125 + \frac{2}{3}*0.2617 = 0.2786$
+\end{center}
+
+\end{document}
