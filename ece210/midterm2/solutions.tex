@@ -1,0 +1,170 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage[utf8]{inputenc}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\thispagestyle{empty}
+
+\begin{document}
+
+\section*{Solutions}
+\begin{enumerate}
+
+    \item \textbf{Determine the phasor of the sinusoidal signal $f(t) = 10\sin{(\frac{\pi}{4}t - \frac{3\pi}{4})}$? Express it both in polar and rectangular.}
+
+        To solve this question, let's first transform the sine function to a cosine function. To do so, we can subtract $\frac{\pi}{2}$, or $90\degree$, from the phase:
+    
+        \[
+            f(t) = 10\sin{\left(\frac{\pi}{4}t - \frac{3\pi}{4}\right)} =
+            10\cos{\left(\frac{\pi}{4}t - \frac{3\pi}{4} - \frac{\pi}{2}\right)}
+            = 10\cos{\left(\frac{\pi}{4}t - \frac{5\pi}{4}\right)}
+        \]
+    
+        From this form, we get that the polar form of this function is $10e^{-\frac{5\pi}{4}j}$. Expressing this in rectangular form, we have:
+        \[
+            10 \left( \frac{-\sqrt{2}}{2} \right) + 10j \left( \frac{\sqrt{2}}{2} \right) = -5\sqrt{2} + 5\sqrt{2}j
+        \]
+
+    \item \textbf{Determine the phasor of the sinusoidal signal $f(t) = 4\cos{(5t + \frac{\pi}{4})} + 12\cos{(t + \frac{7\pi}{4})}$? Express it either polar or rectangular form.}
+
+        To solve this, we must first note that the two terms have \textbf{different frequencies} ($\omega_1 = 5$ rad/s and $\omega_2 = 1$ rad/s). Phasors are frequency-specific representations; therefore, we cannot add these two terms into a single phasor representation. We must determine the phasor for each component separately.
+
+        \textbf{Component 1 ($\omega = 5$):}
+        \[
+            \mathbf{F_1} = 4\angle{\frac{\pi}{4}} = 4e^{j\pi/4}
+        \]
+        Rectangular: 
+        \[
+            4\left(\cos\frac{\pi}{4} + j\sin\frac{\pi}{4}\right) = 2\sqrt{2} + j2\sqrt{2}
+        \]
+
+        \textbf{Component 2 ($\omega = 1$):}
+        \[
+            \mathbf{F_2} = 12\angle{\frac{7\pi}{4}} = 12e^{j7\pi/4}
+        \]
+        Rectangular: 
+        \[
+            12\left(\cos\frac{7\pi}{4} + j\sin\frac{7\pi}{4}\right) = 6\sqrt{2} - j6\sqrt{2}
+        \]
+        
+        Thus, the signal is represented by the superposition of these two distinct phasors.
+
+    \item \textbf{Given an LTI system with a frequency response $H(\omega) = \frac{2}{12 + j\omega}$ and an input of $f(t) = 7 + \sin{(5t + \frac{\pi}{2})} + \cos{(12t + \frac{\pi}{4})}$, determine the output $y(t)$.}
+
+        To solve this problem, we use the property of superposition and determine the output for each frequency component separately.
+
+        \textbf{Part 1 (DC, $\omega=0$):}
+        The input is $7$ (which is $7\cos(0t)$).
+        \[
+             H(0) = \frac{2}{12 + j(0)} = \frac{1}{6}
+        \]
+        The output is the input magnitude times the DC gain:
+        \[
+             y_1(t) = 7 \cdot H(0) = 7 \cdot \frac{1}{6} = \frac{7}{6}
+        \]
+
+        \textbf{Part 2 ($\omega=5$):}
+        The input is $\sin{(5t + \frac{\pi}{2})} = \cos(5t)$.
+        Evaluate frequency response at $\omega=5$:
+        \[
+            H(5)= \frac{2}{12 + 5j}
+        \]
+        Magnitude:
+        \[
+            |H(5)| = \frac{2}{\sqrt{12^2 + 5^2}} = \frac{2}{\sqrt{144+25}} = \frac{2}{13}
+        \]
+        Phase:
+        \[
+            \angle H(5) = -\arctan{\left(\frac{5}{12}\right)}
+        \]
+        Output component:
+        \[
+            y_2(t) = \frac{2}{13}\cos\left(5t - \arctan{\left(\frac{5}{12}\right)}\right)
+        \]
+
+        \textbf{Part 3 ($\omega=12$):}
+        The input is $\cos{(12t + \frac{\pi}{4})}$.
+        Evaluate frequency response at $\omega=12$:
+        \[
+            H(12) = \frac{2}{12 + 12j} = \frac{1}{6(1+j)}
+        \]
+        Magnitude:
+        \[
+             |H(12)| = \frac{1}{6\sqrt{1^2+1^2}} = \frac{1}{6\sqrt{2}} = \frac{\sqrt{2}}{12}
+        \]
+        Phase of H(12):
+        \[
+            \angle H(12) = -\arctan{\left(\frac{12}{12}\right)} = -\frac{\pi}{4}
+        \]
+        Total phase = Input phase + System phase = $\frac{\pi}{4} - \frac{\pi}{4} = 0$.
+        Output component:
+        \[
+            y_3(t) = \frac{\sqrt{2}}{12}\cos(12t)
+        \]
+
+        \textbf{Total Output:}
+        Combining all parts:
+        \[
+            y(t) = \frac{7}{6} + \frac{2}{13}\cos{\left(5t - \arctan{\left(\frac{5}{12}\right)}\right)} + \frac{\sqrt{2}}{12}\cos(12t)
+        \]
+
+    \item \textbf{Consider the RC circuit with $R = 2\ \Omega$, $C = 1\ \mathrm{F}$, and input $f(t)=4e^{-t}u(t)$ with $v(0^-)=1$.}
+
+        To solve this problem, we first write KCL at the capacitor node. The current through the resistor plus the current into the capacitor must sum to zero:
+
+        \[
+            \frac{v(t)-f(t)}{R} + C\frac{dv(t)}{dt} = 0
+        \]
+
+        Plugging in $R=2$ and $C=1$:
+
+        \[
+            \frac{v(t)-4e^{-t}}{2} + \frac{dv(t)}{dt} = 0
+        \]
+
+        Multiplying by 2 gives the differential equation:
+
+        \[
+            2\frac{dv(t)}{dt} + v(t) = 4e^{-t}
+        \]
+
+        Solving this ODE, we rewrite it as:
+
+        \[
+            \frac{dv(t)}{dt} + \frac{1}{2}v(t) = 2e^{-t}
+        \]
+
+        Using the integrating factor $e^{t/2}$, we get:
+
+        \[
+            \frac{d}{dt}\left(v(t)e^{t/2}\right) = 2e^{-t/2}
+        \]
+
+        Integrating both sides:
+
+        \[
+            v(t)e^{t/2} = -4e^{-t/2} + K
+        \]
+
+        Solving for $v(t)$:
+
+        \[
+            v(t) = -4e^{-t} + Ke^{-t/2}
+        \]
+
+        Applying the initial condition $v(0)=1$:
+
+        \[
+            1 = -4 + K \quad \Rightarrow \quad K=5
+        \]
+
+        Thus, the full solution is:
+
+        \[
+            v(t) = -4e^{-t} + 5e^{-t/2}
+        \]
+
+\end{enumerate}
+
+\end{document}

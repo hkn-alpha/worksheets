@@ -1,0 +1,111 @@
+\documentclass[12pt,letterpaper, onecolumn]{exam}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{gensymb}
+\usepackage[utf8]{inputenc}
+\usepackage[lmargin=71pt, tmargin=1.2in]{geometry}
+\usepackage{circuitikz}
+\thispagestyle{empty}
+
+\begin{document}
+
+% ===================== HEADER ======================
+\begingroup  
+    \centering
+    \LARGE ECE 210 Review\\
+    \LARGE Midterm Two Fall 2024\\[0.5em]
+    \large \today\\[0.5em]
+    \large Created by HKN\par
+\endgroup
+\rule{\textwidth}{0.4pt}
+
+\pointsdroppedatright
+\printanswers
+\renewcommand{\solutiontitle}{\noindent\textbf{}\enspace}
+
+\newcommand\myNIA[4]{%
+    \draw #2 coordinate(#1-in) to[short] ++(1,0)
+    node[op amp, noinv input up, anchor=+](#1-OA){\texttt{#1}}
+    (#1-OA.-) -- ++(0,-1) coordinate(#1-FB)
+    to[R=#3] ++(0,-2) node[ground]{}
+    (#1-FB) to[R=#4, *-] (#1-FB -| #1-OA.out) -- (#1-OA.out)
+    to [short, *-] ++(1,0) coordinate(#1-out)
+    ;
+}
+
+% ===================== SECTION 1 ======================
+\section{[25 points] The three parts of this problem can be solved independently.}
+
+\begin{questions}
+
+\question Determine the phasor of the sinusoidal signal 
+\[
+f(t) = 10\sin\left(\frac{\pi}{4}t - \frac{3\pi}{4}\right).
+\]
+Express it both in polar and rectangular.  
+\textbf{(5 points)}  
+\begin{solution}
+    \begin{parts}
+        \part Polar:
+        \part Rectangular:
+    \end{parts}
+\end{solution}
+
+\question Determine the phasor of the sinusoidal signal  
+\[
+f(t) = 4\cos\left(5t + \frac{\pi}{4}\right) + 12\cos\left(t + \frac{7\pi}{4}\right).
+\]
+Express it in either polar or rectangular form.  
+\textbf{(5 points)}  
+\begin{solution}
+\end{solution}
+
+\question Given the LTI system with frequency response  
+\[
+H(\omega) = \frac{2}{12 + j\omega}
+\]
+and the input  
+\[
+f(t) = 7 + \sin\left(5t + \frac{\pi}{2}\right) + \cos\left(12t + \frac{\pi}{4}\right),
+\]
+determine the output \(y(t)\).  
+\textbf{(25 points)}  
+\begin{solution}
+\end{solution}
+
+\end{questions}
+
+% ===================== SECTION 2 ======================
+\section{[15 points] Consider the circuit shown below.}
+
+\begin{center}
+\begin{circuitikz}[scale=0.9, transform shape]
+    \draw (0,0) node[ground]{}
+          to[sV, v=$f(t)$] (0,2)
+          to[R=$2\,\Omega$] (3,2)
+          to[C=$1\,\mathrm{F}$, -*] (3,0) node[ground]{};
+    \draw (3,2) node[above] {$v(t)$};
+\end{circuitikz}
+\end{center}
+
+For \(t > 0\), the source voltage is
+\[
+f(t) = 4 e^{-t} u(t)\ \text{V},
+\]
+and the capacitor has initial value \(v(0^-) = 1\ \text{V}\).
+
+\begin{questions}
+
+\question Derive the differential equation (ODE) governing the capacitor voltage \(v(t)\) for \(t > 0\).  
+\textbf{(7 points)}  
+\begin{solution}
+\end{solution}
+
+\question Solve for \(v(t)\) for \(t > 0\), using the initial condition.  
+\textbf{(8 points)}  
+\begin{solution}
+\end{solution}
+
+\end{questions}
+
+\end{document}
