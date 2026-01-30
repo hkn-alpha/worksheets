@@ -1,7 +1,7 @@
 Things to Check:
---- Does the solutions file exist?
---- Does the blank file exist?
---- Do the solutions align with the blank file?
+  Does the solutions file exist?
+  Does the blank file exist?
+  Do the solutions align with the blank file?
 
 
 Final Worksheet:
