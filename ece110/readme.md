@@ -6,9 +6,6 @@ Things to Check:
   
 -Do the solutions align with the blank file?
 
-
-
-
 Final Worksheet:
 
 -Blank Notes:
