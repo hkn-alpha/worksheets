@@ -1,15 +1,15 @@
 Things to Check:
   
-  Does the solutions file exist?
+-Does the solutions file exist?
   
-  Does the blank file exist?
+-Does the blank file exist?
   
-  Do the solutions align with the blank file?
+-Do the solutions align with the blank file?
 
 Final Worksheet:
 
-  Blank Notes:
+-Blank Notes:
   
-  Solutions Notes:
+-Solutions Notes:
   
-  Date Last Updated:
+-Date Last Updated:
