@@ -272,7 +272,7 @@ There are $\binom{4}{2}$ ways of choosing which two dice are in the pair, and 6 
     \begin{answer}
         At exactly $600$ calls per hour, the complaint rate is $.2\cdot 600 = 120$ complaints per hour. Let $\lambda = 120$. Now, $C$ is number of complaints and $C \sim \Poisson(\lambda)$.
         \begin{enumerate}
-            \item $\frac{\lambda^2 e^{\lambda}}{2!} = 7200e^{-120}$
+            \item $\frac{\lambda^2 e^{-\lambda}}{2!} = 7200e^{-120}$
             \item We expect $\frac{1}{\lambda}$ hours between complaints. Doubling, we expect $\frac{1}{60}$ hours until we receive two complaints (or, 1 minute until 2 complaints. uh oh!).
             \item Treating each hour independently, we can let the number of hours $H$ be geometric with $p = 7200e^{-120}$. The expected number of hours until he receives exactly two complaints is thus $1/p = \frac{e^{120}}{7200}$
         \end{enumerate}
@@ -350,20 +350,53 @@ Steve the ECE major has procrastinated on his assignment and the code he wrote i
 %2.25 modified solution, Var(X/n) should be 1/4 based on Var(X) = n/4
 \begin{exercise}
 A level 99 archer tower is shooting arrows at an invading army. Each arrow always hits its target and the probability of hitting a barbarian or a goblin is 50/50. How many arrows does the tower need to shoot such that the probability will be at least 0.8 that the ratio of the barbarians to goblins will be between 0.3 and 0.7.
+\newline
 \begin{answer}
-Let X/n represent the proportion of barbarians killed in battle. Thus E[x] = n*p = $\frac{n}{2}$, Var(X) = n*p*q = $\frac{n}{4}$
+Let X = number barbarian hit and n = total arrows shot. The question asks about the proportion of targets hit that are barbarian, so $\frac{X}{n}$,let that be Y.
 \newline
-At least a 0.8 probability of X/n being between 0.3 and 0.7 is equivalent to at most a 0.2 probability that X/n is at or outside of 0.3 and 0.7
+Let p = probability of hitting a barbarian
+and q = 1-p = probability of hitting a goblin
+\newline\newline
+Find the expectation and variance from X:
 \newline
-Chebychev Inequality: $P\{|X-\mu| \geq d\} \leq \frac{\sigma^2}{d^2}$
+The type of target hit by each arrow is a Bernoulli random variable and $ X\sim Binomial(n,0.5)$.
 \newline
-$\mu = \frac{E[X]}{n} = \frac{1}{2}$, d = 0.2
+$E[X] = np = 0.5n$
 \newline
-$\sigma = \sqrt{Var(X/n)} = \sqrt{4/n}$
+$Var(X) = \sigma^2=np(1-p)=0.5n(0.5) = 0.25n$
+\newline\newline
+Find expectation and variance for Y from expectation and variance from X:
 \newline
-$P\{|X-0.5| \geq 0.2\} \leq \frac{4/n}{0.04}$
+$\mu = E[\frac{X}{n}]=\frac{1}{n}E[X]=\frac{0.5n}{n}=0.5$
 \newline
-$\frac{4/n}{0.04} = 0.2$, $0.008n = 4$, $n=500$
+$\sigma^2 = Var(Y)=Var(\frac{X}{n})=\frac{1}{n^2}Var(X)=\frac{0.25n}{n^2}=\frac{0.25}{n}$
+\newline\newline
+Substitute variables into Chebychev Inequality:
+\newline
+$P\{|Y-\mu|\geq d\} \leq \frac{\sigma^2}{d^2}$ with $ d=\frac{0.7-0.3}{2}=0.2$
+\newline
+$P\{|Y-0.5|\geq 0.2\} \leq \frac{\frac{0.25}{n}}{o.2^2}=0.2$
+\newline
+(In words this line basically says: Probability that the ratio barbarian hit is more than 0.2 away from 0.5 is less than equal to 0.2.)
+\newline
+$\frac{0.25}{n}=0.2^3$
+\newline
+$n=\frac{1}{4(0.2^3)}=\frac{125}{4}=31.25$
+\newline
+\newline
+31.25 arrows need to be shot.
+\newline\newline
+Understanding Chebychev:
+\newline
+$P\{0.3<Y<0.7\} \geq 0.8$
+\newline
+$P\{0.3-0.5<Y-0.5<0.70-0.5\} \geq 0.8$
+\newline
+$P\{|Y-0.5|\leq0.2\} \geq 0.8$
+\newline
+$P\{|Y-0.5|\geq0.2\} \leq 0.2$
+\newline
+
 \end{answer}
 \end{exercise}
 
