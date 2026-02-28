@@ -12,15 +12,15 @@
   
 -Solutions Notes:
   
--Date Last Updated:
+-Date Last Updated: 2/22/2026
 
 # Midterm 2:
 
--Blank Notes:
+-Blank Notes: Only 3 questions, could use more
   
--Solutions Notes:
+-Solutions Notes: If any questions are added, also add solutions
   
--Date Last Updated:
+-Date Last Updated: 2/22/2026
 
 # Final:
 

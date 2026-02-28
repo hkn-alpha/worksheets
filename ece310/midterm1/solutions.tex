@@ -371,48 +371,5 @@ $$n^2 u[n-1] + (\frac{1}{2})^n u[n+1] \xleftrightarrow{\text{Z}} \frac{z^{-1} + 
 
 $$u[n+1] * u[n-1] = \frac{z}{1-z^{-1}} \frac{z^{-1}}{1-z^{-1}} = \frac{1}{(1-z^{-1})^2}$$
 
-\newpage
-
-\section{Devious DTFTs}
-Use your unbounded knowledge of the DTFT properties and pairs to take the DTFT of these signals.
-\newline\newline
-(i) $\delta[n-1] + (\frac{2}{3})u[n+4]$
-\newline\newline
-(ii) $\cos(n)\sin(n)$
-\newline\newline
-(iii) $n\delta[n-1]*e^{jn}$
-
-\
-
-\noindent \textbf{Solution}: 
-
-\
-
-\noindent (i) We can apply the table and DTFT properties to get:
-
-$$\delta[n-1] + \frac{2}{3}u[n+4] \xleftrightarrow{\mathcal{F}} e^{-jw} + \frac{2}{3}e^{j4w}(\frac{1}{1-e^{-jw}} + \pi \delta(w))$$
-
-\noindent (ii) We could take the DTFT of both $\cos(n)$ and $\sin(n)$ and then convolve them in the frequency domain, but we opt to choose a simpler solution. Recall the folloing trig identity:
-
-$$\sin(\alpha)\cos(\beta) = \frac{1}{2}(\sin(\alpha + \beta) + \sin(\alpha-\beta))$$
-
-\noindent Applying it to our problem, we see that:
-
-$$\sin(n)\cos(n) = \frac{1}{2}(\sin(n + n) + \sin(n-n)) = \frac{1}{2}\sin(2n)$$
-
-\noindent The problem is now quite straightforward and we can just apply the table:
-
-$$\sin(n)\cos(n) \xleftrightarrow{\mathcal{F}} \frac{\pi}{2j} (\delta(w-2) - \delta(w+2))$$
-
-\noindent (iii) Recall that convolution in the time domain is multiplication in the frequency domain. We first find the DTFT of both input functions:
-
-$$n\delta[n-1] \xleftrightarrow{\mathcal{F}} j \frac{d}{dw}(e^{-jw}) = j(-je^{-jw}) = e^{-jw}$$
-$$e^{jn} \xleftrightarrow{\mathcal{F}} 2\pi \delta(w-1)$$
-
-\noindent Now it's a straightforward frequency domain multiplication:
-
-$$n\delta[n-1]*e^{jn} \xleftrightarrow{\mathcal{F}} 2\pi e^{-jw} \delta(w-1)$$
-
-\noindent (iii) \textbf{Alternate Solution} A slightly quicker way to arrive at the same result is to notice that $n\delta[n-1] = \delta[n]$. It's easy to take the convolution of a function with a delta function, so $n\delta[n-1]*e^{jn} = e^{j(n-1)}$. It's straightforward to apply DTFT properties from here to get the same answer as above.
 
 \end{document}
