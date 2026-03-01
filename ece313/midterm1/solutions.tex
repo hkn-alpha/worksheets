@@ -128,7 +128,16 @@ There are $\binom{4}{2}$ ways of choosing which two dice are in the pair, and 6 
 \end{enumerate}
 \end{exercise}
  
-
+\begin{exercise}
+    Pramod is trying the quantum immortality experiment. There is a random number generator that generates a 1 with probability p or a 0 with probability $1-p$ every second. If it generates a 1, Pramod dies. Pramod dies after 59 seconds of this experiment. What is the maximum likelihood estimate $p_{ML}$ of p? (Note: each trial is independent of each
+other)
+\newline
+\begin{answer}
+This experiment models a geometric distribution, and in this case, we are trying to
+find the maximum likelihood estimator for P(X = 59). Since this is a geometric distribution,
+we know that $P(X = 59) = (1-\hat{p})^{58}\hat{p}$. Taking the derivative of this, we get $(1-\hat{p})^{58}-58\hat{p}(1-\hat{p})^{57})$. Setting this equation equal to 0 and solving for $\hat{p}$, we get $\frac{1}{59}$. Therefore, $\hat{p}=\frac{1}{59}$.
+\end{answer}
+\end{exercise}
 \begin{exercise}
 
     Shomik has bet his house, his retirement fund, his cane, and his trenchcoats (in increasing order of importance) to Udit on a series of coin flips. Shomik is sneaky, so he can choose to use an unbiased coin or a weighted coin that lands on heads 60$\%$ of the time. Shomik flips his coin 10 times. 
