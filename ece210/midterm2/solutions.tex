@@ -165,6 +165,102 @@
             v(t) = -4e^{-t} + 5e^{-t/2}
         \]
 
+\item \textbf{Consider the following periodic signal $f(t)$.}
+
+\begin{questions}
+\question Given the fundamental frequency of $f(t)$ is 3 rad/s and $f(t)$ has exponential Fourier series coefficients:
+    \[F_n = \frac{jn}{1+n+n^2}\]
+
+Determine the output if $f(t)$ is the input to an LTI system with frequency response:
+\begin{center}
+    $H(\omega) = 4e^{-j2\omega}$ if $\omega \in [-8,8]$ and zero else
+\end{center}
+
+\textbf{Solution: } First notice that the frequency response $H(\omega)$ only has non-zero outputs for frequencies between $\pm 8$ rad/s. The Fourier series works with multiples of the fundamental frequency $\omega_0$, so the only Fourier series coefficients that produce a non-zero output are up to $F_{\pm 2}$. Notice that $n=3$ has a frequency of $3 \cdot 3 = 9$ rad/s, which is outside the range $[-8,8]$. \\
+
+The output Fourier series coefficients $Y_n$ are given by $Y_n = \sum_{n=-2}^{2} F_n \cdot H(n\omega_0)$. Start with $n=0$.
+
+\[
+F_0 = 0,\ H(0) = 4
+\]
+Since $F_0 = 0$, there is no DC term in the output. Now we can calculate the rest of the Fourier series coefficients and their corresponding frequency response.
+
+\begin{align*}
+F_1 = \frac{j}{3},\ H(3) = 4e^{-j9} \\
+F_{-1} = \frac{-j}{1},\ H(-3) = 4e^{j9} \\
+F_2 = \frac{j2}{7},\ H(6) = 4e^{-j18} \\
+F_{-2} = \frac{-j2}{3},\ H(-6) = 4e^{j18}
+\end{align*}
+
+Now we have the Fourier series coefficients for the output. Recall that this is an exponential Fourier series with fundamental frequency $\omega_0 = 3$ rad/s, so each coefficient is multiplied with $e^{jn\omega_0t}$ to produce the full output. Hence,
+
+\[
+\boxed{y(t) = \frac{j4}{3}e^{-j9}e^{j3t} - j4e^{j9}e^{-j3t} + \frac{j8}{7}e^{-j18}e^{j6t}- \frac{j8}{3}e^{j18}e^{-j6t}}
+\]
+This solution could be simplified further, but this form is sufficient to earn full points so it is recommended to save time by not simplifying if not needed.
+
+\newpage
+
+
+\question The signal $f(t)$ goes through another LTI system with output Fourier series coefficients:
+\begin{center}
+    $G_1 = j,\ G_{-1} = -j,\ G_2 = j\frac{4}{3},\ G_{-2} = -j\frac{4}{3},\ G_3 = j\frac{1}{2},\ G_{-3} = -j\frac{1}{2}$, and zero else
+\end{center}
+Determine the average power of the output signal. \\
+
+\textbf{Solution: } Recall Parseval's Theorem from your formula sheet: $P = \sum_{n=-\infty}^{\infty}|F_n|^2$. In this case $n \in [-3,3]$, so our average power will be given by $P = \sum_{n=-3}^{3}|G_n|^2$. The magnitude of a completely imaginary component is just the coefficient next to $j$, so the average power is simply: 
+
+\[
+P_G = (1)^2+(-1)^2+(\frac{4}{3})^2+(-\frac{4}{3})^2+(\frac{1}{2})^2+(-\frac{1}{2})^2
+\]
+
+Simplifying, we get that 
+
+\[
+P_G = 1+1+\frac{16}{9}+\frac{16}{9}+\frac{1}{4}+\frac{1}{4} = \boxed{\frac{109}{18}}
+\]
+
+\end{questions}
+
+\item \textbf{Consider the function $f(t) = \cos{(6t)} + 3\sin{(18t-\frac{\pi}{2})} - e^{j(21t + \frac{3\pi}{4})}$.}
+
+\begin{questions} 
+\question Is $f(t)$ periodic? \\
+
+\textbf{Solution: } Yes, $f(t)$ is periodic. For a sum of periodic functions to be periodic itself, the ratio of every frequency has to be a rational number. That is, $\frac{\omega_i}{\omega_j} \in \mathbb{Q}$ where $i \neq j$ for every combination of frequencies. \\
+
+In this function, we can see that $\omega_1 = 6,\ \omega_2 = 18,\ \omega_3 = 21$. 
+
+\begin{align*}
+    \frac{\omega_1}{\omega_2} = \frac{6}{18} \in \mathbb{Q} \\
+    \frac{\omega_1}{\omega_3} = \frac{6}{21} \in \mathbb{Q} \\
+    \frac{\omega_2}{\omega_3} = \frac{18}{21} \in \mathbb{Q}
+\end{align*}
+
+All possible combinations of frequencies are rational numbers, so $f(t)$ is periodic.
+
+\newpage
+
+\question If $f(t)$ is periodic, determine its period and fundamental frequency. If not, explain why. \\
+
+\textbf{Solution: } From part 1, we already found that $f(t)$ is periodic. The fundamental frequency of the sum of periodic functions is given by gcd($\omega_1,\omega_2,\omega_3,...$). Therefore,
+
+\[
+\omega_0 = \gcd(6,18,21) = \boxed{3\ [rad/s]}
+\]
+
+Notice that 6, 18, and 21 are all divisible by 3 and no larger number can divide all three. \\
+
+The period T of a periodic function is simply $\frac{1}{f_0}$ where $f_0$ is the fundamental frequency. However, in this class we mainly work with angular frequencies, so we need to use the relationship $\omega_0 = 2\pi f_0$ to find the standard fundamental frequency. 
+
+\[
+f_0 = \frac{\omega_0}{2\pi} = \frac{3}{2\pi}
+\]
+
+Therefore, T = $\frac{1}{f_0} = \boxed{\frac{2\pi}{3}\ [s]}$
+
+\end{questions}
+
 \end{enumerate}
 
 \end{document}

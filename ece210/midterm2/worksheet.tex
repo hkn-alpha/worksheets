@@ -13,7 +13,7 @@
 \begingroup  
     \centering
     \LARGE ECE 210 Review\\
-    \LARGE Midterm Two Fall 2024\\[0.5em]
+    \LARGE Midterm Two\\[0.5em]
     \large \today\\[0.5em]
     \large Created by HKN\par
 \endgroup
@@ -58,7 +58,13 @@ f(t) = 4\cos\left(5t + \frac{\pi}{4}\right) + 12\cos\left(t + \frac{7\pi}{4}\rig
 Express it in either polar or rectangular form.  
 \textbf{(5 points)}  
 \begin{solution}
+    \begin{parts}
+        \part Polar:
+        \part Rectangular:
+    \end{parts}
 \end{solution}
+
+\newpage
 
 \question Given the LTI system with frequency response  
 \[
@@ -70,8 +76,6 @@ f(t) = 7 + \sin\left(5t + \frac{\pi}{2}\right) + \cos\left(12t + \frac{\pi}{4}\r
 \]
 determine the output \(y(t)\).  
 \textbf{(25 points)}  
-\begin{solution}
-\end{solution}
 
 \end{questions}
 
@@ -98,14 +102,40 @@ and the capacitor has initial value \(v(0^-) = 1\ \text{V}\).
 
 \question Derive the differential equation (ODE) governing the capacitor voltage \(v(t)\) for \(t > 0\).  
 \textbf{(7 points)}  
-\begin{solution}
-\end{solution}
+
 
 \question Solve for \(v(t)\) for \(t > 0\), using the initial condition.  
 \textbf{(8 points)}  
-\begin{solution}
-\end{solution}
 
 \end{questions}
+
+\section{[20 points] Consider the following periodic signal $f(t)$.}
+
+\begin{questions}
+\question Given the fundamental frequency of $f(t)$ is 3 rad/s and $f(t)$ has exponential Fourier series coefficients: \textbf{(15 points)}
+    \[F_n = \frac{jn}{1+n+n^2} \]
+Determine the output if $f(t)$ is the input to an LTI system with frequency response:
+\begin{center}
+    $H(\omega) = 4e^{-j2\omega}$ if $\omega \in [-8,8]$ and zero else
+\end{center}
+
+\newpage
+
+\question The signal $f(t)$ goes through another LTI system with output Fourier series coefficients:
+\begin{center}
+   $G_1 = j,\ G_{-1} = -j,\ G_2 = j\frac{4}{3},\ G_{-2} = -j\frac{4}{3},\ G_3 = j\frac{1}{2},\ G_{-3} = -j\frac{1}{2}$, and zero else
+\end{center}
+Determine the average power of the output signal. \textbf{(5 points)}
+
+\end{questions}
+
+\section{[10 points] Consider the function $f(t) = \cos{(6t)} + 3\sin{(18t-\frac{\pi}{2})} - e^{j(21t + \frac{3\pi}{4})}$.}
+
+\begin{questions} 
+\question Is $f(t)$ periodic? \textbf{(2 points)} \\
+
+\question If $f(t)$ is periodic, determine its period and fundamental frequency. If not, explain why. \textbf{(8 points)}
+\end{questions}
+
 
 \end{document}
