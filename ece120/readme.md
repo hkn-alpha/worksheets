@@ -17,7 +17,7 @@ Binary Representations:
 -Problem 2.g: There is no solution in the solution file.
 
 Other Representations:
--Problem 1.b: There is a typo in the last line. Should be 10**$0$**1010010001111, but the solution wrote 10**$1$**1010010001111.
+-Problem 1.b: There is a typo in the last line. Should be 10$\mathbf{0}$1010010001111, but the solution wrote 10$\mathbf{1}$1010010001111.
 -Problem 1.d: There's a typo in the second line. Should be 1011, not 1011x. There's an extra x at the end.
 
 Binary Operations:
