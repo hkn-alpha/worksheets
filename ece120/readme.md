@@ -4,13 +4,13 @@
   
 -Does the blank file exist?
   
--Do the solutions align with the blank file?
+-Do the solutions align with the blank file? 
 
 # Midterm 1:
 
 -Blank Notes:
   
--Solutions Notes:
+-Solutions Notes: Binary Operations 1e incorrect, answer should be x0400
   
 -Date Last Updated:
 
