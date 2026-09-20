@@ -44,7 +44,10 @@ Write these conversions in decimal. Truncate if necessary.
     \item Convert $0010 1101_2$ to a 12-bit unsigned integer.\\
     \textbf{Since it must be 12 bits unsigned, zero extend to the required length to get 000000101101$_2$, which becomes 1 + 4 + 8 + 32 = 45$_{10}$}
     \item Convert $1 0111_2$ to a 16-bit 2's complement integer.\\
-    \textbf{Since it must be 16 bits signed, sign extend to the required length to get 1111111111110111$_2$, which becomes 1 + 2 + 4 + 16 + 32 + 64 + 128 + 256 + 512 + 1024 + (-2048) = -9$_{10}$}
+    \textbf{First, sign extend $1 0111_2$ to 16 bits. $1 0111_2$ = $1111 1111 1111 0111_2$}
+    \newline\textbf{Take the inverse of $1111 1111 1111 0111_2$ = $0000 0000 0000 1000_2$}
+    \newline\textbf{Add $1$ to the inverse: $0000 0000 0000 1001_2$}
+    \newline\textbf{Convert to decimal and change the sign: $-(1 + 8) = -9_{10}$}
 \end{enumerate}
 
 \subsection*{Problem 2}
@@ -57,14 +60,16 @@ Write these conversions in binary. Truncate if necessary.
     \item Convert $51_{10}$ to a 8-bit 2's complement integer.\\
     \textbf{Same as above, 51$_{10}$ = 32 + 16 + 2 + 1 = 00110011$_2$}
     \item Convert $-240_{10}$ to a 9-bit signed magnitude integer.\\
-    \textbf{-240$_{10}$ = -1 * (128 + 64 + 32 + 16) = 111110000$_2$}
+    \textbf{Convert $240_{10}$ to unsigned binary representation and take 2's complement to change the sign:}
+    \newline\textbf{$240_{10} = 128 + 64 + 32 + 16 = 0 1111 0000_2$}
+    \newline\textbf{Take an inverse of $0 1111 0000_2 = 1 0000 1111_2$}
+    \newline\textbf{Add 1 to find the finalized value: $1 0001 0000_2$}
     \item Convert $-240_{10}$ to a 9-bit 2's complement integer.\\
     \textbf{-240$_{10}$ = (-256) + 16 = 100010000$_2$}
     \item Convert $1171_{10}$ to a 11-bit unsigned integer.\\
     \textbf{1171$_{10}$ = 1024 + 128 + 16 + 2 + 1 = 10010010011$_2$}
     \item Convert $1171_{10}$ to a 11-bit 2's complement integer.\\
-    % How tf
-    \textbf{}
+    \textbf{The range of numbers that can be represented by 11-bit 2's complement integer is $[-2^{10}, 2^{10}-1]$. $2^{10}-1 = 1023$. Therefore $1171_{10}$ cannot be converted without overflow.}
     \item Convert $65_{10}$ to a 12-bit unsigned integer.\\
     \textbf{65$_{10}$ = 64 + 1 = 000001000001$_2$}
     \item Convert $-23309_{10}$ to a 16-bit 2's complement integer.\\
