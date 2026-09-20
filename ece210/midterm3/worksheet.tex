@@ -1,0 +1,108 @@
+\documentclass{article}
+\usepackage[utf8]{inputenc}
+\usepackage[utf8]{inputenc}
+\usepackage{graphicx}
+\usepackage{subcaption}
+\usepackage{float}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{enumerate}
+\usepackage{physics}
+\usepackage{siunitx}
+\usepackage{tikz}
+\usepackage{circuitikz}
+\usepackage{indentfirst}
+
+\addtolength{\oddsidemargin}{-.875in}
+\addtolength{\evensidemargin}{-.875in}
+\addtolength{\textwidth}{1.75in}
+
+\addtolength{\topmargin}{-.875in}
+\addtolength{\textheight}{1.75in} 
+\title{HWtemplate}
+\author{shomikchatterjee }
+\date{April 2021}
+
+\begin{document}
+\begin{center}
+\textbf{
+{\Large ECE 210 Midterm 3 Worksheet}
+}
+\end{center} 
+\noindent\makebox[\linewidth]{\rule{\linewidth}{0.4pt}}
+
+\paragraph{Note:} This worksheet is not guaranteed to be entirely representative of the midterm's contents. Material may appear on this worksheet which will not appear on the midterm, and vice versa.
+
+\subsection*{Partial Fraction Expansion}
+
+\paragraph{1)} (Technique 1)
+
+\subparagraph{a)} sub problem 1
+
+\subparagraph{b)} sub problem 2
+
+
+\vfill
+
+\paragraph{2)} (Technique 2)
+
+\subparagraph{a)} sub problem 1
+
+\subparagraph{b)} sub problem 2
+
+
+\vfill
+
+\newpage
+\subsection*{S-Domain Circuit Analysis}
+
+\paragraph{3)} Consider the circuit below (SAMPLE CIRCUIT - CHANGE).
+
+\begin{figure}[ht!]
+\centering
+\begin{circuitikz}[american, transform shape, voltage dir = old]
+\draw (-3,0) to [R=$3\Omega$] (-3,3) to[short] (0,3) to[short] (3,3);
+\draw (3,0) to [cI,l=$\alpha v_x$] (3,3);
+\draw (0,3) to[R=4$\Omega$, v_=$v_x$] (0,0);
+\draw (-3,0) to[short] (3,0);
+\draw (-3,-3) to[V,l=$2\text{V}$] (-3,0) to[short] (3,0);
+\draw (0,-3) to [R = 3$\Omega$] (0,0);
+\draw (-3,-3) to[R=1$\Omega$] (-1.5,-3) to[V,l=1V] (0,-3);
+\draw (0,-3) to[R=2$\Omega$] (3,-3) to[short](3,0);
+\draw[-latex] (-3,-3.5) -- (-1.5,-3.5);
+\node at (-2.25, -3.5) [anchor=north] {$i_t$};
+\end{circuitikz}
+\end{figure}
+
+\subparagraph{a)} sub problem 1
+
+\subparagraph{b)} sub problem 2
+
+\vfill
+
+\newpage
+
+\subsection*{Marginal Stability \& Resonance}
+
+\paragraph{4)} problem 1
+
+\subparagraph{a)} marginal stability part
+
+\subparagraph{b)} resonance part
+
+\subparagraph{c)} etc
+
+\vfill
+
+\paragraph{5)} problem 2
+
+\subparagraph{a)} marginal stability part
+
+\subparagraph{b)} resonance part
+
+\subparagraph{c)} etc
+
+\vfill
+
+
+\end{document}
