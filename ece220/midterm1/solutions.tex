@@ -20,6 +20,18 @@
 \usepackage{xcolor}
 \usepackage{listings}
 \usepackage{multirow}
+\usepackage{longtable}
+\usepackage{array}
+
+\renewcommand{\arraystretch}{0.95}
+\setlength{\LTpre}{0pt}
+\setlength{\LTpost}{0pt}
+\setlength{\LTleft}{2.5em}
+\setlength{\LTright}{0pt}
+
+\newcommand{\lccomment}[1]{\textcolor{gray}{\hspace{0.4em}; #1}}
+\newcommand{\lclabel}[1]{\textcolor{purple}{\texttt{#1}}}
+\newcommand{\lcfix}[1]{\textcolor{blue}{\texttt{#1}}}
 
 
 
@@ -201,7 +213,266 @@ Assume all registers are caller-saved. You should not use loops. You may assume 
     \textcolor{purple}{SAVER7 .FILL \#0}
     \newline
     \textcolor{purple}{.END}
+
+\item \textbf{LC-3 Debugging}
+
+A simple embedded temperature-monitoring system reads a sensor value and calibration data from memory before checking whether the temperature exceeds a safe operating limit. The program is intended to perform the following tasks:
+
+\begin{enumerate}
+    \item Read the raw temperature sensor value stored at memory address
+    \texttt{x4000}.
     
+    \item Read the calibration offset stored at memory address
+    \texttt{x4001} and add it to the raw sensor value.
+    
+    \item Compare the calibrated temperature against a maximum safe temperature
+    limit of 75.
+    
+    \item If the calibrated temperature is greater than or equal to 75, store
+    \texttt{1} at memory address \texttt{x4002} to indicate an over-temperature
+    condition. Otherwise, store \texttt{0}.
+    
+    \item Halt after storing the alarm status.
+\end{enumerate}
+
+The program below contains \textbf{three bugs}. For each bug:
+
+\begin{enumerate}
+    \item Identify the line containing the bug.
+    \item Explain what is wrong.
+    \item Describe how you would modify the program to fix it.
+\end{enumerate}
+
+You may assume that the memory locations \texttt{x4000} and \texttt{x4001}
+have been initialized before the program starts.\\
+
+\begin{longtable}{%
+@{}p{3.5em}%
+@{\hspace{0.35em}}%
+p{8em}%
+@{\hspace{0.35em}}%
+>{\raggedright\arraybackslash}p{\dimexpr\textwidth-12.2em\relax}%
+@{}}
+
+\texttt{x3000} & &
+\texttt{LDI R1, SENSOR\_PTR}
+\lccomment{load the raw sensor value}
+\\[2ex]
+
+\texttt{x3001} & &
+\texttt{JSR CALIBRATE}
+\lccomment{apply the calibration offset}
+\\[2ex]
+
+\texttt{x3002} & &
+\texttt{LD R3, TEMP\_LIMIT}
+\lccomment{load the maximum safe temperature}
+\\
+
+\texttt{x3003} & &
+\texttt{NOT R4, R3}
+\\
+
+\texttt{x3004} & &
+\texttt{ADD R4, R4, \#1}
+\lccomment{form the negative of the temperature limit}
+\\
+
+\texttt{x3005} & &
+\texttt{ADD R4, R1, R4}
+\lccomment{compute calibrated temperature minus the limit}
+\\
+
+\texttt{x3006} & &
+\texttt{BRzp OVERHEAT}
+\lccomment{branch if temperature is at or above the limit}
+\\[2ex]
+
+\texttt{x3007} & &
+\texttt{AND R0, R0, \#0}
+\\
+
+\texttt{x3008} & &
+\texttt{STI R0, ALARM}
+\lccomment{store 0 for a safe temperature}
+\\
+
+\texttt{x3009} & &
+\texttt{BRnzp DONE}
+\\[2ex]
+
+\texttt{x300A} & \lclabel{OVERHEAT} &
+\texttt{AND R0, R0, \#0}
+\\
+
+\texttt{x300B} & &
+\texttt{ADD R0, R0, \#1}
+\\
+
+\texttt{x300C} & &
+\texttt{STI R0, ALARM}
+\lccomment{store 1 for an over-temperature condition}
+\\[2ex]
+
+\texttt{x300D} & \lclabel{DONE} &
+\texttt{HALT}
+\\[2ex]
+
+\texttt{x300E} & \lclabel{SENSOR\_PTR} &
+\texttt{.FILL x4000}
+\\
+
+\texttt{x300F} & \lclabel{CAL\_OFFSET\_PTR} &
+\texttt{.FILL x4001}
+\\
+
+\texttt{x3010} & \lclabel{ALARM} &
+\texttt{.FILL x4002}
+\\
+
+\texttt{x3011} & \lclabel{SAVER7} &
+\texttt{.BLKW 1}
+\\[2ex]
+
+\texttt{x3012} & \lclabel{CALIBRATE} &
+\texttt{JSR ADD\_OFFSET}
+\lccomment{add the calibration offset}
+\\
+
+\texttt{x3013} & &
+\texttt{ST R7, SAVER7}
+\lccomment{save R7}
+\\
+
+\texttt{x3014} & &
+\texttt{ADD R0, R1, \#0}
+\lccomment{copy the calibrated value to R0}
+\\
+
+\texttt{x3015} & &
+\texttt{LD R7, SAVER7}
+\lccomment{restore R7}
+\\
+
+\texttt{x3016} & &
+\texttt{RET}
+\\[2ex]
+
+\texttt{x3017} & \lclabel{ADD\_OFFSET} &
+\texttt{LD R2, CAL\_OFFSET\_PTR}
+\lccomment{load the calibration offset}
+\\
+
+\texttt{x3018} & &
+\texttt{ADD R1, R1, R2}
+\\
+
+\texttt{x3019} & &
+\texttt{RET}
+\\[2ex]
+
+\texttt{x301A} & &
+\texttt{.BLKW 300}
+\\
+
+\texttt{x3146} & \lclabel{TEMP\_LIMIT} &
+\texttt{.FILL \#75}
+
+\end{longtable}
+
+
+\textbf{BUG 1}
+
+\text{Line:}
+\textcolor{blue}{\texttt{x3017}}
+
+\text{Issue:}
+\textcolor{blue}{
+\texttt{LD R2, CAL\_OFFSET\_PTR} loads the address stored in
+\texttt{CAL\_OFFSET\_PTR} (i.e., \texttt{x4001}) into R2.
+However, the program needs the value stored at memory address
+\texttt{x4001}, not the address itself.
+}
+
+\text{Correction:}
+\textcolor{blue}{
+Change \texttt{LD R2, CAL\_OFFSET\_PTR} to
+\texttt{LDI R2, CAL\_OFFSET\_PTR}.
+}
+
+\bigskip
+
+
+\textbf{BUG 2}
+
+\text{Line:}
+\textcolor{blue}{\texttt{x3012/x3013}}
+
+\text{Issue:}
+\textcolor{blue}{
+\texttt{CALIBRATE} calls another subroutine using \texttt{JSR}.
+The \texttt{JSR} instruction overwrites R7 with the return address
+of \texttt{ADD\_OFFSET}. Therefore, the original return address of
+\texttt{CALIBRATE} is lost. In the current code, R7 is saved only
+after the nested subroutine call.
+}
+
+\text{Correction:}
+\textcolor{blue}{
+Save R7 before the nested \texttt{JSR} and restore it before
+\texttt{RET}. The corrected code is:
+}
+
+\begin{center}
+\textcolor{blue}{
+\begin{tabular}{lll}
+\texttt{x3012} & \texttt{CALIBRATE} & \texttt{ST R7, SAVER7}\\
+\texttt{x3013} &                    & \texttt{JSR ADD\_OFFSET}\\
+\texttt{x3014} &                    & \texttt{ADD R0, R1, \#0}\\
+\texttt{x3015} &                    & \texttt{LD R7, SAVER7}\\
+\texttt{x3016} &                    & \texttt{RET}
+\end{tabular}
+}
+\end{center}
+
+\bigskip
+
+
+\textbf{BUG 3}
+
+\text{Line:}
+\textcolor{blue}{\texttt{x3002}}
+
+\text{Issue:}
+\textcolor{blue}{
+\texttt{LD} uses a 9-bit PC-relative offset. The instruction at
+\texttt{x3002} uses \texttt{x3003} as the PC value for calculating
+the offset, while \texttt{TEMP\_LIMIT} is located at \texttt{x3146}.
+The required offset is
+\[
+\texttt{x3146 - x3003 = x143 = 323},
+\]
+which is greater than the maximum positive \texttt{PCoffset9} of 255.
+Therefore, the \texttt{LD} instruction cannot reach
+\texttt{TEMP\_LIMIT}.
+}
+
+\text{Correction:}
+\textcolor{blue}{
+Move \texttt{TEMP\_LIMIT} to an address within the valid
+PC-relative range of \texttt{x3002}. For example, it can be moved to
+\texttt{x301A}:
+}
+
+\begin{center}
+\textcolor{blue}{
+\begin{tabular}{lll}
+\texttt{x301A} & \texttt{TEMP\_LIMIT} & \texttt{.FILL \#75}\\
+\texttt{x301B} &                       & \texttt{.BLKW 300}
+\end{tabular}
+}
+\end{center}
+
 \item \textbf{Trap Concepts}
 
 Given the figures below, determine the memory address of the TRAP vector table that will be accessed and which TRAP service routine will be executed.
