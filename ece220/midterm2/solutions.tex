@@ -69,10 +69,10 @@
     0, 1, 0, 0,
     0, 1, 1, 0,
     0, 0, 0, 0 
-    }
+    };
     
     int main() {
-      answer = num_paths(array, 0, 0 );
+      answer = num_paths(example_grid, 0, 0 );
       printf("Num paths = %d", answer );
       return 0;
     }
@@ -81,7 +81,7 @@
       
       int paths = 0;
       // Reached destination
-      if (x == N && y == N) {
+      if (x == N-1 && y == N-1) {
         return 1;
       }
       // Out of bounds
@@ -227,7 +227,7 @@
             //go from the previous row to the next row 
             for (int x = r-1; x <= r + 1; x++) 
             {
-                if ( r >= 0 && r < rows ) // check if we are in row bounds
+                if ( x >= 0 && x < rows ) // check if we are in row bounds
                 {
                     // Go from the previous column to the next column
                     for (int y = c - 1; y <= c + 1 ; y ++ ) 
@@ -272,7 +272,7 @@
 \newpage
 \section{C to Lovely LC3 Conversion}
 
-\textbf{1.}: Gana decides to write a function to calculate his score on STAT 400 exams based on a measure of how much sleep, studying, food, and prayer he has. He came up with the code below:
+\textbf{1.}: Gana decides to write a function to calculate his score on STAT 400 exams based on a measure of how much sleep, studying, and food he has. He came up with the code below:
 
         \begin{lstlisting}[style=CStyle]
 int score(s, ss, f) {
@@ -313,7 +313,7 @@ RTS:
  \hline
  7 & study (local)\\ [1ex]
  \hline
-  8 & sleep (local) \\ [1ex]
+  8 & sleep (local) $\xleftarrow{}$ R5 \\ [1ex]
   \hline
  
 \end{tabular}
@@ -407,10 +407,10 @@ RTS:
     \item \textcolor{purple}{LDR R2, R6/R5, \#4}
     \item \textcolor{purple}{LDR R3, R6/R5, \#5}
     \item \textcolor{purple}{LDR R4, R6/R5, \#6}
-    \item \textcolor{purple}{NOT R3, R3}
-    \item \textcolor{purple}{ADD R3, R3, \#1}
-    \item \textcolor{purple}{ADD R4, R4, R3}
-    \item \textcolor{purple}{ADD R4, R2, R4} 
+    \item \textcolor{purple}{NOT R2, R2}
+    \item \textcolor{purple}{ADD R2, R2, \#1}
+    \item \textcolor{purple}{ADD R4, R4, R2}
+    \item \textcolor{purple}{ADD R4, R3, R4} 
     \item \textcolor{purple}{STR R4, R6, \#0}
     
 \end{itemize}
@@ -454,7 +454,7 @@ LC3:
 ; store score in return value, using R0 as a temp register
 \begin{itemize}
     \item \textcolor{purple}{LDR R0, R6, \#0}
-    \item \textcolor{purple}{STR R6, R6, \#3}
+    \item \textcolor{purple}{STR R0, R6, \#3}
 \end{itemize}
 ; restore R7, return, restore CFP, and deallocate space on the stack
 
@@ -519,7 +519,7 @@ LC3:
 \begin{enumerate}[label=(\alph*)]
     \item \textbf{Stack}: When using a stack, when you pop an item off the stack, is it removed from memory?
     \newline
-    \textcolor{purple} {Nothing, the top of stack pointer is instead moved down.}
+    \textcolor{purple} {No. The value is still in memory. Only the top of stack pointer (R6) is moved down (incremented), so that spot is treated as free and gets overwritten by the next push.}
     \item \textbf{Pointers}: Assume we declare 4 separate pointer variables in a C program on a 32-bit system as shown below.
     \begin{lstlisting}[style=CStyle]
     int* david;
@@ -536,7 +536,7 @@ LC3:
     \item e. They are the same size
     \item f. They take up no memory space
     \end{enumerate}
-    \textcolor{purple}{ e. is correct. All of the variables are pointer types, so they all take up the same size in memory (usually 32 or 64 bits). Although it is true that the values they point to take up different sizes in memory, with char* being the smallest (8 bits). 
+    \textcolor{purple}{ e. is correct. All of the variables are pointer types, so they all take up the same size in memory (32 bits each, since this is a 32-bit system). Although it is true that the values they point to take up different sizes in memory, with char* being the smallest (8 bits). 
     }
     \item \textbf{Recursion}: What are some potential downsides to a recursive solution?
     \textcolor{purple}{ 1) Stack Overflows. A recursive function uses the run time stack for each function call. Depending on the depth of the recursion, this may cause the stack size to grow greater than the amount of memory on the system, resulting in various problems.
@@ -559,8 +559,8 @@ LC3:
     \newline
     \newline
     \textcolor{purple}{
-        Col-major order: array[3][4],
-        array[3 * 4 + 2];
+        2D: array[2][3] (row 2, column 3),
+        1D (column-major): array[3 * 4 + 2], which is array[14];
         }
     
     \item \textbf{Passing Pointers}: Explain the importance of having the parameters of this function be pointers.
@@ -608,7 +608,7 @@ find@\wideunderscore@midpoint(int a, int b) {
     if (a == b) { return a; }
     else { return find_midpoint(a+1, b-1); }
 }\end{lstlisting}
-\textcolor{purple}{There are two main things wrong. The first, is that were is no return type for this function, we need to make this return a float. The second, is that we need to deal with numbers that are odd-length apart, for example 4 and 7. To do this we can add: else if (a+1 == b) {return ((a+b)/2);} as another condition to check. }
+\textcolor{purple}{There are two main things wrong. The first, is that were is no return type for this function, we need to make this return a float. The second, is that we need to deal with numbers that are odd-length apart, for example 4 and 7. To do this we can add: else if (a+1 == b) {return ((a+b)/2.0);} as another condition to check. }
     \newpage
     \item \textbf{Recursive Reversal}: What is the output of this program? If there is an error in ReverseArray, identify the line and fix it? (Hint: it might be nice and helpful to print every step of Reverse Array)
     
@@ -641,7 +641,7 @@ int main(){
     printf("\n");
     return 0;
 }\end{lstlisting}
-\textcolor{purple}{The program is basically just flipping the first and last elements, and then flipping the first and second to last and so on. So in the end, the only thing that actually changes is the first element goes to the front and the rest is shifted up. To fix this we need to change the recursive call to ReverseArray(array+1, size-2)}
+\textcolor{purple}{The program is basically just flipping the first and last elements, and then flipping the first and second to last and so on. So in the end, the only thing that actually changes is the first element goes to the back and the rest is shifted one spot toward the front. The output is: Reversed Array: 1 2 3 4 0. To fix this we need to change the recursive call on line 12 to ReverseArray(array+1, size-2)}
 
 \item \textbf{Arrays on stack}: Rahul initializes an array and calls a function"print" on it. Please write what the RTS looks like after Callee setup.
 \begin{lstlisting}[style=CStyle] 
@@ -666,19 +666,19 @@ return address &     R7\\
 \hline 
 return value & \\
 \hline
- 1    & agi(arg) \\
+ pointer to arr[0] & arr (arg) \\
 \hline
- pointer to arg[0] & (arg) \\
+ 1    & agi (arg) \\
  \hline
- 'R' & arg[0] (local)\\
+ 'R' & arr[0] (local)\\
  \hline
- 'A' & arg[1] (local) \\
+ 'A' & arr[1] (local) \\
  \hline
- 'H' & arg[2] (local) \\
+ 'H' & arr[2] (local) \\
  \hline
- 'U' & arg[3] (local)\\ [1ex]
+ 'U' & arr[3] (local)\\ [1ex]
  \hline
- 'L' & arg[4] (local) \\ [1ex]
+ 'L' & arr[4] (local) \\ [1ex]
   \hline
  1 & agi(local) \\[1ex]
   \hline
@@ -718,13 +718,13 @@ int main () {
     // Find the student with the highest GPA:
     Student* best@\wideunderscore@student = &(all_students[0]) ;
     find@\wideunderscore@best(all@\wideunderscore@students, 5, &best_student );
-    printf("Best GPA:%f\n", best_student.GPA);
+    printf("Best GPA:%f\n", best_student->GPA);
 }
 
 void find@\wideunderscore@best(Student* all, int num@\wideunderscore@students, Student** best) {
     for (int i = 0; i < num@\wideunderscore@students; i++) {
-        if (all[i].GPA > (*best)GPA) {
-            *best = &(all[i])
+        if (all[i].GPA > (*best)->GPA) {
+            *best = &(all[i]);
         }
     }
 }
@@ -748,8 +748,8 @@ int foo(int a, int b) {
     STR R5, R6, \#0    \hfill ; Store R5 (Caller's Frame Pointer) \newline
     ADD R5, R6, \#-1 \hfill ;Set frame pointer for Callee \newline
     ADD R6, R6, \#-1 \hfill ;Allocate memory for local variables (x) \newline
-    LDR R1, R5, \#2 \hfill ; Load a \newline 
-    LDR R2, R5, \#1 \hfill ; Load b\newline
+    LDR R1, R5, \#4 \hfill ; Load a \newline 
+    LDR R2, R5, \#5 \hfill ; Load b\newline
     ADD R0, R1, R2 \newline 
     STR R0, R5, \#0 \hfill ; Store result into x \newline
     STR R0, R5, \#3 \hfill ; Store result into return value slot \newline
