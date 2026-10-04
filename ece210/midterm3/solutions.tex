@@ -67,31 +67,128 @@ sF(s) = s\frac{s+3}{s(s+2)(s+5)}=...
 \newpage
 \subsection*{S-Domain Circuit Analysis}
 
-\paragraph{3)} Consider the circuit below (SAMPLE CIRCUIT - CHANGE).
+\paragraph{3)} In the circuit below, the switch has been open for a long time and is closed at $t=0$.
+Let $I_A = 1~\text{mA}$, $L = 2~\text{H}$, $R = 1.5~\text{k}\Omega$, and $C = \frac{1}{6}~\mu\text{F}$.
 
 \begin{figure}[ht!]
 \centering
-\begin{circuitikz}[american, transform shape, voltage dir = old]
-\draw (-3,0) to [R=$3\Omega$] (-3,3) to[short] (0,3) to[short] (3,3);
-\draw (3,0) to [cI,l=$\alpha v_x$] (3,3);
-\draw (0,3) to[R=4$\Omega$, v_=$v_x$] (0,0);
-\draw (-3,0) to[short] (3,0);
-\draw (-3,-3) to[V,l=$2\text{V}$] (-3,0) to[short] (3,0);
-\draw (0,-3) to [R = 3$\Omega$] (0,0);
-\draw (-3,-3) to[R=1$\Omega$] (-1.5,-3) to[V,l=1V] (0,-3);
-\draw (0,-3) to[R=2$\Omega$] (3,-3) to[short](3,0);
-\draw[-latex] (-3,-3.5) -- (-1.5,-3.5);
-\node at (-2.25, -3.5) [anchor=north] {$i_t$};
+\begin{circuitikz}[american, transform shape]
+  % current source (left branch)
+  \draw (0,0) to[isource, l_=$I_A$] (0,4);
+  % top and bottom rails
+  \draw (0,4) -- (7.5,4);
+  \draw (0,0) -- (7.5,0);
+  % switch + inductor branch
+  \draw (2,4) to[cspst, l={$t=0$}] (2,2.6);
+  \draw (2,2.6) to[L, l_=$L$] (2,0);
+  % resistor branch
+  \draw (4,4) to[R, l_=$R$] (4,0);
+  % capacitor branch
+  \draw (6,4) to[C, l_=$C$] (6,0);
+  % output voltage terminals
+  \draw (6,4) to[short, -o] (7.5,4);
+  \draw (6,0) to[short, -o] (7.5,0);
+  \draw (7.5,4) to[open, v^=$v(t)$] (7.5,0);
+  % junction dots
+  \node[circ] at (2,4) {};
+  \node[circ] at (4,4) {};
+  \node[circ] at (6,4) {};
+  \node[circ] at (2,0) {};
+  \node[circ] at (4,0) {};
+  \node[circ] at (6,0) {};
 \end{circuitikz}
 \end{figure}
 
-\subparagraph{a)} sub problem 1
+\subparagraph{a)} Find the initial conditions $i_L(0^-)$ and $v(0^-)$, and draw the $s$-domain equivalent circuit for $t \geq 0$.
 
-\subparagraph{Solution} sub problem 1 solution
+\subparagraph{Solution}
+With the switch open for a long time, the circuit is in DC steady state. The inductor branch is disconnected, so $i_L(0^-) = 0$. The capacitor is fully charged, and acts as an open circuit, so all of $I_A$ flows through $R$:
+\[
+v(0^-) = R I_A = (1.5~\text{k}\Omega)(1~\text{mA}) = 1.5~\text{V}.
+\]
 
-\subparagraph{b)} sub problem 2
+For $t \ge 0$, the switch is closed, and we redraw the circuit in the $s$-domain using element transformations. Each energy-storage element becomes its impedance plus a source that accounts for its initial condition. Since all the elements share the same two nodes, we use the parallel (Norton) form for each:
+\begin{itemize}
+  \item \textbf{Current source:} $i_A(t) = I_A$ for $t \ge 0$, so it becomes $\dfrac{I_A}{s}$.
+  \item \textbf{Resistor:} it is unchanged and stays $R$.
+  \item \textbf{Inductor:} from $v_L(t) = L\,\dfrac{di_L}{dt}$ we get $V_L(s) = sL\,I_L(s) - L\,i_L(0)$, which gives $I_L(s) = \dfrac{V_L(s)}{sL} + \dfrac{i_L(0)}{s}$. This is an impedance $sL$ in parallel with a current source $\dfrac{i_L(0)}{s}$. Because $i_L(0^-) = 0$, this source is zero, and the inductor is just $sL$.
+  \item \textbf{Capacitor:} from $i_C(t) = C\,\dfrac{dv_C}{dt}$ we get $I_C(s) = sC\,V_C(s) - C\,v_C(0)$. This is an impedance $\dfrac{1}{sC}$ in parallel with a current source $C\,v_C(0)$. Here $C\,v(0^-) = C\,(RI_A) = RCI_A$.
+\end{itemize}
+Putting these together, the $s$-domain circuit has $I_A/s$, $sL$, $R$, $1/sC$, and the capacitor's $RCI_A$ source all in parallel, with $V(s)$ across the output terminals. This is the circuit drawn below.
 
-\subparagraph{Solution} sub problem 2 solution
+
+\begin{figure}[H]
+\centering
+\begin{circuitikz}[american, transform shape]
+  % I_A/s source (left branch)
+  \draw (0,0) to[isource, l_=$\frac{I_A}{s}$] (0,4);
+  % top and bottom rails
+  \draw (0,4) -- (10,4);
+  \draw (0,0) -- (10,0);
+  % sL branch
+  \draw (2,4) to[L, l_=$sL$] (2,0);
+  % R branch
+  \draw (4,4) to[R, l_=$R$] (4,0);
+  % 1/sC branch
+  \draw (6,4) to[C, l_=$\frac{1}{sC}$] (6,0);
+  % RCI_A initial-condition source
+  \draw (8,0) to[isource, l=$RCI_A$] (8,4);
+  % output terminals
+  \draw (8,4) to[short, -o] (10,4);
+  \draw (8,0) to[short, -o] (10,0);
+  \draw (10,4) to[open, v^=$V(s)$] (10,0);
+  % junction dots
+  \foreach \x in {2,4,6,8}{
+    \node[circ] at (\x,4) {};
+    \node[circ] at (\x,0) {};
+  }
+\end{circuitikz}
+\par\smallskip\textit{$s$-domain equivalent circuit for $t \ge 0$}
+\end{figure}
+
+
+\subparagraph{b)} 
+Find the zero-state and zero-input components of $V(s)$, and then find $v_{zs}(t)$ and $v_{zi}(t)$ for $t \geq 0$.
+
+\subparagraph{Solution} 
+The equivalent impedance seen by both sources is the parallel combination of $sL$, $R$, and $1/sC$:
+\[
+Z_{eq}(s) = \left(\frac{1}{sL} + \frac{1}{R} + sC\right)^{-1}
+= \frac{sLR}{s^2LRC + sL + R}
+= \frac{s/C}{s^2 + \frac{1}{RC}s + \frac{1}{LC}}.
+\]
+
+\textbf{Zero-state} (only the $I_A/s$ source on):
+\[
+V_{zs}(s) = Z_{eq}(s)\,\frac{I_A}{s} = \frac{I_A/C}{s^2 + \frac{1}{RC}s + \frac{1}{LC}}.
+\]
+
+\textbf{Zero-input} (only the $RCI_A$ source on):
+\[
+V_{zi}(s) = Z_{eq}(s)\,RCI_A = \frac{R I_A\, s}{s^2 + \frac{1}{RC}s + \frac{1}{LC}}.
+\]
+
+\textbf{Substitute values.} Here $\frac{1}{RC} = 4000$, $\frac{1}{LC} = 3\times10^6$, $\frac{I_A}{C} = 6000$, and $RI_A = 1.5$. The denominator factors as
+\[
+s^2 + 4000s + 3\times 10^6 = (s+1000)(s+3000).
+\]
+
+Zero-state, by partial fractions:
+\[
+V_{zs}(s) = \frac{6000}{(s+1000)(s+3000)} = \frac{3}{s+1000} + \frac{-3}{s+3000}
+\]
+\[
+\boxed{v_{zs}(t) = \left[3e^{-1000t} - 3e^{-3000t}\right]u(t)~\text{V}}
+\]
+
+Zero-input, by partial fractions:
+\[
+V_{zi}(s) = \frac{1.5\,s}{(s+1000)(s+3000)} = \frac{-0.75}{s+1000} + \frac{2.25}{s+3000}
+\]
+\[
+\boxed{v_{zi}(t) = \left[-0.75e^{-1000t} + 2.25e^{-3000t}\right]u(t)~\text{V}}
+\]
+
 
 \vfill
 
