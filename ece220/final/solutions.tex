@@ -226,7 +226,38 @@ void sort(int arr[], int n) {
                 swap(&arr[j], &arr[j + 1]);
 }\end{lstlisting}
 \textcolor{blue}{This is bubble sort.}
-    
+    \newpage\item \textbf{Switch Case statements}
+    \begin{lstlisting}[style = CStyle]
+    #include <stdio.h>
+    int main(){
+        int a = 2;
+        //Pay attention to break statements
+        switch(a){
+            case 1:
+                printf("a = %d\n", a);
+                a += 1;
+                break;
+            case 2:
+                printf("a = %d\n", a);
+                a += 3;
+            case 3:
+                printf("a = %d\n", a);
+                a += 5;
+                break;
+            default:
+                printf("a = %d\n", a);
+                a++;
+        }
+        printf("a = %d\n", a);
+        return 0;
+    }
+
+    Output:
+    a = 2
+    a = 5
+    a = 10
+    \end{lstlisting}
+    \textbf{Since a = 2 initially, the switch statement will jump to case 2 line. The first print statement (a = 2) executed. Then a is increased by 3. Since there is no break at the end of case 2 statement, it will continue to case 3 even though a $\neq$ 3. The second print statement is executed (a = 5) and a is increased by 5. After the program reaches break, it exits the switch statement and triggers the very last print statement (a = 10)}
     \item \textbf{Binary Search Trees}: Are these binary search trees?
     
     \includegraphics[width=7cm,height=6cm]{figures/bst.png}
