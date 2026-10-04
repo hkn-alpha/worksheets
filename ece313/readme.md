@@ -8,7 +8,7 @@
 
 # Midterm 1:
 
--Blank Notes:
+-Blank Notes: 15) Either expand solution to include all axioms (both event and probability) or specify only probability axioms.
   
 -Solutions Notes:
   
