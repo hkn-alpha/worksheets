@@ -163,6 +163,35 @@ void sort(int arr[], int n) {
 }\end{lstlisting}
 
     \newpage
+
+    \item \textbf{Switch Case statements}
+    \newline \textbf{What would be the output of the following code:}
+    \begin{lstlisting}[style = CStyle]
+    #include <stdio.h>
+    int main(){
+        int a = 2;
+        //Pay attention to break statements
+        switch(a){
+            case 1:
+                printf("a = %d\n", a);
+                a += 1;
+                break;
+            case 2:
+                printf("a = %d\n", a);
+                a += 3;
+            case 3:
+                printf("a = %d\n", a);
+                a += 5;
+                break;
+            default:
+                printf("a = %d\n", a);
+                a++;
+        }
+        printf("a = %d\n", a);
+        return 0;
+    }
+    \end{lstlisting}
+    
     \item \textbf{Binary Search Trees}: Are these binary search trees?
     
     \includegraphics[width=7cm,height=6cm]{figures/bst.png}
