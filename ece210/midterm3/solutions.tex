@@ -14,6 +14,9 @@
 \usepackage{circuitikz}
 \usepackage{indentfirst}
 
+\usepackage{pgfplots}
+\pgfplotsset{compat=1.18}
+
 \addtolength{\oddsidemargin}{-.875in}
 \addtolength{\evensidemargin}{-.875in}
 \addtolength{\textwidth}{1.75in}
@@ -228,6 +231,144 @@ V_{zi}(s) = \frac{1.5\,s}{(s+1000)(s+3000)} = \frac{-0.75}{s+1000} + \frac{2.25}
 
 \vfill
 
+
+\newpage
+
+\subsection*{Fourier Transforms}
+
+\paragraph{6)} Find the Fourier transform: $$g(t)=\frac{6}{t^2+9}$$
+
+\subparagraph{Solution} This problem looks like the Fourier transform pair $$f(t)=e^{-a|t|}\longleftrightarrow F(\omega)=\frac{2a}{a^2+\omega^2}$$ with $a=3$. However, we have $f(t)$, not $F(\omega)$ matching the right-hand side.\\\\
+To take care of this, we can use the Symmetry Property, which states that if $f(t)\longleftrightarrow F(\omega)$, then $$F(t)\longleftrightarrow2\pi f(-\omega)$$
+Now, with $a=3$, we can evaluate: $f(-w)=e^{-3|-\omega|}=e^{-3|\omega|}$. Thus with the Symmetry Property, $$F(t)=\frac{2(3)}{3^2+t^2}=\frac{6}{t^2+9}\longleftrightarrow2\pi f(-\omega)=2\pi e^{-3|\omega|}$$
+Finally, since $g(t)=F(t)$, we can conclude that the Fourier transform is $G(\omega)=2\pi e^{-|\omega|}$.
+
+\newpage
+
+\paragraph{7} Find the output: $$y(t)=e^{-2t}u(t)\ast \mathrm{rect}(\frac{t}{2})$$
+
+\subparagraph{Solution} Let $h(t)=e^{-2t}u(t)$ and $f(t)=\mathrm{rect}(\frac{t}{2})$\\
+
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-1, xmax=2,
+    ymin=-1, ymax=2,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={\(t\)},
+    ylabel={\(h(t)\)},
+    xlabel style={anchor=north west},
+    ylabel style={anchor=south east},
+    grid=both,
+    grid style={line width=0.2pt, draw=gray!30},
+    major grid style={line width=0.4pt, draw=gray!50},
+    grid style={line width=0.3pt, draw=gray!40},
+    xminorgrids=true,
+    yminorgrids=true,
+    minor tick num=1,
+    xtick={-1, 0, 1, 2},
+    ytick={-1, 0, 1, 2},
+    tick style={draw=none},
+    samples=200
+]
+
+    \addplot[line width=1.2pt, blue, domain=-1:0] {0};
+    \addplot[line width=1.2pt, blue, domain=0:2] {exp(-2*x)};
+
+    \draw[dashed, blue!60, line width=0.8pt] (axis cs:0,0) -- (axis cs:0,1);
+
+\end{axis}
+\end{tikzpicture}
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-2, xmax=2,
+    ymin=-1, ymax=2,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={\(t\)},
+    ylabel={\(f(t)=\mathrm{rect}(\frac{t}{2})\)},
+    xlabel style={anchor=north west},
+    ylabel style={anchor=south east},
+    grid=both,
+    grid style={line width=0.3pt, draw=gray!40},
+    xminorgrids=true,
+    yminorgrids=true,
+    minor tick num=1,
+    xtick={-2, -1, 0, 1, 2},
+    ytick={-1, 0, 1, 2},
+    tick style={draw=none},
+    samples=200
+]
+
+    \addplot[line width=1.2pt, blue, domain=-2:-1] {0};
+    \addplot[line width=1.2pt, blue, domain=-1:1] {1};
+    \addplot[line width=1.2pt, blue, domain=1:2] {0};
+
+    \draw[dashed, blue!60, line width=0.8pt] (axis cs:-1,0) -- (axis cs:-1,1);
+    \draw[dashed, blue!60, line width=0.8pt] (axis cs:1,0) -- (axis cs:1,1);
+
+\end{axis}
+\end{tikzpicture}
+
+\begin{tikzpicture}
+\begin{axis}[
+    xmin=-1, xmax=2,
+    ymin=-1, ymax=2,
+    axis lines=middle,
+    axis line style={->, thick},
+    xlabel={\(\tau\)},
+    ylabel={\(h(t-\tau)\)},
+    xlabel style={anchor=north west},
+    ylabel style={anchor=south east},
+    grid=both,
+    grid style={line width=0.2pt, draw=gray!30},
+    major grid style={line width=0.4pt, draw=gray!50},
+    grid style={line width=0.3pt, draw=gray!40},
+    xminorgrids=true,
+    yminorgrids=true,
+    minor tick num=1,
+    xtick={-1, 0, 1, 2},
+    ytick={-1, 0, 1, 2},
+    extra x ticks={0.7},
+    extra x tick labels={\(t\)},
+    extra x tick style={
+        grid=none,
+        tick label style={anchor=north}
+    },
+    tick style={draw=none},
+    samples=200
+]
+
+    \addplot[line width=1.2pt, blue, domain=-1:0.7] {exp(-2*(0.7-x))};
+    \addplot[line width=1.2pt, blue, domain=0.7:2] {0};
+
+    \draw[dashed, blue!60, line width=0.8pt] (axis cs:0.7,0) -- (axis cs:0.7,1);
+    
+\end{axis}
+\end{tikzpicture}
+
+\begin{flalign*}
+& y(t)=\int^{\infty}_{-\infty}h(t-\tau)f(\tau)\mathrm{d}\tau &&
+\end{flalign*}\\
+For $t<-1$: $y(t)=0$
+For $-1\leq t<1$:
+\[\begin{aligned}
+y(t)&=\int^{t}_{-1}e^{-2(t-\tau)}\mathrm{d}\tau=e^{-2t}\int^{t}_{-1}e^{2\tau}\mathrm{d}\tau\\&=e^{-2t}\cdot\left[\frac{1}{2}e^{2\tau}\right]^{t}_{-1}=e^{-2t}\left[\frac{1}{2}e^{2t}-\frac{1}{2}e^{-2}\right]=\frac{1}{2}\left[1-e^{-2(t+1)}\right]
+\end{aligned}\]
+For $t\geq1$:
+\[\begin{aligned}
+y(t)&=\int^{1}_{-1}e^{-2(t-\tau)}\mathrm{d}\tau=e^{-2t}\int^{1}_{-1}e^{2\tau}\mathrm{d}\tau\\&=e^{-2t}\cdot\left[\frac{1}{2}e^{2\tau}\right]^{1}_{-1}=e^{-2t}\left[\frac{1}{2}e^{2}-\frac{1}{2}e^{-2}\right]=\frac{1}{2}(e^2-e^{-2})e^{-2t}
+\end{aligned}\]
+So,
+\[\boxed{
+y(t) = 
+\begin{cases}
+    0, & \text{if } t < -1 \\
+    \frac{1}{2}\left[1-e^{-2(t+1)}\right], & \text{if } -1\leq t<1 \\
+    \frac{1}{2}(e^2-e^{-2})e^{-2t},  & \text{if } t\geq1
+\end{cases}
+}\]
+\vfill
 
 
 \end{document}
