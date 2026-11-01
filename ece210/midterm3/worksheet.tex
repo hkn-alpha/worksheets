@@ -98,13 +98,21 @@ Let $I_A = 1~\text{mA}$, $L = 2~\text{H}$, $R = 1.5~\text{k}\Omega$, and $C = \f
 
 \subsection*{Marginal Stability \& Resonance}
 
-\paragraph{4)} problem 1
+\paragraph{4)} Consider the causal linear time-invariant system
+\[
+\frac{d^2y(t)}{dt^2}+\omega_0^2y(t)=\omega_0^2x(t),
+\qquad \omega_0=2~\mathrm{rad/s}.
+\]
+The input and output are dimensionless, and $t$ is measured in seconds.
+Use zero initial conditions in parts (b) and (c).
+\subparagraph{a)} Find $H(s)$ and its poles. Find the zero-input response for arbitrary finite $y(0)=y_0$ and $y'(0)=v_0$. Is the natural response asymptotically stable, marginally stable, or unstable? Is the system bounded-input, bounded-output (BIBO) stable? Justify both answers.
 
-\subparagraph{a)} marginal stability part
+\vspace{1.2cm}
+\subparagraph{b)} Find the zero-state output for $x(t)=\cos(\Omega t)u(t)$, where $\Omega=1~\mathrm{rad/s}$. Is the output bounded? Does the natural-frequency component decay?
 
-\subparagraph{b)} resonance part
+\vspace{1.2cm}
+\subparagraph{c)} Repeat part (b) for $\Omega=\omega_0$. Explain resonance using the poles of $Y(s)$, and explain why the result is consistent with part (a).
 
-\subparagraph{c)} etc
 
 \vfill
 
