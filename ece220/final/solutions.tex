@@ -258,9 +258,16 @@ void sort(int arr[], int n) {
     a = 10
     \end{lstlisting}
     \textbf{Since a = 2 initially, the switch statement will jump to case 2 line. The first print statement (a = 2) executed. Then a is increased by 3. Since there is no break at the end of case 2 statement, it will continue to case 3 even though a $\neq$ 3. The second print statement is executed (a = 5) and a is increased by 5. After the program reaches break, it exits the switch statement and triggers the very last print statement (a = 10)}
+    \item \textbf{Binary Trees Traversal} : 
+    \newline A unique binary tree can be constructed using in-order and post-order traversal methods if combined.
+    \newline Let’s say we are given:
+    \newline In-order: 7, 5, 10, 3, 20, 4
+    \newline Post-order: 7, 5, 3, 4, 20, 10
+    \newline Build a binary tree that would satisfy both of the following traversals.
+    \newline\includegraphics[width=10cm,height=6cm]{figures/binary_tree_traverse.png}
     \item \textbf{Binary Search Trees}: Are these binary search trees?
     
-    \includegraphics[width=7cm,height=6cm]{figures/bst.png}
+    \includegraphics[width=7cm,height=6cm]{figures/bst2.png}
     \includegraphics[width=7cm,height=6cm]{figures/notbst.png}
     
     \textcolor{blue}{Yes, No}
@@ -579,7 +586,7 @@ void traversal (node *root) {
     \item \textbf{}
 What is the pre-order, in-order, post-order and level order traversal for the following binary search tree?
 
-\includegraphics[scale = 0.125]{figures/bst2.png}\newline
+\includegraphics[scale = 0.125]{figures/bst.png}\newline
 \textcolor{blue}{Pre-Order: 9, 5, 2, 3, 6, 11, 15, 17}\newline
 \textcolor{blue}{In-Order: 2, 3, 5, 6, 9, 11, 15, 17}\newline
 \textcolor{blue}{Post-Order: 3, 2, 6, 5, 17, 15, 11, 9}\newline
