@@ -199,21 +199,61 @@ V_{zi}(s) = \frac{1.5\,s}{(s+1000)(s+3000)} = \frac{-0.75}{s+1000} + \frac{2.25}
 
 \subsection*{Marginal Stability \& Resonance}
 
-\paragraph{4)} problem 1
-
-\subparagraph{a)} marginal stability part
-
-\subparagraph{Solution} sub problem 1 solution
-
-\subparagraph{b)} resonance part
-
-\subparagraph{Solution} sub problem 2 solution
-
-\subparagraph{c)} etc
-
-\subparagraph{Solution} sub problem 3 solution
+\paragraph{4)} Consider the causal linear time-invariant system
+\[
+\frac{d^2y(t)}{dt^2}+\omega_0^2y(t)=\omega_0^2x(t),
+\qquad \omega_0=2~\mathrm{rad/s}.
+\]
+The input and output are dimensionless, and $t$ is measured in seconds.
+Use zero initial conditions in parts (b) and (c).
+\subparagraph{a)} Find $H(s)$ and its poles. Find the zero-input response for arbitrary finite $y(0)=y_0$ and $y'(0)=v_0$. Is the natural response asymptotically stable, marginally stable, or unstable? Is the system bounded-input, bounded-output (BIBO) stable? Justify both answers.
+\subparagraph{Solution}
+With zero initial conditions,
+\[
+H(s)=\frac{\omega_0^2}{s^2+\omega_0^2},
+\qquad s=\pm j\omega_0=\pm j2~\mathrm{s}^{-1}.
+\]
+The zero-input response is
+\[
+y_{zi}(t)=y_0\cos(\omega_0t)+\frac{v_0}{\omega_0}\sin(\omega_0t),\qquad t\geq0.
+\]
+Every finite initial state produces a bounded natural response, but nonzero oscillations do not decay. Thus the natural response is \textbf{marginally stable}, not asymptotically stable: the imaginary-axis poles are simple.
+However, the system is \textbf{not BIBO stable}. Its impulse response
+$h(t)=\omega_0\sin(\omega_0t)u(t)$ is not absolutely integrable. Part (c) also supplies a bounded input with an unbounded output.
+\subparagraph{b)} Find the zero-state output for $x(t)=\cos(\Omega t)u(t)$, where $\Omega=1~\mathrm{rad/s}$. Is the output bounded? Does the natural-frequency component decay?
+\subparagraph{Solution}
+Using $X(s)=s/(s^2+\Omega^2)$ and $\Omega\neq\omega_0$,
+\[
+Y(s)=\frac{\omega_0^2s}{(s^2+\omega_0^2)(s^2+\Omega^2)}
+=\frac{\omega_0^2}{\omega_0^2-\Omega^2}
+\left(\frac{s}{s^2+\Omega^2}-\frac{s}{s^2+\omega_0^2}\right).
+\]
+Therefore,
+\[
+y(t)=\frac{\omega_0^2}{\omega_0^2-\Omega^2}
+[\cos(\Omega t)-\cos(\omega_0t)]u(t)
+=\frac{4}{3}[\cos(\Omega t)-\cos(\omega_0t)]u(t).
+\]
+The output is bounded ($|y(t)|\leq8/3$). The natural-frequency term persists: there is no damping. A bounded response to this particular input does not imply BIBO stability.
+\subparagraph{c)} Repeat part (b) for $\Omega=\omega_0$. Explain resonance using the poles of $Y(s)$, and explain why the result is consistent with part (a).
+\subparagraph{Solution}
+At resonance, the input frequency matches the natural frequency:
+\[
+Y(s)=\frac{\omega_0^2s}{(s^2+\omega_0^2)^2},
+\qquad
+y(t)=\frac{\omega_0t}{2}\sin(\omega_0t)u(t).
+\]
+Using $\mathcal{L}\{tf(t)\}=-dF(s)/ds$, we obtain
+\[
+\mathcal{L}\{t\sin(\omega_0t)u(t)\}
+=\frac{2\omega_0s}{(s^2+\omega_0^2)^2}.
+\]
+The poles of $Y(s)$ at $\pm j\omega_0$ are now \textbf{double}, producing a linearly growing oscillation envelope $\omega_0t/2$.
+The input is bounded, but the output is unbounded. This is resonance and proves the failure of BIBO stability. It does not contradict marginal stability, which describes the zero-input natural response; the poles of $H(s)$ remain simple.
 
 \vfill
+
+\newpage
 
 \paragraph{5)} problem 2
 
