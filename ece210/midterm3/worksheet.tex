@@ -98,21 +98,15 @@ Let $I_A = 1~\text{mA}$, $L = 2~\text{H}$, $R = 1.5~\text{k}\Omega$, and $C = \f
 
 \subsection*{Marginal Stability \& Resonance}
 
-\paragraph{4)} Consider the causal linear time-invariant system
-\[
-\frac{d^2y(t)}{dt^2}+\omega_0^2y(t)=\omega_0^2x(t),
-\qquad \omega_0=2~\mathrm{rad/s}.
-\]
-The input and output are dimensionless, and $t$ is measured in seconds.
-Use zero initial conditions in parts (b) and (c).
-\subparagraph{a)} Find $H(s)$ and its poles. Find the zero-input response for arbitrary finite $y(0)=y_0$ and $y'(0)=v_0$. Is the natural response asymptotically stable, marginally stable, or unstable? Is the system bounded-input, bounded-output (BIBO) stable? Justify both answers.
+\paragraph{4)} Consider a continuous-time LTI system with system function:
+$$H(s) = \frac{s + 1}{s^2 + 2\alpha s + 16}$$
+where $\alpha$ is a real parameter.
 
-\vspace{1.2cm}
-\subparagraph{b)} Find the zero-state output for $x(t)=\cos(\Omega t)u(t)$, where $\Omega=1~\mathrm{rad/s}$. Is the output bounded? Does the natural-frequency component decay?
+\subparagraph{a)} Find the range of $\alpha$ for which the system is (i) asymptotically stable, (ii) unstable, and (iii) marginally stable.
 
-\vspace{1.2cm}
-\subparagraph{c)} Repeat part (b) for $\Omega=\omega_0$. Explain resonance using the poles of $Y(s)$, and explain why the result is consistent with part (a).
+\subparagraph{b)} For the value of $\alpha$ that results in marginal stability, find the impulse response $h(t)$ for $t \geq 0$.
 
+\subparagraph{c)} For the marginally stable system, determine the zero-state response $y(t)$ when the input is $x(t) = \cos(4t)u(t)$. Explain how this response demonstrates resonance.
 
 \vfill
 
