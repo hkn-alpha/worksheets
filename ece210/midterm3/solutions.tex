@@ -33,22 +33,303 @@
 
 \paragraph{Note:} This worksheet is not guaranteed to be entirely representative of the midterm's contents. Material may appear on this worksheet which will not appear on the midterm, and vice versa.
 
+
 \subsection*{Partial Fraction Expansion}
 
-\paragraph{1)} (Technique 1)
+\paragraph{1)} Perform partial fraction expansion for the following rational functions.
 
-\subparagraph{a)} sub problem 1
+\subparagraph{a)}
+\[
+F(s) = \frac{3s+7}{s^2+5s+6}
+\]
 
-\subparagraph{b)} sub problem 2
+\textbf{Solution:}
+
+To perform partial fraction expansion, we first factor the denominator into linear factors. We can then decompose the original function into two simpler fractions.
+
+\textbf{Step 1: Factor the denominator.}
+
+Using the quadratic formula:
+
+\[
+s = \frac{-5\pm\sqrt{5^2-4(1)(6)}}{2}
+= \frac{-5\pm1}{2}
+\]
+
+The roots are $s=-2$ and $s=-3$. Therefore,
+
+\[
+s^2+5s+6=(s+2)(s+3)
+\]
+
+\textbf{Step 2: Set up partial fraction expansion.}
+
+\[
+F(s)
+=\frac{3s+7}{(s+2)(s+3)}
+=\frac{A}{s+2}+\frac{B}{s+3}
+\]
+
+Multiplying both sides by the denominator:
+
+\[
+3s+7=A(s+3)+B(s+2)
+\]
+
+\textbf{Step 3: Solve for A and B.}
+
+Set $s=-2$ to eliminate $B$:
+
+\[
+3(-2)+7=A(-2+3)
+\]
+
+\[
+\boxed{A=1}
+\]
+
+Set $s=-3$ to eliminate $A$:
+
+\[
+3(-3)+7=B(-3+2)
+\]
+
+\[
+\boxed{B=2}
+\]
+
+Thus, our final partial fraction expansion is:
+
+\[
+\boxed{F(s)=\frac{1}{s+2}+\frac{2}{s+3}}
+\]
 
 
-\vfill
+\subparagraph{b)}
+\[
+F(s)=\frac{2s+5}{s^2+4s+5}
+\]
 
-\paragraph{2)} (Technique 2)
+\textbf{Solution:}
 
-\subparagraph{a)} sub problem 1
+We use the same partial fraction expansion technique as in part (a). However, this time the denominator has complex conjugate roots, so our partial fraction coefficients will also be complex.
 
-\subparagraph{b)} sub problem 2
+\textbf{Step 1: Factor the denominator.}
+
+Using the quadratic formula:
+
+\[
+s=\frac{-4\pm\sqrt{4^2-4(1)(5)}}{2}
+=\frac{-4\pm\sqrt{-4}}{2}
+\]
+
+Since $\sqrt{-4}=2j$, the roots are:
+
+\[
+\boxed{s=-2\pm j}
+\]
+
+Therefore,
+
+\[
+s^2+4s+5=(s+2-j)(s+2+j)
+\]
+
+\textbf{Step 2: Set up partial fraction expansion.}
+
+\[
+F(s)
+=\frac{2s+5}{(s+2-j)(s+2+j)}
+\]
+
+\[
+=\frac{A}{s+2-j}+\frac{B}{s+2+j}
+\]
+
+Multiplying by the denominator:
+
+\[
+2s+5=A(s+2+j)+B(s+2-j)
+\]
+
+\textbf{Step 3: Solve for A and B.}
+
+Set $s=-2+j$ to eliminate $B$:
+
+\[
+2(-2+j)+5=A(2j)
+\]
+
+\[
+A=\frac{1+2j}{2j}
+=\boxed{1-\frac{j}{2}}
+\]
+
+Set $s=-2-j$ to eliminate $A$:
+
+\[
+2(-2-j)+5=B(-2j)
+\]
+
+\[
+B=\frac{1-2j}{-2j}
+=\boxed{1+\frac{j}{2}}
+\]
+
+Thus, our final partial fraction expansion is:
+
+\[
+\boxed{
+F(s)=\frac{1-j/2}{s+2-j}
++\frac{1+j/2}{s+2+j}
+}
+\]
+
+
+\newpage
+
+\paragraph{2)} Perform partial fraction expansion for the following rational functions.
+
+\subparagraph{a)}
+\[
+F(s)=\frac{3s+5}{s^2+4s+4}
+\]
+
+\textbf{Solution:}
+
+We first factor the denominator. Since this problem contains a repeated root, we must include a separate fraction for each power of the repeated factor.
+
+\textbf{Step 1: Factor the denominator.}
+
+Using the quadratic formula:
+
+\[
+s=\frac{-4\pm\sqrt{4^2-4(1)(4)}}{2}
+=\frac{-4}{2}=-2
+\]
+
+Since both roots are equal, the denominator has a repeated root:
+
+\[
+s^2+4s+4=(s+2)^2
+\]
+
+\textbf{Step 2: Set up partial fraction expansion.}
+
+For repeated roots, we must include a fraction for each power of the repeated factor.
+
+\[
+F(s)
+=\frac{3s+5}{(s+2)^2}
+=\frac{A}{s+2}+\frac{B}{(s+2)^2}
+\]
+
+Multiplying by the denominator:
+
+\[
+3s+5=A(s+2)+B
+\]
+
+\textbf{Step 3: Solve for A and B.}
+
+Set $s=-2$ to eliminate $A$:
+
+\[
+3(-2)+5=B
+\]
+
+\[
+\boxed{B=-1}
+\]
+
+Matching coefficients of $s$:
+
+\[
+\boxed{A=3}
+\]
+
+Thus, our final partial fraction expansion is:
+
+\[
+\boxed{F(s)=\frac{3}{s+2}-\frac{1}{(s+2)^2}}
+\]
+
+
+\subparagraph{b)}
+\[
+F(s)=\frac{3s^2+9s+8}{s^3+5s^2+9s+5}
+\]
+
+\textbf{Solution:}
+
+Unlike part (a), the denominator contains an irreducible quadratic factor, so we must use a linear numerator for that fraction.
+
+\textbf{Step 1: Factor the denominator.}
+
+We can factor the denominator as:
+
+\[
+s^3+5s^2+9s+5=(s+1)(s^2+4s+5)
+\]
+
+Using the quadratic formula on the second factor:
+
+\[
+s=\frac{-4\pm\sqrt{4^2-4(1)(5)}}{2}
+=\frac{-4\pm\sqrt{-4}}{2}
+=-2\pm j
+\]
+
+Since the roots are complex, the quadratic cannot be factored further into real linear factors.
+
+\textbf{Step 2: Set up partial fraction expansion.}
+
+For the linear factor, we use a constant numerator $A$.
+For the irreducible quadratic, we use a linear numerator $Bs+C$.
+
+\[
+F(s)=\frac{A}{s+1}+\frac{Bs+C}{s^2+4s+5}
+\]
+
+Multiplying both sides by the common denominator:
+
+\[
+3s^2+9s+8
+=A(s^2+4s+5)+(Bs+C)(s+1)
+\]
+
+\textbf{Step 3: Solve for A, B, and C.}
+
+Expanding the right hand side:
+
+\[
+3s^2+9s+8
+=(A+B)s^2+(4A+B+C)s+(5A+C)
+\]
+
+Matching the coefficients of $s^2$, $s$, and the constants:
+
+\[
+\begin{aligned}
+A+B &= 3\\
+4A+B+C &= 9\\
+5A+C &= 8
+\end{aligned}
+\]
+
+Solving this system of equations:
+
+\[
+\boxed{A=1,\quad B=2,\quad C=3}
+\]
+
+Thus, our final partial fraction expansion is:
+
+\[
+\boxed{
+F(s)=\frac{1}{s+1}+\frac{2s+3}{s^2+4s+5}
+}
+\]
 
 
 \vfill
